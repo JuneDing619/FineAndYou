@@ -14,3 +14,5 @@ GitHub Pages 多项目站点仓库。
 ## 发布
 
 建议开启 GitHub Pages，使用 `GitHub Actions` 方式部署。
+
+当前仓库已包含 `Pages` 自动部署工作流，后续网页更新后可直接通过推送触发重新发布。
