@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FineAndYou | 项目目录</title>
+  <meta name="description" content="FineAndYou 项目目录页，汇总多个业务网页项目入口。">
+  <style>
+    :root {
+      --brand: #0086e6;
+      --brand-deep: #0f3d75;
+      --brand-soft: #27a4ff;
+      --bg: #eef4fb;
+      --panel: rgba(255, 255, 255, 0.92);
+      --line: rgba(15, 61, 117, 0.1);
+      --text: #203554;
+      --text-soft: #6a7a92;
+      --shadow: 0 24px 56px rgba(15, 61, 117, 0.1);
+      --max-width: 1200px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Microsoft YaHei", "PingFang SC", "SF Pro Display", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(0, 134, 230, 0.14), transparent 22%),
+        linear-gradient(180deg, #f7fbff 0%, var(--bg) 100%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .shell {
+      width: min(calc(100% - 32px), var(--max-width));
+      margin: 0 auto;
+      padding: 28px 0 48px;
+    }
+
+    .hero {
+      padding: 34px;
+      border-radius: 30px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 34px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: rgba(0, 134, 230, 0.08);
+      color: var(--brand);
+      font-size: 0.84rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+    }
+
+    h1, h2, p {
+      margin: 0;
+    }
+
+    h1 {
+      margin-top: 16px;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.14;
+      color: var(--brand-deep);
+    }
+
+    .hero p {
+      margin-top: 14px;
+      max-width: 760px;
+      color: var(--text-soft);
+      line-height: 1.8;
+      font-size: 1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .card {
+      display: grid;
+      gap: 16px;
+      padding: 24px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(0, 134, 230, 0.1);
+      box-shadow: 0 16px 30px rgba(15, 61, 117, 0.06);
+      transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(0, 134, 230, 0.18);
+      box-shadow: 0 22px 36px rgba(15, 61, 117, 0.08);
+    }
+
+    .card-tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: rgba(15, 61, 117, 0.08);
+      color: var(--brand-deep);
+      font-size: 0.8rem;
+      font-weight: 700;
+      width: fit-content;
+    }
+
+    .card h2 {
+      font-size: 1.35rem;
+      color: var(--brand-deep);
+      line-height: 1.35;
+    }
+
+    .card p {
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      line-height: 1.72;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--brand);
+      font-weight: 700;
+    }
+
+    .card-link::after {
+      content: "›";
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    .placeholder {
+      border-style: dashed;
+      color: var(--text-soft);
+    }
+
+    .footer {
+      margin-top: 18px;
+      padding: 18px 22px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid var(--line);
+      color: var(--text-soft);
+      line-height: 1.7;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 860px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero,
+      .card {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <span class="eyebrow">FineAndYou</span>
+      <h1>项目目录</h1>
+      <p>这里汇总后续会持续发布的业务网页项目。当前已上线 `JFH` 项目，后续新增项目时可以继续按同样方式扩展到这个入口页。</p>
+    </section>
+
+    <section class="grid" aria-label="项目入口">
+      <a class="card" href="./JFH/">
+        <span class="card-tag">已发布项目</span>
+        <div>
+          <h2>JFH</h2>
+          <p>数字化经营分析会场景介绍页，面向帆软内部一线同学，包含场景总览、方案说明、案例地图、场景工具与推进计划。</p>
+        </div>
+        <span class="card-link">进入项目</span>
+      </a>
+
+      <article class="card placeholder">
+        <span class="card-tag">预留位置</span>
+        <div>
+          <h2>更多项目</h2>
+          <p>后续新增项目时，可以继续在根目录增加对应子目录，并在这里补一个新的入口卡片。</p>
+        </div>
+      </article>
+    </section>
+
+    <div class="footer">推荐发布方式：启用 GitHub Pages，根目录作为站点入口，单个项目使用子目录管理，便于后续持续扩容。</div>
+  </main>
+</body>
+</html>
