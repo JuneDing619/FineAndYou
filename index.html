@@ -251,20 +251,19 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.42fr);
-      gap: 18px;
+      grid-template-columns: 1fr;
+      gap: 16px;
       align-items: start;
     }
 
     .hero-copy,
-    .hero-side,
     .section-stack {
       display: grid;
       gap: 14px;
     }
 
-    .hero-side {
-      align-content: start;
+    .hero-copy {
+      max-width: 860px;
     }
 
     .eyebrow {
@@ -291,11 +290,11 @@
 
     .hero h1 {
       margin-top: 8px;
-      font-size: clamp(1.95rem, 3.15vw, 3.08rem);
+      font-size: clamp(1.84rem, 2.8vw, 2.72rem);
       line-height: 1.14;
       letter-spacing: -0.035em;
       color: var(--navy-900);
-      max-width: 620px;
+      max-width: 640px;
     }
 
     .hero-subtitle {
@@ -377,7 +376,7 @@
 
     .section-head {
       display: flex;
-      align-items: flex-end;
+      align-items: center;
       justify-content: space-between;
       gap: 16px;
       margin-bottom: 18px;
@@ -456,22 +455,22 @@
     .arsenal-layout {
       position: relative;
       z-index: 1;
-      display: grid;
-      grid-template-columns: 260px minmax(0, 1fr);
-      gap: 18px;
-      align-items: start;
+      display: block;
     }
 
     .arsenal-tabs {
-      display: grid;
-      gap: 12px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      max-width: 560px;
     }
 
     .arsenal-tab {
-      width: 100%;
+      width: auto;
       text-align: left;
-      padding: 16px;
-      border-radius: 18px;
+      padding: 10px 14px;
+      border-radius: 999px;
       background: rgba(255, 255, 255, 0.78);
       border: 1px solid rgba(23, 52, 110, 0.08);
       box-shadow: 0 12px 26px rgba(23, 52, 110, 0.05);
@@ -484,11 +483,12 @@
     }
 
     .arsenal-tab strong {
-      font-size: 1.04rem;
+      font-size: 0.92rem;
       color: var(--navy-900);
     }
 
     .arsenal-tab span {
+      display: none;
       margin-top: 8px;
       color: var(--text-soft);
       line-height: 1.66;
@@ -755,7 +755,6 @@
 
     @media (max-width: 1180px) {
       .hero-grid,
-      .arsenal-layout,
       .profile-grid,
       .profile-top {
         grid-template-columns: 1fr;
@@ -787,6 +786,18 @@
       }
 
       .topnav {
+        justify-content: flex-start;
+      }
+
+      .section-head {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .arsenal-tabs {
+        width: 100%;
+        max-width: none;
         justify-content: flex-start;
       }
 
@@ -879,7 +890,6 @@
 
       .hero-grid,
       .hero-copy,
-      .hero-side,
       .section-stack {
         gap: 10px;
       }
@@ -898,7 +908,7 @@
 
       .hero h1 {
         margin-top: 4px;
-        font-size: clamp(1.65rem, 6.8vw, 2.12rem);
+        font-size: clamp(1.48rem, 5.9vw, 1.86rem);
         line-height: 1.16;
         letter-spacing: -0.03em;
       }
@@ -935,6 +945,22 @@
       .hero-side-panel,
       .mini-card {
         padding: 14px;
+      }
+
+      .arsenal-tabs {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 7px;
+      }
+
+      .arsenal-tab {
+        padding: 9px 8px;
+        text-align: center;
+      }
+
+      .arsenal-tab strong {
+        font-size: 0.78rem;
+        line-height: 1.3;
       }
 
       .portrait {
@@ -980,19 +1006,6 @@
             </div>
           </div>
 
-          <aside class="hero-side">
-            <section class="hero-panel hero-side-panel">
-              <h3>当前开放方向</h3>
-              <div class="chip-list">
-                <span class="chip">财经品牌屋</span>
-                <span class="chip">数字化经分会</span>
-                <span class="chip">财务管报</span>
-                <span class="chip">穿透式监管</span>
-                <span class="ghost-chip">更多内容持续上新</span>
-              </div>
-            </section>
-          </aside>
-
           <div class="mini-grid">
             <article class="mini-card">
               <strong>理念到交付</strong>
@@ -1016,9 +1029,6 @@
             <span class="eyebrow">The Arsenal</span>
             <h2>核心导航区</h2>
           </div>
-        </div>
-
-        <div class="arsenal-layout">
           <div class="arsenal-tabs" role="tablist" aria-label="核心模块切换">
             <button class="arsenal-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="arsenal-finance" id="tab-finance" data-pane="finance">
               <strong>财经破圈</strong>
@@ -1033,7 +1043,9 @@
               <span>为未来专题、案例库与新场景留出统一扩展位。</span>
             </button>
           </div>
+        </div>
 
+        <div class="arsenal-layout">
           <div>
             <div class="arsenal-pane is-active" id="arsenal-finance" role="tabpanel" aria-labelledby="tab-finance">
               <article class="arsenal-card">
@@ -1046,37 +1058,37 @@
                 <div class="case-grid">
                   <a class="case-card" href="../index.html">
                     <span class="case-tags">财经品牌屋</span>
-                    <h4>整体方案入口</h4>
-                    <p>承接财经整体框架、方案总览与核心叙事，是对外介绍时的总入口页面。</p>
+                    <h4>财经品牌屋</h4>
+                    <p>帆软财经品牌的价值主张、品牌定位、面向人群与能力支撑。</p>
                     <span class="case-link">查看内容</span>
                   </a>
-                  <a class="case-card" href="./JFH/">
-                    <span class="case-tags">数字化经分会</span>
-                    <h4>一报一会场景</h4>
-                    <p>聚焦高层经营复盘与经营决策，覆盖场景总览、方案说明、案例地图与工具资产。</p>
+                  <a class="case-card" href="https://juneding619.github.io/FineAndYou/JFH/">
+                    <span class="case-tags">一报一会</span>
+                    <h4>数字化经分会</h4>
+                    <p>聚焦高层经营作战，覆盖场景总览、方案说明、案例地图与工具资产。</p>
                     <span class="case-link">进入页面</span>
                   </a>
                   <a class="case-card" href="../finance-report-prototype.html">
                     <span class="case-tags">财务管报</span>
-                    <h4>管报原型展示</h4>
+                    <h4>财务管报</h4>
                     <p>围绕财务概览、销售、成本与费用模块，适合作为财务分析场景的演示入口。</p>
                     <span class="case-link">进入原型</span>
                   </a>
                   <a class="case-card" href="../index.html#regulation">
-                    <span class="case-tags">穿透式监管</span>
-                    <h4>监管专题方案</h4>
-                    <p>聚焦国资监管、经营管控与一企一屏，适合监管与集团型客户沟通。</p>
+                    <span class="case-tags">国资监管</span>
+                    <h4>穿透式监管</h4>
+                    <p>聚焦国资穿透式监管政策要求在的场景，适合央国企集团型客户。</p>
                     <span class="case-link">查看专题</span>
                   </a>
                   <a class="case-card" href="../agent-business-review-platform-hifi.html">
                     <span class="case-tags">其他财经场景</span>
-                    <h4>Agent 经营分析会平台</h4>
+                    <h4>财经Agent平台</h4>
                     <p>补充更偏产品化的表达方式，连接会议驾驶舱、督办任务与资料中心等能力。</p>
                     <span class="case-link">打开高保真页</span>
                   </a>
                   <article class="case-card placeholder-card">
                     <span class="case-tags">持续补齐</span>
-                    <h4>后续财经专题</h4>
+                    <h4>更多财经专题</h4>
                     <p>预留给新行业模板、专项方法论、案例复盘和客户共创素材。</p>
                   </article>
                 </div>
@@ -1094,12 +1106,12 @@
                 <div class="case-grid">
                   <article class="case-card placeholder-card">
                     <span class="case-tags">理念方法</span>
-                    <h4>治理方法论入口</h4>
+                    <h4>数据治理方法论</h4>
                     <p>聚合指标口径、组织机制、治理流程与项目打法的统一表达方式。</p>
                   </article>
                   <article class="case-card placeholder-card">
                     <span class="case-tags">xxx</span>
-                    <h4>预留二级模块</h4>
+                    <h4>领军者训练营</h4>
                     <p>按你当前给出的命名保留占位，后续可直接替换为正式专题页面。</p>
                   </article>
                   <article class="case-card placeholder-card">
