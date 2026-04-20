@@ -251,8 +251,8 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(300px, 0.48fr);
-      gap: 22px;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.42fr);
+      gap: 18px;
       align-items: start;
     }
 
@@ -260,7 +260,7 @@
     .hero-side,
     .section-stack {
       display: grid;
-      gap: 16px;
+      gap: 14px;
     }
 
     .hero-side {
@@ -290,12 +290,12 @@
     }
 
     .hero h1 {
-      margin-top: 10px;
-      font-size: clamp(2.2rem, 3.9vw, 3.7rem);
-      line-height: 1.08;
-      letter-spacing: -0.04em;
+      margin-top: 8px;
+      font-size: clamp(1.95rem, 3.15vw, 3.08rem);
+      line-height: 1.14;
+      letter-spacing: -0.035em;
       color: var(--navy-900);
-      max-width: 680px;
+      max-width: 620px;
     }
 
     .hero-subtitle {
@@ -310,10 +310,9 @@
     }
 
     .hero-pills,
-    .chip-list,
-    .hero-actions {
+    .chip-list {
       display: flex;
-      gap: 10px;
+      gap: 9px;
       flex-wrap: wrap;
     }
 
@@ -322,10 +321,10 @@
     .ghost-chip {
       display: inline-flex;
       align-items: center;
-      min-height: 38px;
-      padding: 0 14px;
+      min-height: 34px;
+      padding: 0 12px;
       border-radius: 999px;
-      font-size: 0.9rem;
+      font-size: 0.86rem;
     }
 
     .hero-pills span,
@@ -452,51 +451,6 @@
       top: 12px;
       color: var(--navy-700);
       font-weight: 700;
-    }
-
-    .hero-actions {
-      margin-top: 2px;
-    }
-
-    .hero-action {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      min-height: 48px;
-      padding: 0 20px;
-      border-radius: 16px;
-      font-size: 0.96rem;
-      font-weight: 700;
-      border: 1px solid transparent;
-      transition: transform var(--anim), box-shadow var(--anim), border-color var(--anim), background var(--anim), color var(--anim);
-    }
-
-    .hero-action::after {
-      content: "›";
-      font-size: 1.1rem;
-      line-height: 1;
-    }
-
-    .hero-action:hover {
-      transform: translateY(-1px);
-    }
-
-    .hero-action-primary {
-      color: #fff;
-      background: linear-gradient(135deg, var(--navy-700), var(--sky-500));
-      box-shadow: 0 16px 28px rgba(0, 134, 230, 0.22);
-    }
-
-    .hero-action-secondary {
-      color: var(--navy-700);
-      background: rgba(255, 255, 255, 0.92);
-      border-color: rgba(0, 134, 230, 0.16);
-      box-shadow: 0 12px 22px rgba(23, 52, 110, 0.06);
-    }
-
-    .hero-action-secondary:hover {
-      box-shadow: 0 14px 28px rgba(0, 134, 230, 0.1);
     }
 
     .arsenal-layout {
@@ -829,6 +783,7 @@
         position: static;
         align-items: flex-start;
         flex-direction: column;
+        gap: 14px;
       }
 
       .topnav {
@@ -837,7 +792,7 @@
 
       .hero,
       .section-card {
-        padding: 24px;
+        padding: 22px;
       }
     }
 
@@ -850,26 +805,124 @@
 
     @media (max-width: 640px) {
       .shell {
-        width: min(calc(100% - 18px), var(--max-width));
+        width: min(calc(100% - 14px), var(--max-width));
+        padding-top: 10px;
       }
 
       .topbar,
       .hero,
       .section-card {
-        padding: 20px;
+        padding: 16px;
         border-radius: 20px;
+      }
+
+      .topbar {
+        gap: 12px;
+        min-height: auto;
       }
 
       .brand {
         align-items: flex-start;
+        gap: 10px;
+      }
+
+      .brand-mark {
+        width: 40px;
+        height: 40px;
+        border-radius: 13px;
+      }
+
+      .brand-mark::before {
+        width: 15px;
+        left: 13px;
+        top: 13px;
+      }
+
+      .brand-mark::after {
+        height: 15px;
+        left: 13px;
+        top: 13px;
+      }
+
+      .brand-copy strong {
+        font-size: 0.92rem;
+      }
+
+      .brand-copy span {
+        margin-top: 2px;
+        font-size: 0.76rem;
       }
 
       .brand-copy span {
         white-space: normal;
       }
 
+      .topnav {
+        width: 100%;
+        gap: 6px;
+      }
+
+      .topnav a {
+        padding: 7px 9px;
+        font-size: 0.82rem;
+      }
+
+      .page {
+        gap: 12px;
+        margin-top: 12px;
+      }
+
+      .hero::before,
+      .hero::after {
+        opacity: 0.14;
+      }
+
+      .hero-grid,
+      .hero-copy,
+      .hero-side,
+      .section-stack {
+        gap: 10px;
+      }
+
+      .eyebrow {
+        padding: 6px 10px;
+        font-size: 0.78rem;
+        gap: 8px;
+      }
+
+      .eyebrow::before {
+        width: 7px;
+        height: 7px;
+        box-shadow: 0 0 0 5px rgba(0, 134, 230, 0.08);
+      }
+
       .hero h1 {
-        font-size: clamp(2rem, 9vw, 3rem);
+        margin-top: 4px;
+        font-size: clamp(1.65rem, 6.8vw, 2.12rem);
+        line-height: 1.16;
+        letter-spacing: -0.03em;
+      }
+
+      .hero-subtitle {
+        font-size: 0.86rem;
+        line-height: 1.68;
+      }
+
+      .hero-pills,
+      .chip-list {
+        gap: 7px;
+      }
+
+      .hero-pills span,
+      .chip,
+      .ghost-chip {
+        min-height: 30px;
+        padding: 0 10px;
+        font-size: 0.78rem;
+      }
+
+      .hero-side-panel h3 {
+        font-size: 1rem;
       }
 
       .arsenal-tab,
@@ -881,7 +934,7 @@
       .hero-panel,
       .hero-side-panel,
       .mini-card {
-        padding: 18px;
+        padding: 14px;
       }
 
       .portrait {
@@ -919,10 +972,6 @@
               <strong>这里是帆软行销·总工办（COE）的数字化开源阵地。</strong><br>
               我们萃取头部企业的实战经验，为您提供从“理念方法”到“落地交付”的场景武器库。
             </p>
-            <div class="hero-actions">
-              <a class="hero-action hero-action-primary" href="#arsenal">进入武器库</a>
-              <a class="hero-action hero-action-secondary" href="#about">认识 COE</a>
-            </div>
             <div class="hero-pills" aria-label="首页能力标签">
               <span>理念方法</span>
               <span>场景方法论</span>
@@ -1166,8 +1215,8 @@
       </section>
 
       <footer class="footer-note">
-        <span>当前首页文件：`FineAndYou/index.html`</span>
-        <span>视觉基调已对齐 `FineAndYou/JFH/` 的蓝白科技感与玻璃卡片体系</span>
+        <span>当前首页已作为 FineAndYou 站点入口页</span>
+        <span>视觉基调延续 JFH 页面的蓝白科技感与玻璃卡片体系</span>
       </footer>
     </main>
   </div>
