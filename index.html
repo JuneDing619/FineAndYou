@@ -298,14 +298,11 @@
     }
 
     .hero-subtitle {
-      max-width: 700px;
-      font-size: 0.98rem;
-      line-height: 1.78;
+      max-width: none;
+      font-size: 0.92rem;
+      line-height: 1.72;
       color: var(--text-soft);
-    }
-
-    .hero-subtitle strong {
-      color: var(--navy-900);
+      white-space: nowrap;
     }
 
     .hero-pills,
@@ -459,22 +456,26 @@
     }
 
     .arsenal-tabs {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
       justify-content: flex-end;
-      max-width: 560px;
+      width: min(560px, 100%);
     }
 
     .arsenal-tab {
-      width: auto;
-      text-align: left;
+      display: grid;
+      align-items: center;
+      justify-items: center;
+      min-height: 48px;
+      text-align: center;
       padding: 10px 14px;
-      border-radius: 999px;
+      border-radius: 14px;
+      color: var(--text-soft);
       background: rgba(255, 255, 255, 0.78);
       border: 1px solid rgba(23, 52, 110, 0.08);
-      box-shadow: 0 12px 26px rgba(23, 52, 110, 0.05);
-      transition: transform var(--anim), border-color var(--anim), box-shadow var(--anim), background var(--anim);
+      box-shadow: 0 12px 24px rgba(23, 52, 110, 0.04);
+      transition: transform var(--anim), border-color var(--anim), box-shadow var(--anim), background var(--anim), color var(--anim);
     }
 
     .arsenal-tab strong,
@@ -484,7 +485,7 @@
 
     .arsenal-tab strong {
       font-size: 0.92rem;
-      color: var(--navy-900);
+      color: inherit;
     }
 
     .arsenal-tab span {
@@ -496,10 +497,15 @@
     }
 
     .arsenal-tab.is-active {
-      background: linear-gradient(135deg, rgba(0, 134, 230, 0.12), rgba(255, 255, 255, 0.94));
-      border-color: rgba(0, 134, 230, 0.18);
-      box-shadow: 0 18px 34px rgba(0, 134, 230, 0.09);
+      color: #fff;
+      background: linear-gradient(180deg, rgba(0, 134, 230, 0.98), rgba(15, 61, 117, 0.98));
+      border-color: rgba(0, 134, 230, 0.28);
+      box-shadow: 0 18px 30px rgba(0, 134, 230, 0.18);
       transform: translateY(-1px);
+    }
+
+    .arsenal-tab.is-active strong {
+      color: #fff;
     }
 
     .arsenal-pane {
@@ -558,19 +564,6 @@
       color: var(--navy-900);
       font-size: 1.06rem;
       line-height: 1.45;
-    }
-
-    .case-tags {
-      display: inline-flex;
-      align-items: center;
-      width: fit-content;
-      min-height: 34px;
-      padding: 8px 12px;
-      border-radius: 10px;
-      background: rgba(0, 134, 230, 0.06);
-      color: var(--navy-700);
-      font-size: 0.84rem;
-      line-height: 1.4;
     }
 
     .case-card p {
@@ -916,6 +909,7 @@
       .hero-subtitle {
         font-size: 0.86rem;
         line-height: 1.68;
+        white-space: normal;
       }
 
       .hero-pills,
@@ -994,10 +988,7 @@
             <div>
               <h1>让数据成为丈量战略的尺子。</h1>
             </div>
-            <p class="hero-subtitle">
-              <strong>这里是帆软行销·总工办的知识资产开源阵地。</strong><br>
-              不仅是提供从“理念方法”到“落地交付”的场景武器库，更希望传递一种知识文化——透明、协作、持续演进。
-            </p>
+            <p class="hero-subtitle">不仅是提供从“理念方法”到“落地交付”的场景武器库，更希望传递一种知识文化——透明、协作、持续演进。</p>
             <div class="hero-pills" aria-label="首页能力标签">
               <span>理念方法</span>
               <span>场景方法论</span>
@@ -1057,37 +1048,31 @@
                 </div>
                 <div class="case-grid">
                   <a class="case-card" href="../index.html">
-                    <span class="case-tags">财经品牌屋</span>
                     <h4>财经品牌屋</h4>
                     <p>帆软财经品牌的价值主张、品牌定位、面向人群与能力支撑。</p>
                     <span class="case-link">查看内容</span>
                   </a>
                   <a class="case-card" href="https://juneding619.github.io/FineAndYou/JFH/">
-                    <span class="case-tags">一报一会</span>
                     <h4>数字化经分会</h4>
                     <p>聚焦高层经营作战，覆盖场景总览、方案说明、案例地图与工具资产。</p>
                     <span class="case-link">进入页面</span>
                   </a>
                   <a class="case-card" href="../finance-report-prototype.html">
-                    <span class="case-tags">财务管报</span>
                     <h4>财务管报</h4>
                     <p>围绕财务概览、销售、成本与费用模块，适合作为财务分析场景的演示入口。</p>
                     <span class="case-link">进入原型</span>
                   </a>
                   <a class="case-card" href="../index.html#regulation">
-                    <span class="case-tags">国资监管</span>
                     <h4>穿透式监管</h4>
                     <p>聚焦国资穿透式监管政策要求在的场景，适合央国企集团型客户。</p>
                     <span class="case-link">查看专题</span>
                   </a>
                   <a class="case-card" href="../agent-business-review-platform-hifi.html">
-                    <span class="case-tags">其他财经场景</span>
                     <h4>财经Agent平台</h4>
                     <p>补充更偏产品化的表达方式，连接会议驾驶舱、督办任务与资料中心等能力。</p>
                     <span class="case-link">打开高保真页</span>
                   </a>
                   <article class="case-card placeholder-card">
-                    <span class="case-tags">持续补齐</span>
                     <h4>更多财经专题</h4>
                     <p>预留给新行业模板、专项方法论、案例复盘和客户共创素材。</p>
                   </article>
@@ -1105,22 +1090,18 @@
                 </div>
                 <div class="case-grid">
                   <article class="case-card placeholder-card">
-                    <span class="case-tags">理念方法</span>
                     <h4>数据治理方法论</h4>
                     <p>聚合指标口径、组织机制、治理流程与项目打法的统一表达方式。</p>
                   </article>
                   <article class="case-card placeholder-card">
-                    <span class="case-tags">xxx</span>
                     <h4>领军者训练营</h4>
                     <p>按你当前给出的命名保留占位，后续可直接替换为正式专题页面。</p>
                   </article>
                   <article class="case-card placeholder-card">
-                    <span class="case-tags">xxxx</span>
                     <h4>预留二级模块</h4>
                     <p>与上方模块保持同层级，方便后续继续补充治理专题或交付资产。</p>
                   </article>
                   <article class="case-card placeholder-card">
-                    <span class="case-tags">建设中</span>
                     <h4>更多治理资产</h4>
                     <p>后续可继续加入数据标准、指标体系、治理运营与平台能力等内容。</p>
                   </article>
@@ -1138,22 +1119,18 @@
                 </div>
                 <div class="case-grid">
                   <article class="case-card placeholder-card">
-                    <span class="case-tags">新专题</span>
                     <h4>案例专题</h4>
                     <p>可扩展行业案例、客户复盘、方法论拆解等内容集合。</p>
                   </article>
                   <article class="case-card placeholder-card">
-                    <span class="case-tags">新专题</span>
                     <h4>工具资产</h4>
                     <p>可接入模板、讲稿、方案页、原型页与常用交付资产库。</p>
                   </article>
                   <article class="case-card placeholder-card">
-                    <span class="case-tags">新专题</span>
                     <h4>研究洞察</h4>
                     <p>可沉淀行业观察、趋势判断与关键客户话题的长期内容位。</p>
                   </article>
                   <article class="case-card placeholder-card">
-                    <span class="case-tags">新专题</span>
                     <h4>活动运营</h4>
                     <p>可承接活动回顾、直播专题、系列栏目和对外传播页面。</p>
                   </article>
@@ -1169,7 +1146,6 @@
           <div class="section-stack">
             <span class="eyebrow">About COE</span>
             <h2>总工办介绍</h2>
-            <p>延续参考贴图的双人介绍方式，用统一的专家卡片承接资历、方法经验与典型客户，方便首页直接建立专业信任感。</p>
           </div>
         </div>
 
