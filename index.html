@@ -3,24 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FineAndYou | 项目目录</title>
-  <meta name="description" content="FineAndYou 项目目录页，汇总多个业务网页项目入口。">
+  <title>FineAndYou | 帆软行销·总工办</title>
+  <meta name="description" content="帆软行销·总工办（COE）数字化开源阵地首页，涵盖财经破圈、数据治理与 COE 团队介绍。">
   <style>
     :root {
-      --brand: #0086e6;
-      --brand-deep: #0f3d75;
-      --brand-soft: #27a4ff;
-      --bg: #eef4fb;
-      --panel: rgba(255, 255, 255, 0.92);
-      --line: rgba(15, 61, 117, 0.1);
+      --navy-900: #0f3d75;
+      --navy-800: #006fc2;
+      --navy-700: #0086e6;
+      --sky-500: #27a4ff;
+      --sky-300: #b7e2ff;
+      --sky-200: #e2f4ff;
+      --bg: #eef3f8;
+      --paper: rgba(255, 255, 255, 0.92);
+      --paper-strong: rgba(255, 255, 255, 0.98);
+      --line: rgba(23, 52, 110, 0.12);
+      --line-strong: rgba(23, 52, 110, 0.2);
       --text: #203554;
-      --text-soft: #6a7a92;
-      --shadow: 0 24px 56px rgba(15, 61, 117, 0.1);
-      --max-width: 1200px;
+      --text-soft: #667792;
+      --accent: #f28a2b;
+      --shadow-lg: 0 28px 72px rgba(23, 52, 110, 0.12);
+      --shadow-md: 0 18px 40px rgba(23, 52, 110, 0.08);
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 10px;
+      --max-width: 1440px;
+      --nav-height: 74px;
+      --anim: 220ms cubic-bezier(.2, .8, .2, 1);
     }
 
     * {
       box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -28,8 +45,22 @@
       font-family: "Microsoft YaHei", "PingFang SC", "SF Pro Display", sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(0, 134, 230, 0.14), transparent 22%),
-        linear-gradient(180deg, #f7fbff 0%, var(--bg) 100%);
+        radial-gradient(circle at 12% 12%, rgba(0, 134, 230, 0.15), transparent 18%),
+        radial-gradient(circle at 88% 8%, rgba(39, 164, 255, 0.13), transparent 18%),
+        linear-gradient(180deg, #f4f8fc 0%, var(--bg) 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(0, 134, 230, 0.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 134, 230, 0.028) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.86), transparent 95%);
     }
 
     a {
@@ -37,172 +68,1083 @@
       text-decoration: none;
     }
 
+    button {
+      font: inherit;
+      color: inherit;
+      cursor: pointer;
+      border: 0;
+      background: none;
+    }
+
+    h1, h2, h3, h4, p {
+      margin: 0;
+    }
+
     .shell {
       width: min(calc(100% - 32px), var(--max-width));
       margin: 0 auto;
-      padding: 28px 0 48px;
+      padding: 18px 0 34px;
+      position: relative;
     }
 
-    .hero {
-      padding: 34px;
-      border-radius: 22px;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
+    .topbar {
+      position: sticky;
+      top: 14px;
+      z-index: 60;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: var(--nav-height);
+      padding: 16px 22px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(23, 52, 110, 0.08);
+      box-shadow: 0 14px 32px rgba(23, 52, 110, 0.06);
+    }
+
+    .brand {
+      min-width: 0;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-mark {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--navy-700), var(--sky-500));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 14px 28px rgba(0, 134, 230, 0.18);
+      position: relative;
+      flex: 0 0 auto;
+    }
+
+    .brand-mark::before,
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.88);
+    }
+
+    .brand-mark::before {
+      width: 18px;
+      height: 4px;
+      left: 15px;
+      top: 15px;
+    }
+
+    .brand-mark::after {
+      width: 4px;
+      height: 18px;
+      left: 15px;
+      top: 15px;
+    }
+
+    .brand-copy {
+      min-width: 0;
+    }
+
+    .brand-copy strong {
+      display: block;
+      font-size: 1.02rem;
+      color: var(--navy-900);
+      letter-spacing: 0.02em;
+    }
+
+    .brand-copy span {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.84rem;
+      color: var(--text-soft);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .topnav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .topnav a {
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: var(--text-soft);
+      border: 1px solid transparent;
+      transition: transform var(--anim), border-color var(--anim), background var(--anim), color var(--anim);
+    }
+
+    .topnav a:hover {
+      color: var(--navy-700);
+      border-color: rgba(0, 134, 230, 0.16);
+      background: rgba(255, 255, 255, 0.88);
+      transform: translateY(-1px);
+    }
+
+    .page {
+      display: grid;
+      gap: 20px;
+      margin-top: 18px;
+    }
+
+    .hero,
+    .section-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(244, 248, 252, 0.9)),
+        var(--paper);
+      border: 1px solid rgba(23, 52, 110, 0.08);
+      box-shadow: var(--shadow-lg);
+      padding: 30px;
+    }
+
+    .hero::before,
+    .hero::after,
+    .section-card::before {
+      content: "";
+      position: absolute;
+      border-radius: 24px;
+      transform: rotate(45deg);
+      background:
+        radial-gradient(circle, rgba(0, 134, 230, 0.2) 0 12px, transparent 13px 26px, rgba(39, 164, 255, 0.14) 27px 36px, transparent 37px),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent);
+      pointer-events: none;
+      opacity: 0.36;
+    }
+
+    .hero::before {
+      width: 360px;
+      height: 360px;
+      right: -120px;
+      top: -140px;
+    }
+
+    .hero::after {
+      width: 320px;
+      height: 320px;
+      right: -40px;
+      bottom: -190px;
+      opacity: 0.24;
+    }
+
+    .section-card::before {
+      width: 220px;
+      height: 220px;
+      right: -120px;
+      top: -100px;
+      opacity: 0.18;
+    }
+
+    .hero-grid,
+    .section-grid {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.82fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .hero-copy,
+    .hero-side,
+    .section-stack {
+      display: grid;
+      gap: 18px;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      min-height: 34px;
-      padding: 0 14px;
+      gap: 10px;
+      width: fit-content;
+      padding: 8px 14px;
       border-radius: 999px;
       background: rgba(0, 134, 230, 0.08);
-      color: var(--brand);
-      font-size: 0.84rem;
-      font-weight: 800;
-      letter-spacing: 0.06em;
+      color: var(--navy-700);
+      font-weight: 700;
+      letter-spacing: 0.04em;
     }
 
-    h1, h2, p {
-      margin: 0;
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--navy-700), var(--sky-500));
+      box-shadow: 0 0 0 6px rgba(0, 134, 230, 0.08);
     }
 
-    h1 {
-      margin-top: 16px;
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      line-height: 1.14;
-      color: var(--brand-deep);
+    .hero h1 {
+      margin-top: 18px;
+      font-size: clamp(2.9rem, 5.6vw, 5.1rem);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      color: var(--navy-900);
+      max-width: 780px;
     }
 
-    .hero p {
-      margin-top: 14px;
-      max-width: 760px;
+    .hero-subtitle {
+      max-width: 780px;
+      font-size: 1.02rem;
+      line-height: 1.86;
       color: var(--text-soft);
-      line-height: 1.8;
+    }
+
+    .hero-subtitle strong {
+      color: var(--navy-900);
+    }
+
+    .hero-pills,
+    .chip-list,
+    .link-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .hero-pills span,
+    .chip,
+    .ghost-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 0 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+    }
+
+    .hero-pills span,
+    .chip {
+      background: rgba(0, 134, 230, 0.08);
+      color: var(--navy-700);
+      border: 1px solid rgba(0, 134, 230, 0.08);
+    }
+
+    .ghost-chip {
+      background: rgba(255, 255, 255, 0.82);
+      color: var(--text);
+      border: 1px solid rgba(23, 52, 110, 0.08);
+    }
+
+    .hero-panel,
+    .mini-card,
+    .arsenal-card,
+    .sub-card,
+    .profile-card,
+    .profile-detail {
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid rgba(0, 134, 230, 0.1);
+      box-shadow: var(--shadow-md);
+    }
+
+    .hero-panel {
+      padding: 22px;
+    }
+
+    .hero-panel h2,
+    .section-head h2 {
+      font-size: clamp(1.72rem, 2.4vw, 2.6rem);
+      line-height: 1.18;
+      color: var(--navy-900);
+    }
+
+    .hero-panel p,
+    .section-head p,
+    .mini-card p,
+    .arsenal-card p,
+    .sub-card p,
+    .profile-meta p,
+    .profile-detail p {
+      color: var(--text-soft);
+      line-height: 1.78;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 22px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-head p {
+      max-width: 720px;
+      font-size: 0.96rem;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .mini-card {
+      padding: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .mini-card strong,
+    .sub-card h4,
+    .arsenal-card h3,
+    .profile-text h3,
+    .profile-detail strong {
+      color: var(--navy-900);
+    }
+
+    .mini-card strong {
       font-size: 1rem;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 24px;
-    }
-
-    .card {
+    .hero-side-panel {
+      padding: 24px;
       display: grid;
       gap: 16px;
-      padding: 24px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.9);
-      border: 1px solid rgba(0, 134, 230, 0.1);
-      box-shadow: 0 16px 30px rgba(15, 61, 117, 0.06);
-      transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+      align-content: start;
     }
 
-    .card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(0, 134, 230, 0.18);
-      box-shadow: 0 22px 36px rgba(15, 61, 117, 0.08);
+    .hero-side-panel h3 {
+      font-size: 1.2rem;
+      color: var(--navy-900);
     }
 
-    .card-tag {
-      display: inline-flex;
-      align-items: center;
-      min-height: 30px;
-      padding: 0 12px;
-      border-radius: 999px;
-      background: rgba(15, 61, 117, 0.08);
-      color: var(--brand-deep);
-      font-size: 0.8rem;
-      font-weight: 700;
-      width: fit-content;
+    .list {
+      display: grid;
+      gap: 10px;
     }
 
-    .card h2 {
-      font-size: 1.35rem;
-      color: var(--brand-deep);
-      line-height: 1.35;
-    }
-
-    .card p {
-      color: var(--text-soft);
-      font-size: 0.95rem;
+    .list-item,
+    .bullet-item {
+      position: relative;
+      min-height: 42px;
+      padding: 11px 14px 11px 46px;
+      border-radius: 14px;
+      background: rgba(0, 134, 230, 0.06);
+      color: var(--text);
       line-height: 1.72;
     }
 
-    .card-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--brand);
+    .list-item::before,
+    .bullet-item::before {
+      content: "➜";
+      position: absolute;
+      left: 16px;
+      top: 12px;
+      color: var(--navy-700);
       font-weight: 700;
     }
 
-    .card-link::after {
+    .link-row a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 0 16px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(0, 134, 230, 0.12), rgba(39, 164, 255, 0.12));
+      color: var(--navy-700);
+      font-weight: 700;
+      transition: transform var(--anim), box-shadow var(--anim);
+    }
+
+    .link-row a::after {
       content: "›";
       font-size: 1.1rem;
       line-height: 1;
     }
 
-    .placeholder {
+    .link-row a:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(0, 134, 230, 0.1);
+    }
+
+    .arsenal-layout {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 300px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .arsenal-tabs {
+      display: grid;
+      gap: 12px;
+    }
+
+    .arsenal-tab {
+      width: 100%;
+      text-align: left;
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(23, 52, 110, 0.08);
+      box-shadow: 0 12px 26px rgba(23, 52, 110, 0.05);
+      transition: transform var(--anim), border-color var(--anim), box-shadow var(--anim), background var(--anim);
+    }
+
+    .arsenal-tab strong,
+    .arsenal-tab span {
+      display: block;
+    }
+
+    .arsenal-tab strong {
+      font-size: 1.04rem;
+      color: var(--navy-900);
+    }
+
+    .arsenal-tab span {
+      margin-top: 8px;
+      color: var(--text-soft);
+      line-height: 1.66;
+      font-size: 0.9rem;
+    }
+
+    .arsenal-tab.is-active {
+      background: linear-gradient(135deg, rgba(0, 134, 230, 0.12), rgba(255, 255, 255, 0.94));
+      border-color: rgba(0, 134, 230, 0.18);
+      box-shadow: 0 18px 34px rgba(0, 134, 230, 0.09);
+      transform: translateY(-1px);
+    }
+
+    .arsenal-pane {
+      display: none;
+      gap: 18px;
+    }
+
+    .arsenal-pane.is-active {
+      display: grid;
+    }
+
+    .arsenal-card {
+      padding: 24px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .arsenal-topline {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .arsenal-topline span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: rgba(0, 134, 230, 0.08);
+      color: var(--navy-700);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .sub-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .sub-card {
+      padding: 18px;
+      display: grid;
+      gap: 12px;
+      transition: transform var(--anim), box-shadow var(--anim), border-color var(--anim);
+    }
+
+    a.sub-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 30px rgba(0, 134, 230, 0.08);
+      border-color: rgba(0, 134, 230, 0.18);
+    }
+
+    .sub-card h4 {
+      font-size: 1.04rem;
+      line-height: 1.5;
+    }
+
+    .sub-card .sub-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--navy-700);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .sub-card .sub-link::after {
+      content: "›";
+      font-size: 1.05rem;
+      line-height: 1;
+    }
+
+    .placeholder-card {
       border-style: dashed;
-      color: var(--text-soft);
+      box-shadow: none;
+      background: rgba(255, 255, 255, 0.64);
     }
 
-    .footer {
-      margin-top: 18px;
+    .profile-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .profile-card {
+      padding: 24px;
+      display: grid;
+      gap: 22px;
+    }
+
+    .profile-top {
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .portrait-wrap {
+      display: grid;
+      gap: 16px;
+      justify-items: center;
+    }
+
+    .portrait {
+      width: 220px;
+      aspect-ratio: 0.82;
+      border-radius: 24px;
+      border: 1px solid rgba(23, 52, 110, 0.08);
+      background:
+        radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.58) 42%, transparent 43%),
+        linear-gradient(180deg, rgba(223, 238, 250, 0.95), rgba(244, 248, 252, 0.98));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.88);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .portrait::before {
+      content: "";
+      position: absolute;
+      inset: auto 28px 0 28px;
+      height: 52%;
+      border-radius: 120px 120px 24px 24px;
+      background: linear-gradient(180deg, rgba(40, 58, 76, 0.1), rgba(40, 58, 76, 0.18));
+    }
+
+    .portrait::after {
+      content: attr(data-initials);
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: rgba(15, 61, 117, 0.7);
+      font-size: 2.1rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+    }
+
+    .portrait-june {
+      background:
+        radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.56) 42%, transparent 43%),
+        linear-gradient(180deg, rgba(226, 246, 239, 0.96), rgba(245, 249, 252, 0.98));
+    }
+
+    .profile-meta {
+      text-align: center;
+      display: grid;
+      gap: 8px;
+    }
+
+    .profile-meta h3 {
+      font-size: clamp(1.7rem, 2.4vw, 2.4rem);
+      font-family: "Georgia", "Times New Roman", serif;
+      letter-spacing: 0.02em;
+      color: #1e1f24;
+    }
+
+    .profile-meta p {
+      color: #2f3541;
+      font-size: 0.98rem;
+      letter-spacing: 0.12em;
+    }
+
+    .profile-accent {
+      width: 110px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--accent);
+      margin: 0 auto;
+    }
+
+    .profile-text,
+    .profile-detail {
+      padding: 20px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .profile-text ul,
+    .profile-detail ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .profile-text li,
+    .profile-detail li {
+      position: relative;
+      padding-left: 32px;
+      color: #202733;
+      line-height: 1.86;
+      font-size: 0.98rem;
+    }
+
+    .profile-text li::before,
+    .profile-detail li::before {
+      content: "➤";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--navy-700);
+      font-weight: 700;
+    }
+
+    .profile-text em,
+    .profile-detail em {
+      font-style: normal;
+      color: var(--navy-700);
+      font-weight: 700;
+    }
+
+    .footer-note {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
       padding: 18px 22px;
-      border-radius: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(23, 52, 110, 0.08);
       background: rgba(255, 255, 255, 0.72);
-      border: 1px solid var(--line);
       color: var(--text-soft);
+      font-size: 0.9rem;
       line-height: 1.7;
-      font-size: 0.92rem;
     }
 
-    @media (max-width: 860px) {
-      .grid {
+    @media (max-width: 1180px) {
+      .hero-grid,
+      .arsenal-layout,
+      .profile-grid,
+      .profile-top,
+      .mini-grid,
+      .sub-grid {
         grid-template-columns: 1fr;
       }
 
+      .portrait-wrap {
+        justify-items: start;
+      }
+
+      .profile-meta {
+        text-align: left;
+      }
+
+      .profile-accent {
+        margin-left: 0;
+      }
+    }
+
+    @media (max-width: 920px) {
+      .topbar {
+        position: static;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .topnav {
+        justify-content: flex-start;
+      }
+
       .hero,
-      .card {
-        padding: 22px;
+      .section-card {
+        padding: 24px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .shell {
+        width: min(calc(100% - 18px), var(--max-width));
+      }
+
+      .topbar,
+      .hero,
+      .section-card {
+        padding: 20px;
+        border-radius: 20px;
+      }
+
+      .brand {
+        align-items: flex-start;
+      }
+
+      .brand-copy span {
+        white-space: normal;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.3rem, 11vw, 3.4rem);
+      }
+
+      .arsenal-tab,
+      .arsenal-card,
+      .sub-card,
+      .profile-card,
+      .profile-text,
+      .profile-detail,
+      .hero-panel,
+      .hero-side-panel,
+      .mini-card {
+        padding: 18px;
+      }
+
+      .portrait {
+        width: min(100%, 240px);
       }
     }
   </style>
 </head>
 <body>
-  <main class="shell">
-    <section class="hero">
-      <span class="eyebrow">FineAndYou</span>
-      <h1>项目目录</h1>
-      <p>这里汇总后续会持续发布的业务网页项目。当前已上线“数字化经分会”项目，后续新增项目时可以继续按同样方式扩展到这个入口页。</p>
-    </section>
-
-    <section class="grid" aria-label="项目入口">
-      <a class="card" href="./JFH/">
-        <span class="card-tag">已发布项目</span>
-        <div>
-          <h2>数字化经分会</h2>
-          <p>数字化经营分析会场景介绍页，面向帆软内部一线同学，包含场景总览、方案说明、案例地图、场景工具与推进计划。</p>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"></div>
+        <div class="brand-copy">
+          <strong>FineAndYou | 帆软行销·总工办</strong>
+          <span>COE 数字化开源阵地 · 从理念方法到落地交付</span>
         </div>
-        <span class="card-link">进入项目</span>
-      </a>
+      </div>
+      <nav class="topnav" aria-label="页面导航">
+        <a href="#hero">首页</a>
+        <a href="#arsenal">The Arsenal</a>
+        <a href="#about">About COE</a>
+      </nav>
+    </header>
 
-      <article class="card placeholder">
-        <span class="card-tag">预留位置</span>
-        <div>
-          <h2>更多项目</h2>
-          <p>后续新增项目时，可以继续在根目录增加对应子目录，并在这里补一个新的入口卡片。</p>
+    <main class="page">
+      <section class="hero" id="hero">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <span class="eyebrow">FineAndYou | 帆软行销·总工办</span>
+            <div>
+              <h1>让数据成为丈量战略的尺子。</h1>
+            </div>
+            <p class="hero-subtitle">
+              <strong>这里是帆软行销·总工办（COE）的数字化开源阵地。</strong><br>
+              我们萃取头部企业的实战经验，为您提供从“理念方法”到“落地交付”的场景武器库。
+            </p>
+            <div class="hero-pills" aria-label="首页能力标签">
+              <span>理念方法</span>
+              <span>场景方法论</span>
+              <span>客户实战经验</span>
+              <span>落地交付资产</span>
+            </div>
+            <div class="link-row">
+              <a href="#arsenal">进入武器库</a>
+              <a href="#about">认识 COE</a>
+            </div>
+            <div class="mini-grid">
+              <article class="mini-card">
+                <strong>理念到交付</strong>
+                <p>把方法论、业务框架、交付样例和落地经验放在同一入口持续沉淀。</p>
+              </article>
+              <article class="mini-card">
+                <strong>面向关键场景</strong>
+                <p>围绕财经破圈与数据治理，组织更能打的内容矩阵与客户对话材料。</p>
+              </article>
+              <article class="mini-card">
+                <strong>持续开源迭代</strong>
+                <p>首页作为总入口，后续新场景可直接扩展到统一风格的站点体系里。</p>
+              </article>
+            </div>
+          </div>
+
+          <aside class="hero-side">
+            <section class="hero-panel hero-side-panel">
+              <h3>首页定位</h3>
+              <div class="list">
+                <div class="list-item">作为 COE 对内对外的总入口，先建立统一品牌感，再承接各场景内容。</div>
+                <div class="list-item">以“财经破圈”“数据治理”为当前主轴，后续模块可无缝继续扩展。</div>
+                <div class="list-item">视觉风格沿用参考页的蓝白科技感、玻璃卡片、圆角大留白与轻交互节奏。</div>
+              </div>
+            </section>
+            <section class="hero-panel hero-side-panel">
+              <h3>当前开放方向</h3>
+              <div class="chip-list">
+                <span class="chip">财经品牌屋</span>
+                <span class="chip">数字化经分会</span>
+                <span class="chip">财务管报</span>
+                <span class="chip">穿透式监管</span>
+                <span class="ghost-chip">更多内容持续上新</span>
+              </div>
+            </section>
+          </aside>
         </div>
-      </article>
-    </section>
+      </section>
 
-    <div class="footer">推荐发布方式：启用 GitHub Pages，根目录作为站点入口，单个项目使用子目录管理，便于后续持续扩容。</div>
-  </main>
+      <section class="section-card" id="arsenal">
+        <div class="section-head">
+          <div class="section-stack">
+            <span class="eyebrow">The Arsenal</span>
+            <h2>核心导航区</h2>
+            <p>以一级主题统领二级内容，把不同阶段的咨询方法、讲解材料和场景资产组织成可扩展的作战入口。</p>
+          </div>
+        </div>
+
+        <div class="arsenal-layout">
+          <div class="arsenal-tabs" role="tablist" aria-label="核心模块切换">
+            <button class="arsenal-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="arsenal-finance" id="tab-finance" data-pane="finance">
+              <strong>财经破圈</strong>
+              <span>围绕财经场景构建品牌表达、方案材料与落地入口。</span>
+            </button>
+            <button class="arsenal-tab" type="button" role="tab" aria-selected="false" aria-controls="arsenal-governance" id="tab-governance" data-pane="governance">
+              <strong>数据治理</strong>
+              <span>承接理念方法、治理方法论与后续治理型资产沉淀。</span>
+            </button>
+            <button class="arsenal-tab" type="button" role="tab" aria-selected="false" aria-controls="arsenal-more" id="tab-more" data-pane="more">
+              <strong>更多内容请期待</strong>
+              <span>为未来专题、案例库与新场景留出统一扩展位。</span>
+            </button>
+          </div>
+
+          <div>
+            <div class="arsenal-pane is-active" id="arsenal-finance" role="tabpanel" aria-labelledby="tab-finance">
+              <article class="arsenal-card">
+                <div class="arsenal-topline">
+                  <div>
+                    <h3>财经破圈</h3>
+                    <p>从品牌总览到重点场景，用统一体验把财经能力讲清楚、讲完整、讲出差异化。</p>
+                  </div>
+                  <span>一级模块</span>
+                </div>
+                <div class="sub-grid">
+                  <a class="sub-card" href="../index.html">
+                    <div class="chip">财经品牌屋</div>
+                    <h4>整体方案入口</h4>
+                    <p>承接财经整体框架、方案总览与核心叙事，是对外介绍时的总入口页面。</p>
+                    <span class="sub-link">查看内容</span>
+                  </a>
+                  <a class="sub-card" href="./JFH/">
+                    <div class="chip">数字化经分会</div>
+                    <h4>一报一会场景</h4>
+                    <p>聚焦高层经营复盘与经营决策，覆盖场景总览、方案说明、案例地图与工具资产。</p>
+                    <span class="sub-link">进入页面</span>
+                  </a>
+                  <a class="sub-card" href="../finance-report-prototype.html">
+                    <div class="chip">财务管报</div>
+                    <h4>管报原型展示</h4>
+                    <p>围绕财务概览、销售、成本与费用模块，适合作为财务分析场景的演示入口。</p>
+                    <span class="sub-link">进入原型</span>
+                  </a>
+                  <a class="sub-card" href="../index.html#regulation">
+                    <div class="chip">穿透式监管</div>
+                    <h4>监管专题方案</h4>
+                    <p>聚焦国资监管、经营管控与一企一屏，适合监管与集团型客户沟通。</p>
+                    <span class="sub-link">查看专题</span>
+                  </a>
+                  <a class="sub-card" href="../agent-business-review-platform-hifi.html">
+                    <div class="chip">其他财经场景</div>
+                    <h4>Agent 经营分析会平台</h4>
+                    <p>补充更偏产品化的表达方式，连接会议驾驶舱、督办任务与资料中心等能力。</p>
+                    <span class="sub-link">打开高保真页</span>
+                  </a>
+                  <article class="sub-card placeholder-card">
+                    <div class="chip">持续补齐</div>
+                    <h4>后续财经专题</h4>
+                    <p>预留给新行业模板、专项方法论、案例复盘和客户共创素材。</p>
+                  </article>
+                </div>
+              </article>
+            </div>
+
+            <div class="arsenal-pane" id="arsenal-governance" role="tabpanel" aria-labelledby="tab-governance">
+              <article class="arsenal-card">
+                <div class="arsenal-topline">
+                  <div>
+                    <h3>数据治理</h3>
+                    <p>作为 COE 的第二增长内容面，先保留一级入口与二级挂载位，便于后续按同样风格继续扩建。</p>
+                  </div>
+                  <span>一级模块</span>
+                </div>
+                <div class="sub-grid">
+                  <article class="sub-card placeholder-card">
+                    <div class="chip">理念方法</div>
+                    <h4>治理方法论入口</h4>
+                    <p>聚合指标口径、组织机制、治理流程与项目打法的统一表达方式。</p>
+                  </article>
+                  <article class="sub-card placeholder-card">
+                    <div class="chip">xxx</div>
+                    <h4>预留二级模块</h4>
+                    <p>按你当前给出的命名保留占位，后续可直接替换为正式专题页面。</p>
+                  </article>
+                  <article class="sub-card placeholder-card">
+                    <div class="chip">xxxx</div>
+                    <h4>预留二级模块</h4>
+                    <p>与上方模块保持同层级，方便后续继续补充治理专题或交付资产。</p>
+                  </article>
+                  <article class="sub-card placeholder-card">
+                    <div class="chip">建设中</div>
+                    <h4>更多治理资产</h4>
+                    <p>后续可继续加入数据标准、指标体系、治理运营与平台能力等内容。</p>
+                  </article>
+                </div>
+              </article>
+            </div>
+
+            <div class="arsenal-pane" id="arsenal-more" role="tabpanel" aria-labelledby="tab-more">
+              <article class="arsenal-card">
+                <div class="arsenal-topline">
+                  <div>
+                    <h3>更多内容请期待</h3>
+                    <p>首页已经预埋统一布局和视觉组件，新专题只需沿用当前卡片体系继续增加入口即可。</p>
+                  </div>
+                  <span>扩展位</span>
+                </div>
+                <div class="sub-grid">
+                  <article class="sub-card placeholder-card">
+                    <div class="chip">新专题</div>
+                    <h4>案例专题</h4>
+                    <p>可扩展行业案例、客户复盘、方法论拆解等内容集合。</p>
+                  </article>
+                  <article class="sub-card placeholder-card">
+                    <div class="chip">新专题</div>
+                    <h4>工具资产</h4>
+                    <p>可接入模板、讲稿、方案页、原型页与常用交付资产库。</p>
+                  </article>
+                  <article class="sub-card placeholder-card">
+                    <div class="chip">新专题</div>
+                    <h4>研究洞察</h4>
+                    <p>可沉淀行业观察、趋势判断与关键客户话题的长期内容位。</p>
+                  </article>
+                  <article class="sub-card placeholder-card">
+                    <div class="chip">新专题</div>
+                    <h4>活动运营</h4>
+                    <p>可承接活动回顾、直播专题、系列栏目和对外传播页面。</p>
+                  </article>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-card" id="about">
+        <div class="section-head">
+          <div class="section-stack">
+            <span class="eyebrow">About COE</span>
+            <h2>总工办介绍</h2>
+            <p>延续参考贴图的双人介绍方式，用统一的专家卡片承接资历、方法经验与典型客户，方便首页直接建立专业信任感。</p>
+          </div>
+        </div>
+
+        <div class="profile-grid">
+          <article class="profile-card">
+            <div class="profile-top">
+              <div class="portrait-wrap">
+                <div class="portrait" data-initials="SL" aria-label="Simon Lv 形象占位"></div>
+                <div class="profile-meta">
+                  <h3>Simon. Lv-吕品</h3>
+                  <p>帆软 总工办</p>
+                  <div class="profile-accent" aria-hidden="true"></div>
+                </div>
+              </div>
+              <div class="profile-text">
+                <ul>
+                  <li>微软 2015~2024 <em>连续九年全球最有价值专家</em>（MVP）</li>
+                  <li><em>《吕品聊数据》</em> 视频号作者</li>
+                  <li><em>近20年</em>数字化行业经验，丰富的产品技术与业务解决方案、数字化顶层设计与咨询规划经验</li>
+                </ul>
+              </div>
+            </div>
+            <div class="profile-detail">
+              <ul>
+                <li>主要客户：十七冶集团、全棉时代、山东能源集团、微软、微软（中国）、SHP（Security Health Plan）、大众金融、国开新能源、中石油、鞍钢矿业集团、惠通陆华</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="profile-card">
+            <div class="profile-top">
+              <div class="portrait-wrap">
+                <div class="portrait portrait-june" data-initials="JD" aria-label="June Ding 形象占位"></div>
+                <div class="profile-meta">
+                  <h3>June. Ding-丁佳</h3>
+                  <p>帆软 总工办</p>
+                  <div class="profile-accent" aria-hidden="true"></div>
+                </div>
+              </div>
+              <div class="profile-text">
+                <ul>
+                  <li><em>中国注册会计师</em>（CICPA）、金融本硕</li>
+                  <li>财经数据应用咨询与落地经验，包括数字化经营分析会、集团财务管理、财务共享、财务管报、合并报表、司库管理相关内容</li>
+                </ul>
+              </div>
+            </div>
+            <div class="profile-detail">
+              <ul>
+                <li>主要客户：伯恩光学、全棉时代、山东能源、豫园股份、上海仪电、绿地集团、蚂蚁金服、泰康集团、科伦药业等</li>
+                <li>曾就职于德勤管理咨询（上海）有限公司，拥有为中国大型集团型企业提供专业管理咨询服务的工作经验</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <footer class="footer-note">
+        <span>当前首页文件：`FineAndYou/index.html`</span>
+        <span>视觉基调已对齐 `FineAndYou/JFH/` 的蓝白科技感与玻璃卡片体系</span>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    const tabs = Array.from(document.querySelectorAll('.arsenal-tab'));
+    const panes = Array.from(document.querySelectorAll('.arsenal-pane'));
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const { pane } = tab.dataset;
+
+        tabs.forEach((item) => {
+          const active = item === tab;
+          item.classList.toggle('is-active', active);
+          item.setAttribute('aria-selected', String(active));
+        });
+
+        panes.forEach((panel) => {
+          panel.classList.toggle('is-active', panel.id === `arsenal-${pane}`);
+        });
+      });
+    });
+  </script>
 </body>
 </html>
