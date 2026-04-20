@@ -171,7 +171,20 @@
       position: relative;
       z-index: 1;
       display: grid;
-      gap: 24px;
+      gap: 20px;
+    }
+
+    .hero-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(340px, 0.85fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .hero-main-column,
+    .hero-side-column {
+      display: grid;
+      gap: 18px;
     }
 
     .hero-top {
@@ -553,7 +566,7 @@
 
     .tabs {
       display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 10px;
     }
 
@@ -1508,6 +1521,7 @@
       }
 
       .hero-top,
+      .hero-layout,
       .hero-core-grid,
       .hero-value-grid,
       .hero-summary,
@@ -1611,71 +1625,73 @@
         <div class="tab-panel is-active" id="tab-home" role="tabpanel" aria-labelledby="btn-home">
           <section class="hero">
             <div class="hero-grid">
-              <div class="hero-top">
-                <div class="hero-intro">
-                  <h2 class="hero-title">以“一报一会”为核心，服务高层经营复盘与经营决策</h2>
-                  <p class="subtitle">
-                    数字化经分会围绕经营分析报告与经营分析会议两大核心动作展开，
-                    目标是让经营数据准备更高效、经营问题研判更聚焦、会议决策与后续动作更容易形成闭环。
-                  </p>
-                </div>
+              <div class="hero-layout">
+                <div class="hero-main-column">
+                  <div class="hero-intro">
+                    <h2 class="hero-title">以“一报一会”为核心，服务高层经营复盘与经营决策</h2>
+                    <p class="subtitle">
+                      数字化经分会围绕经营分析报告与经营分析会议两大核心动作展开，
+                      目标是让经营数据准备更高效、经营问题研判更聚焦、会议决策与后续动作更容易形成闭环。
+                    </p>
+                  </div>
 
-                <div class="hero-aside">
-                  <div class="hero-panel">
-                    <h2 class="panel-title">适合内部同学这样理解</h2>
-                    <div class="list">
-                      <div class="list-item">一报：把经营结果、业务动因和关键问题讲清楚，提升经营分析报告质量。</div>
-                      <div class="list-item">一会：围绕高层经营复盘场景，让会前准备、会中研判和会后跟进更高效。</div>
-                      <div class="list-item">对外沟通时优先讲清高层经营管理价值，再根据客户情况展开交付边界和案例参考。</div>
+                  <article class="hero-core-card">
+                    <div class="hero-core-top">
+                      <span class="hero-core-tag">一报一会</span>
+                      <h3>数字化经营分析会场景</h3>
+                      <p>通过报告与会议联动，帮助客户建立面向 1 号位的经营分析表达方式，让经营问题、经营归因和经营动作都能在同一场景下被看见、被讨论、被跟进。</p>
                     </div>
-                  </div>
-                </div>
-              </div>
 
-              <div class="hero-core-grid">
-                <article class="hero-core-card">
-                  <div class="hero-core-top">
-                    <span class="hero-core-tag">一报一会</span>
-                    <h3>数字化经营分析会场景</h3>
-                    <p>通过报告与会议联动，帮助客户建立面向 1 号位的经营分析表达方式，让经营问题、经营归因和经营动作都能在同一场景下被看见、被讨论、被跟进。</p>
-                  </div>
-
-                  <div class="hero-core-main">
-                    <div class="hero-pair">
-                      <div class="hero-pair-card">
-                        <strong>一报：经营分析报告</strong>
-                        <span>围绕结果、原因、问题、动作组织内容，提升报告完整性、可读性与决策支撑价值。</span>
-                      </div>
-                      <div class="hero-pair-card">
-                        <strong>一会：经营分析会议</strong>
-                        <span>围绕会前准备、会中穿透、会后闭环提升效率，减少反复对数、重复解释与线下返工。</span>
+                    <div class="hero-core-main">
+                      <div class="hero-pair">
+                        <div class="hero-pair-card">
+                          <strong>一报：经营分析报告</strong>
+                          <span>围绕结果、原因、问题、动作组织内容，提升报告完整性、可读性与决策支撑价值。</span>
+                        </div>
+                        <div class="hero-pair-card">
+                          <strong>一会：经营分析会议</strong>
+                          <span>围绕会前准备、会中穿透、会后闭环提升效率，减少反复对数、重复解释与线下返工。</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="hero-core-bottom">
-                    <div class="hero-pill-row">
-                      <span>服务 1 号位经营管理</span>
-                      <span>提升报告质量</span>
-                      <span>提升会议效率</span>
-                      <span>强化问题闭环</span>
+                    <div class="hero-core-bottom">
+                      <div class="hero-pill-row">
+                        <span>服务 1 号位经营管理</span>
+                        <span>提升报告质量</span>
+                        <span>提升会议效率</span>
+                        <span>强化问题闭环</span>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+
+                <div class="hero-side-column">
+                  <div class="hero-aside">
+                    <div class="hero-panel">
+                      <h2 class="panel-title">适合内部同学这样理解</h2>
+                      <div class="list">
+                        <div class="list-item">一报：把经营结果、业务动因和关键问题讲清楚，提升经营分析报告质量。</div>
+                        <div class="list-item">一会：围绕高层经营复盘场景，让会前准备、会中研判和会后跟进更高效。</div>
+                        <div class="list-item">对外沟通时优先讲清高层经营管理价值，再根据客户情况展开交付边界和案例参考。</div>
+                      </div>
                     </div>
                   </div>
-                </article>
 
-                <div class="hero-side-stack">
-                  <article class="hero-side-card">
-                    <h3>核心对象</h3>
-                    <p>聚焦 1 号位、领导班子、战略运营、经营管理与财务管理等角色，重点服务高层经营复盘与决策场景。</p>
-                  </article>
-                  <article class="hero-side-card">
-                    <h3>核心诉求</h3>
-                    <p>解决经营分析中“数据准备慢、问题讲不透、会议效率低、后续动作难闭环”等高频问题。</p>
-                  </article>
-                  <article class="hero-side-card">
-                    <h3>核心价值</h3>
-                    <p>让内部一线同学能够更直观地讲清经分会是什么、适合谁、怎么推进，以及有哪些可参考案例和工具。</p>
-                  </article>
+                  <div class="hero-side-stack">
+                    <article class="hero-side-card">
+                      <h3>核心对象</h3>
+                      <p>聚焦 1 号位、领导班子、战略运营、经营管理与财务管理等角色，重点服务高层经营复盘与决策场景。</p>
+                    </article>
+                    <article class="hero-side-card">
+                      <h3>核心诉求</h3>
+                      <p>解决经营分析中“数据准备慢、问题讲不透、会议效率低、后续动作难闭环”等高频问题。</p>
+                    </article>
+                    <article class="hero-side-card">
+                      <h3>核心价值</h3>
+                      <p>让内部一线同学能够更直观地讲清经分会是什么、适合谁、怎么推进，以及有哪些可参考案例和工具。</p>
+                    </article>
+                  </div>
                 </div>
               </div>
 
