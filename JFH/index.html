@@ -985,11 +985,16 @@
       line-height: 1.68;
     }
 
+    .tool-grid,
     .tool-group {
       position: relative;
       z-index: 1;
       display: grid;
       gap: 14px;
+    }
+
+    .tool-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .tool-item {
@@ -1531,7 +1536,8 @@
       .timeline,
       .persona-grid,
       .matrix,
-      .path-grid {
+      .path-grid,
+      .tool-grid {
         grid-template-columns: 1fr;
       }
 
@@ -2118,68 +2124,63 @@
                 </div>
               </div>
 
-              <div class="grid-2">
-                <div class="tool-group">
-                  <article class="tool-item">
-                    <div>
-                      <strong>客户判断：需求调研问卷</strong>
-                      <p>用于确认客户是否已有经营分析会机制、谁是决策人、谁是牵头部门、当前数据基础如何、是否适合分阶段推进。</p>
-                    </div>
-                    <span class="status ready">已准备</span>
-                  </article>
-                  <article class="tool-item">
-                    <div>
-                      <strong>客户判断：项目准入清单</strong>
-                      <p>帮助售前先判断客户值不值得做、适合做哪一型项目，避免一开始就进入高风险、低边界项目。</p>
-                    </div>
-                    <span class="status plan">建议补充</span>
-                  </article>
-                  <article class="tool-item">
-                    <div>
-                      <strong>售前沟通：简版方案 / 场景讲解口径</strong>
-                      <p>用于初次沟通，先讲清场景框架与价值，不急于一次性把所有模块展开，适合内部统一表达。</p>
-                    </div>
-                    <span class="status ready">已准备</span>
-                  </article>
-                  <article class="tool-item">
-                    <div>
-                      <strong>售前沟通：案例地图</strong>
-                      <p>适合快速判断客户所在行业有没有可参考案例，也帮助一线同学建立“这个场景有人做成过”的信心。</p>
-                    </div>
-                    <span class="status ready">已准备</span>
-                  </article>
-                </div>
-
-                <div class="tool-group">
-                  <article class="tool-item">
-                    <div>
-                      <strong>报价与边界：报价模板</strong>
-                      <p>重点用于区分会中核心包、轻量会前与升级项边界，避免按普通 BI 项目报价承接重度高管场景。</p>
-                    </div>
-                    <span class="status ready">已准备</span>
-                  </article>
-                  <article class="tool-item">
-                    <div>
-                      <strong>报价与边界：标准方案边界说明</strong>
-                      <p>建议单独做成模板，明确效果图、demo、正式交付页面的差异，以及哪些能力属于二期或增购。</p>
-                    </div>
-                    <span class="status plan">建议补充</span>
-                  </article>
-                  <article class="tool-item">
-                    <div>
-                      <strong>交付与复用：交付文档 / 指标梳理模板</strong>
-                      <p>帮助项目和客户成功统一内容设计方法，避免每个项目从零开始拆分析逻辑。</p>
-                    </div>
-                    <span class="status plan">建议补充</span>
-                  </article>
-                  <article class="tool-item">
-                    <div>
-                      <strong>交付与复用：demo 与学习资料</strong>
-                      <p>包含经分会 demo、训战材料、战略管理体系资料等，用于快速建立业务理解与项目启动信心。</p>
-                    </div>
-                    <span class="status inner">内部使用</span>
-                  </article>
-                </div>
+              <div class="tool-grid">
+                <article class="tool-item">
+                  <div>
+                    <strong>客户判断：项目准入清单</strong>
+                    <p>帮助售前先判断客户值不值得做、适合做哪一型项目，避免一开始就进入高风险、低边界项目。</p>
+                  </div>
+                  <span class="status plan">建议补充</span>
+                </article>
+                <article class="tool-item">
+                  <div>
+                    <strong>售前沟通：场景解决方案</strong>
+                    <p>用于初次沟通，先讲清场景框架与价值，需要基于客户行业业态补充场景内容。</p>
+                  </div>
+                  <span class="status ready">已准备</span>
+                </article>
+                <article class="tool-item">
+                  <div>
+                    <strong>客户判断：需求调研问卷</strong>
+                    <p>用于确认客户是否已有经营分析会机制、谁是决策人、谁是牵头部门、当前数据基础如何、是否适合分阶段推进。</p>
+                  </div>
+                  <span class="status ready">已准备</span>
+                </article>
+                <article class="tool-item">
+                  <div>
+                    <strong>报价与边界：报价模板</strong>
+                    <p>重点用于区分会中核心包、轻量会前与升级项边界，避免按普通 BI 项目报价承接重度高管场景。</p>
+                  </div>
+                  <span class="status ready">已准备</span>
+                </article>
+                <article class="tool-item">
+                  <div>
+                    <strong>交付与复用：交付文档 / 指标梳理模板</strong>
+                    <p>帮助项目统一内容设计方法，避免每个项目从零开始拆分析逻辑。</p>
+                  </div>
+                  <span class="status plan">建议补充</span>
+                </article>
+                <article class="tool-item">
+                  <div>
+                    <strong>市场宣传：场景图谱手册</strong>
+                    <p>适合对外宣传、活动使用，快速让客户理解场景的核心内容。</p>
+                  </div>
+                  <span class="status ready">已准备</span>
+                </article>
+                <article class="tool-item">
+                  <div>
+                    <strong>内部赋能：训战资料与录屏</strong>
+                    <p>公司 / 区域训战使用的资料和录屏，便于一线深入理解场景内容。</p>
+                  </div>
+                  <span class="status plan">建议补充</span>
+                </article>
+                <article class="tool-item">
+                  <div>
+                    <strong>延伸学习：各类学习资料</strong>
+                    <p>包含战略管理体系资料，用于快速建立业务理解，增加高层对话谈资和素材。</p>
+                  </div>
+                  <span class="status inner">内部使用</span>
+                </article>
               </div>
             </section>
 
