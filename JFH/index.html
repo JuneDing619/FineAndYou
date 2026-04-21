@@ -90,7 +90,7 @@
       top: 14px;
       z-index: 50;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(320px, auto);
+      grid-template-columns: minmax(0, 1fr) auto;
       align-items: center;
       gap: 18px;
       min-height: var(--nav-height);
@@ -130,17 +130,6 @@
       gap: 5px;
     }
 
-    .brand-copy strong {
-      display: block;
-      font-size: 0.82rem;
-      font-weight: 800;
-      letter-spacing: 0.02em;
-      color: var(--text-soft);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
     .page-title {
       color: var(--navy-900);
       font-size: clamp(1.12rem, 1.45vw, 1.42rem);
@@ -163,7 +152,7 @@
     .topbar-side {
       display: grid;
       justify-items: end;
-      gap: 10px;
+      gap: 0;
       text-align: right;
     }
 
@@ -199,21 +188,6 @@
       content: "←";
       font-size: 1rem;
       line-height: 1;
-    }
-
-    .topbar-meta {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 10px 18px;
-      flex-wrap: wrap;
-      font-size: 0.86rem;
-      line-height: 1.6;
-      color: var(--text-soft);
-    }
-
-    .topbar-meta strong {
-      color: var(--navy-900);
     }
 
     .page {
@@ -1624,12 +1598,6 @@
         align-items: flex-start;
       }
 
-      .topbar-meta {
-        gap: 10px 16px;
-        justify-content: flex-start;
-        text-align: left;
-      }
-
       .topbar-side {
         justify-items: start;
         text-align: left;
@@ -1697,10 +1665,6 @@
         width: 32px;
       }
 
-      .brand-copy strong {
-        font-size: 0.78rem;
-      }
-
       .page-title {
         font-size: 1rem;
       }
@@ -1708,11 +1672,6 @@
       .brand-subtitle {
         font-size: 0.76rem;
         line-height: 1.55;
-      }
-
-      .topbar-meta {
-        display: grid;
-        gap: 4px;
       }
 
       .tabs {
@@ -1748,18 +1707,13 @@
           <img src="../assets/fanruan-mark.svg" alt="帆软 Logo">
         </a>
         <div class="brand-copy">
-          <strong>FineAndYou / 总工办二级场景页</strong>
           <div class="page-title">数字化经营分析会场景介绍</div>
-          <p class="page-subtitle">数字化经分会场景页面，承接总工办知识资产开源阵地的场景化表达。</p>
+          <p class="page-subtitle">FineAndYou | 总工办·知识资产开源阵地</p>
         </div>
       </div>
       <div class="topbar-side">
         <div class="topbar-actions">
           <a class="home-link" href="../">返回首页</a>
-        </div>
-        <div class="topbar-meta">
-          <span><strong>使用说明：</strong>仅内部同学使用，不可外发</span>
-          <span><strong>内容作者：</strong>行销·总工办&财经小组</span>
         </div>
       </div>
     </header>
