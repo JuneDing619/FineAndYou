@@ -130,8 +130,6 @@
 
     .brand-copy {
       min-width: 0;
-      display: grid;
-      gap: 6px;
     }
 
     .brand-copy strong {
@@ -142,13 +140,6 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-    }
-
-    .brand-subtitle {
-      max-width: 760px;
-      font-size: 0.88rem;
-      line-height: 1.6;
-      color: var(--text-soft);
     }
 
     .topnav {
@@ -410,29 +401,15 @@
 
     .mini-grid {
       display: grid;
-      grid-template-columns: 1.12fr 1fr 1fr;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
       grid-column: 1 / -1;
     }
 
     .mini-card {
-      position: relative;
-      padding: 22px 20px 18px;
+      padding: 18px 20px;
       display: grid;
-      gap: 10px;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(244, 249, 255, 0.92));
-    }
-
-    .mini-card::before {
-      content: "";
-      position: absolute;
-      left: 20px;
-      top: 0;
-      width: 54px;
-      height: 4px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--navy-700), var(--sky-500));
+      gap: 8px;
     }
 
     .mini-card strong,
@@ -496,29 +473,27 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 8px;
       justify-content: flex-end;
-      width: min(540px, 100%);
+      width: min(520px, 100%);
       padding: 4px;
-      border-radius: 999px;
-      background: linear-gradient(180deg, rgba(239, 246, 255, 0.98), rgba(228, 239, 251, 0.88));
-      border: 1px solid rgba(0, 134, 230, 0.14);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.92);
+      border-radius: 16px;
+      background: rgba(244, 248, 252, 0.92);
+      border: 1px solid rgba(23, 52, 110, 0.08);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82);
     }
 
     .arsenal-tab {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      min-height: 46px;
+      min-height: 42px;
       text-align: center;
-      padding: 9px 16px;
-      border-radius: 999px;
+      padding: 8px 16px;
+      border-radius: 12px;
       color: var(--text-soft);
-      background: transparent;
-      border: 1px solid transparent;
-      box-shadow: none;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(23, 52, 110, 0.08);
+      box-shadow: 0 4px 14px rgba(23, 52, 110, 0.04);
       transition: transform var(--anim), border-color var(--anim), box-shadow var(--anim), background var(--anim), color var(--anim);
-      position: relative;
     }
 
     .arsenal-tab strong,
@@ -531,16 +506,6 @@
       color: inherit;
     }
 
-    .arsenal-tab::before {
-      content: "";
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: rgba(0, 134, 230, 0.18);
-      box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.62);
-      flex: 0 0 auto;
-    }
-
     .arsenal-tab span {
       display: none;
       margin-top: 8px;
@@ -550,25 +515,20 @@
     }
 
     .arsenal-tab.is-active {
-      color: var(--navy-700);
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 251, 255, 0.96));
-      border-color: rgba(0, 134, 230, 0.18);
-      box-shadow: 0 8px 18px rgba(0, 85, 204, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.92);
+      color: #fff;
+      background: linear-gradient(135deg, #214d91, var(--navy-700));
+      border-color: rgba(0, 134, 230, 0.24);
+      box-shadow: 0 12px 24px rgba(0, 85, 204, 0.18);
       transform: translateY(-1px);
     }
 
     .arsenal-tab.is-active strong {
-      color: var(--navy-700);
-    }
-
-    .arsenal-tab.is-active::before {
-      background: linear-gradient(135deg, var(--navy-700), var(--sky-500));
-      box-shadow: 0 0 0 6px rgba(0, 134, 230, 0.08);
+      color: #fff;
     }
 
     .arsenal-tab:not(.is-active):hover {
       color: var(--navy-700);
-      background: rgba(255, 255, 255, 0.52);
+      background: rgba(255, 255, 255, 0.96);
       border-color: rgba(0, 134, 230, 0.14);
     }
 
@@ -582,11 +542,9 @@
     }
 
     .arsenal-card {
-      padding: 24px;
+      padding: 22px;
       display: grid;
-      gap: 18px;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 251, 255, 0.94));
+      gap: 16px;
     }
 
     .arsenal-topline {
@@ -612,19 +570,6 @@
       border: 1px solid var(--color-border-light);
       box-shadow: 0 14px 26px rgba(0, 134, 230, 0.05);
       transition: transform var(--anim), box-shadow var(--anim), border-color var(--anim);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .case-card::before {
-      content: "";
-      position: absolute;
-      left: 18px;
-      top: 0;
-      width: 48px;
-      height: 3px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--navy-700), var(--sky-500));
     }
 
     a.case-card:hover {
@@ -678,7 +623,6 @@
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px;
-      align-items: start;
     }
 
     .profile-card {
@@ -1046,11 +990,6 @@
         font-size: 0.86rem;
       }
 
-      .brand-subtitle {
-        font-size: 0.76rem;
-        line-height: 1.55;
-      }
-
       .topnav {
         width: 100%;
         gap: 6px;
@@ -1142,17 +1081,11 @@
         min-height: 38px;
         padding: 8px 6px;
         text-align: center;
-        gap: 6px;
       }
 
       .arsenal-tab strong {
         font-size: 0.78rem;
         line-height: 1.3;
-      }
-
-      .arsenal-tab::before {
-        width: 8px;
-        height: 8px;
       }
 
       .profile-top {
@@ -1187,7 +1120,6 @@
         </a>
         <div class="brand-copy">
           <strong>FineAndYou | 总工办·知识资产开源阵地</strong>
-          <p class="brand-subtitle">不仅是提供从“理念方法”到“落地交付”的场景武器库，更希望传递一种知识文化——透明、协作、持续演进。</p>
         </div>
       </div>
       <nav class="topnav" aria-label="页面导航">
@@ -1204,6 +1136,7 @@
             <div>
               <h1>让数据成为丈量战略的尺子。</h1>
             </div>
+            <p class="hero-subtitle">不仅是提供从“理念方法”到“落地交付”的场景武器库，更希望传递一种知识文化——透明、协作、持续演进。</p>
             <div class="hero-pills" aria-label="首页能力标签">
               <span>理念方法</span>
               <span>场景方法论</span>
@@ -1261,7 +1194,7 @@
                   </div>
                 </div>
                 <div class="case-grid">
-                  <a class="case-card" href="../index.html">
+                  <a class="case-card" href="./FinanceBrandHouse/">
                     <h4>财经品牌屋</h4>
                     <p>帆软财经品牌的价值主张、品牌定位、面向人群与能力支撑。</p>
                     <span class="case-link">查看内容</span>
