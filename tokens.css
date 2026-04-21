@@ -1,0 +1,87 @@
+/* tokens.css · 帆软 COE 设计令牌 · 唯一事实来源 */
+
+:root {
+  /* ── 主色系 ── */
+  --color-primary:        #0086E6;
+  --color-primary-dark:   #0055CC;
+  --color-primary-light:  #00ACE6;
+
+  /* ── 主色浅色延伸 ── */
+  --color-primary-100:    #E8F4FF;
+  --color-primary-200:    #CCE4FF;
+  --color-primary-300:    #80CAFF;
+
+  /* ── 功能色 ── */
+  --color-warning:        #F3C900;
+  --color-orange:         #F39600;
+  --color-error:          #CC0010;
+  --color-success:        #00B35C;
+
+  /* ── 文字色 ── */
+  --color-text-h:         #17346E;   /* 标题 */
+  --color-text-body:      #566280;   /* 正文 */
+  --color-text-sub:       #8F99B3;   /* 辅助 */
+  --color-text-disabled:  #B8BECC;   /* 禁用 */
+
+  /* ── 背景 & 边框 ── */
+  --color-bg-page:        #F0F4F8;
+  --color-bg-card:        #FFFFFF;
+  --color-bg-subtle:      #F0F2F5;
+  --color-border:         #B8BECC;
+  --color-border-light:   #DADEE6;
+
+  /* ── 排版 ── */
+  --font-family:    'PingFang SC', 'Microsoft YaHei', Arial, sans-serif;
+  --font-size-xs:   11px;
+  --font-size-sm:   12px;
+  --font-size-base: 14px;
+  --font-size-md:   16px;
+  --font-size-lg:   20px;
+  --font-size-xl:   26px;
+  --font-size-2xl:  32px;
+  --font-size-3xl:  42px;
+
+  --font-weight-regular: 400;
+  --font-weight-medium:  500;
+  --font-weight-bold:    700;
+  --font-weight-black:   800;
+
+  --line-height-tight:   1.2;
+  --line-height-normal:  1.6;
+  --line-height-loose:   1.8;
+
+  /* ── 间距系统（4px 基础单元）── */
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   20px;
+  --space-6:   24px;
+  --space-8:   32px;
+  --space-10:  40px;
+  --space-12:  48px;
+  --space-16:  64px;
+
+  /* ── 圆角 ── */
+  --radius-xs:   2px;
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-pill: 9999px;
+
+  /* ── 阴影 ── */
+  --shadow-xs: 0 1px 4px rgba(0, 85, 204, 0.06);
+  --shadow-sm: 0 2px 8px rgba(0, 85, 204, 0.09);
+  --shadow-md: 0 4px 20px rgba(0, 85, 204, 0.13);
+  --shadow-lg: 0 8px 40px rgba(0, 85, 204, 0.18);
+
+  /* ── 过渡动画 ── */
+  --transition-fast:   0.15s ease;
+  --transition-normal: 0.25s ease;
+  --transition-slow:   0.4s ease;
+
+  /* ── 布局 ── */
+  --container-max:  1200px;
+  --nav-height:     60px;
+}
