@@ -901,15 +901,17 @@
     }
 
     .persona-head {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 118px;
+      align-items: center;
       gap: 12px;
     }
 
     .persona .badge {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
+      width: 118px;
       height: 32px;
       padding: 0 12px;
       border-radius: 999px;
@@ -1635,8 +1637,12 @@
       }
 
       .persona-head {
-        flex-direction: column;
+        grid-template-columns: 1fr;
         align-items: flex-start;
+      }
+
+      .persona .badge {
+        width: auto;
       }
 
       .tool-item {
