@@ -90,28 +90,68 @@
       top: 14px;
       z-index: 50;
       display: grid;
-      gap: 6px;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 18px;
       min-height: var(--nav-height);
-      padding: 14px 20px;
+      padding: 16px 22px;
       border-radius: 16px;
-      background: rgba(255, 255, 255, 0.76);
-      backdrop-filter: blur(18px);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(246, 250, 255, 0.8)),
+        rgba(255, 255, 255, 0.76);
+      backdrop-filter: blur(20px) saturate(135%);
       border: 1px solid rgba(23, 52, 110, 0.08);
       box-shadow: 0 14px 32px rgba(23, 52, 110, 0.06);
     }
 
-    .topbar-head {
+    .brand {
+      min-width: 0;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 14px;
+      gap: 10px;
     }
 
-    .topbar-title {
-      font-size: 1.08rem;
-      font-weight: 800;
+    .brand-mark {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+    }
+
+    .brand-mark img {
+      width: 34px;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    .brand-copy {
+      min-width: 0;
+      display: grid;
+      gap: 6px;
+    }
+
+    .brand-copy strong {
+      display: block;
+      font-size: clamp(0.94rem, 1.1vw, 1.08rem);
       letter-spacing: 0.02em;
       color: var(--navy-900);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-subtitle {
+      max-width: 760px;
+      color: var(--text-soft);
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    .topbar-side {
+      display: grid;
+      justify-items: end;
+      gap: 8px;
+      text-align: right;
     }
 
     .home-link {
@@ -146,7 +186,8 @@
     .topbar-meta {
       display: flex;
       align-items: center;
-      gap: 18px;
+      justify-content: flex-end;
+      gap: 10px 18px;
       flex-wrap: wrap;
       font-size: 0.86rem;
       line-height: 1.6;
@@ -1561,10 +1602,19 @@
     @media (max-width: 920px) {
       .topbar {
         position: static;
+        grid-template-columns: 1fr;
+        align-items: flex-start;
       }
 
       .topbar-meta {
         gap: 10px 16px;
+        justify-content: flex-start;
+        text-align: left;
+      }
+
+      .topbar-side {
+        justify-items: start;
+        text-align: left;
       }
 
       .tabs-wrap {
@@ -1616,10 +1666,22 @@
         border-radius: 16px;
       }
 
-      .topbar-head {
-        align-items: flex-start;
-        flex-direction: column;
+      .brand {
+        align-items: center;
         gap: 10px;
+      }
+
+      .brand-mark img {
+        width: 30px;
+      }
+
+      .brand-copy strong {
+        font-size: 0.86rem;
+      }
+
+      .brand-subtitle {
+        font-size: 0.76rem;
+        line-height: 1.55;
       }
 
       .topbar-meta {
@@ -1655,13 +1717,21 @@
 <body>
   <div class="shell">
     <header class="topbar">
-      <div class="topbar-head">
-        <div class="topbar-title">数字化经营分析会场景介绍</div>
-        <a class="home-link" href="../">返回首页</a>
+      <div class="brand">
+        <a class="brand-mark" href="../" aria-label="返回 FineAndYou 首页">
+          <img src="../assets/fanruan-mark.svg" alt="帆软 Logo">
+        </a>
+        <div class="brand-copy">
+          <strong>FineAndYou | 总工办·知识资产开源阵地</strong>
+          <p class="brand-subtitle">数字化经营分析会场景介绍</p>
+        </div>
       </div>
-      <div class="topbar-meta">
-        <span><strong>使用说明：</strong>仅内部同学使用，不可外发</span>
-        <span><strong>内容作者：</strong>行销·总工办&财经小组</span>
+      <div class="topbar-side">
+        <a class="home-link" href="../">返回首页</a>
+        <div class="topbar-meta">
+          <span><strong>使用说明：</strong>仅内部同学使用，不可外发</span>
+          <span><strong>内容作者：</strong>行销·总工办&财经小组</span>
+        </div>
       </div>
     </header>
 
