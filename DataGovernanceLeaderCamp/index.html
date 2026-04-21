@@ -519,15 +519,18 @@
     }
 
     .tagged-card {
-      position: relative;
-      padding: 58px 18px 18px;
-      overflow: hidden;
+      padding: 18px;
     }
 
-    .tagged-card .badge {
-      position: absolute;
-      top: 14px;
-      right: 14px;
+    .tagged-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
+      gap: 12px;
+    }
+
+    .tagged-head .badge {
+      justify-self: end;
     }
 
     .hero-side-card h3,
@@ -1100,18 +1103,24 @@
 
               <div class="grid-3">
                 <article class="info-card tagged-card">
-                  <span class="badge">统一语言</span>
-                  <h3>让管理层、业务和技术能够讲同一种治理语言</h3>
+                  <div class="tagged-head">
+                    <h3>让管理层、业务和技术能够讲同一种治理语言</h3>
+                    <span class="badge">统一语言</span>
+                  </div>
                   <p>用清晰框架解释“为什么治理、治理什么、谁来治理、如何衡量”，减少组织内认知偏差。</p>
                 </article>
                 <article class="info-card tagged-card">
-                  <span class="badge">明确路径</span>
-                  <h3>把宏大治理目标拆成可推进的阶段动作</h3>
+                  <div class="tagged-head">
+                    <h3>把宏大治理目标拆成可推进的阶段动作</h3>
+                    <span class="badge">明确路径</span>
+                  </div>
                   <p>围绕实施规划、策略选择和优先级排序，让治理项目更容易启动、落地和持续运营。</p>
                 </article>
                 <article class="info-card tagged-card">
-                  <span class="badge">价值闭环</span>
-                  <h3>让数据治理能够被看见、被复盘、被持续投入</h3>
+                  <div class="tagged-head">
+                    <h3>让数据治理能够被看见、被复盘、被持续投入</h3>
+                    <span class="badge">价值闭环</span>
+                  </div>
                   <p>用价值衡量和运营机制承接治理成果，避免治理变成一次性建设或只靠口号推动。</p>
                 </article>
               </div>
@@ -1132,23 +1141,31 @@
 
               <div class="grid-4">
                 <article class="info-card tagged-card">
-                  <span class="badge">战略之困</span>
-                  <h3>数据治理与业务战略脱节</h3>
+                  <div class="tagged-head">
+                    <h3>数据治理与业务战略脱节</h3>
+                    <span class="badge">战略之困</span>
+                  </div>
                   <p>治理动作容易被理解成技术团队的内部工作，难以支撑企业战略、业务增长和经营决策。</p>
                 </article>
                 <article class="info-card tagged-card">
-                  <span class="badge">认知之困</span>
-                  <h3>治理价值难以获得高层共识</h3>
+                  <div class="tagged-head">
+                    <h3>治理价值难以获得高层共识</h3>
+                    <span class="badge">认知之困</span>
+                  </div>
                   <p>组织把数据治理看成纯 IT 项目，投入、优先级和协同机制都难以稳定获得支持。</p>
                 </article>
                 <article class="info-card tagged-card">
-                  <span class="badge">落地之困</span>
-                  <h3>概念很多，但不知道如何开局</h3>
+                  <div class="tagged-head">
+                    <h3>概念很多，但不知道如何开局</h3>
+                    <span class="badge">落地之困</span>
+                  </div>
                   <p>标准、口径、流程、职责、平台、质量问题交织在一起，推进时容易无从下手。</p>
                 </article>
                 <article class="info-card tagged-card">
-                  <span class="badge">成效之困</span>
-                  <h3>大量投入后成效仍然不清晰</h3>
+                  <div class="tagged-head">
+                    <h3>大量投入后成效仍然不清晰</h3>
+                    <span class="badge">成效之困</span>
+                  </div>
                   <p>数据质量、应用效率和业务收益难以量化，导致治理项目后续投入与运营动力不足。</p>
                 </article>
               </div>
@@ -1200,33 +1217,45 @@
 
               <div class="grid-3">
                 <article class="module-card tagged-card">
-                  <span class="badge">模块一</span>
-                  <h3>认知革新</h3>
+                  <div class="tagged-head">
+                    <h3>认知革新</h3>
+                    <span class="badge">模块一</span>
+                  </div>
                   <p>理解数据治理为什么不能只停留在技术或成本视角，建立“数据即经营资产”的管理认知。</p>
                 </article>
                 <article class="module-card tagged-card">
-                  <span class="badge">模块二</span>
-                  <h3>战略定位</h3>
+                  <div class="tagged-head">
+                    <h3>战略定位</h3>
+                    <span class="badge">模块二</span>
+                  </div>
                   <p>从企业战略出发，明确数据治理在组织增长、效率提升、风险管控和管理升级中的位置。</p>
                 </article>
                 <article class="module-card tagged-card">
-                  <span class="badge">模块三</span>
-                  <h3>全景地图</h3>
+                  <div class="tagged-head">
+                    <h3>全景地图</h3>
+                    <span class="badge">模块三</span>
+                  </div>
                   <p>建立数据治理核心框架，理解标准、质量、安全、组织、流程、平台与运营之间的关系。</p>
                 </article>
                 <article class="module-card tagged-card">
-                  <span class="badge">模块四</span>
-                  <h3>实施路径</h3>
+                  <div class="tagged-head">
+                    <h3>实施路径</h3>
+                    <span class="badge">模块四</span>
+                  </div>
                   <p>规划数据治理实施节奏，选择适配企业现状的切入点、建设阶段与推进策略。</p>
                 </article>
                 <article class="module-card tagged-card">
-                  <span class="badge">模块五</span>
-                  <h3>价值闭环</h3>
+                  <div class="tagged-head">
+                    <h3>价值闭环</h3>
+                    <span class="badge">模块五</span>
+                  </div>
                   <p>设计治理价值衡量、持续运营和复盘机制，让治理成果能够被看见、被评价、被迭代。</p>
                 </article>
                 <article class="module-card tagged-card">
-                  <span class="badge">模块六</span>
-                  <h3>领导保障</h3>
+                  <div class="tagged-head">
+                    <h3>领导保障</h3>
+                    <span class="badge">模块六</span>
+                  </div>
                   <p>建立顶层架构与场域协同机制，让高层支持、跨部门协作和组织责任真正落到行动上。</p>
                 </article>
               </div>
@@ -1375,18 +1404,24 @@
 
               <div class="grid-3">
                 <article class="info-card tagged-card">
-                  <span class="badge">战略决策层</span>
-                  <h3>企业创始人 / CEO</h3>
+                  <div class="tagged-head">
+                    <h3>企业创始人 / CEO</h3>
+                    <span class="badge">战略决策层</span>
+                  </div>
                   <p>适合希望从企业战略和经营管理视角重新理解数据治理价值的业务一号位。</p>
                 </article>
                 <article class="info-card tagged-card">
-                  <span class="badge">数字化负责人</span>
-                  <h3>CDO / CIO / IT负责人</h3>
+                  <div class="tagged-head">
+                    <h3>CDO / CIO / IT负责人</h3>
+                    <span class="badge">数字化负责人</span>
+                  </div>
                   <p>适合需要统筹数字化建设、数据资产、数据平台和跨部门协同的核心负责人。</p>
                 </article>
                 <article class="info-card tagged-card">
-                  <span class="badge">治理推进团队</span>
-                  <h3>数据部门负责人及核心骨干</h3>
+                  <div class="tagged-head">
+                    <h3>数据部门负责人及核心骨干</h3>
+                    <span class="badge">治理推进团队</span>
+                  </div>
                   <p>适合需要负责治理规划、标准推进、数据质量、指标体系和日常运营的落地团队。</p>
                 </article>
               </div>
@@ -1412,8 +1447,10 @@
                   <p>费用包含两日培训、午餐及茶歇；不包含差旅费用。</p>
                 </article>
                 <article class="fee-card tagged-card">
-                  <span class="badge">学习形式</span>
-                  <h3>小班深度研讨，强调面对面交流</h3>
+                  <div class="tagged-head">
+                    <h3>小班深度研讨，强调面对面交流</h3>
+                    <span class="badge">学习形式</span>
+                  </div>
                   <p>海报信息显示总人数不超过 30 人，学习过程中包含分组研讨与现场交流，更适合管理者带着真实问题参与。</p>
                   <div class="list">
                     <div class="list-item">两天集中训练，减少碎片化学习。</div>
