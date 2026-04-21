@@ -900,6 +900,13 @@
       box-shadow: 0 14px 28px rgba(23, 52, 110, 0.04);
     }
 
+    .persona-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
     .persona .badge {
       display: inline-flex;
       align-items: center;
@@ -910,13 +917,14 @@
       color: var(--navy-700);
       font-size: 0.8rem;
       font-weight: 800;
+      flex-shrink: 0;
     }
 
     .persona h3 {
-      margin-top: 14px;
       font-size: 1.08rem;
       line-height: 1.45;
       color: var(--navy-900);
+      flex: 1;
     }
 
     .persona p {
@@ -1626,6 +1634,11 @@
         min-height: 68px;
       }
 
+      .persona-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
       .tool-item {
         grid-template-columns: 1fr;
         justify-items: start;
@@ -1810,18 +1823,24 @@
 
               <div class="persona-grid">
                 <article class="persona">
-                  <span class="badge">听汇报的人</span>
-                  <h3>1 号位 / 领导班子</h3>
+                  <div class="persona-head">
+                    <h3>1 号位 / 领导班子</h3>
+                    <span class="badge">听汇报的人</span>
+                  </div>
                   <p>关心会议是不是太慢、太空、太虚，数据是否可信，是否能直接定位经营问题并压实责任，是否真的帮助公司战略落地。</p>
                 </article>
                 <article class="persona">
-                  <span class="badge">做汇报的人</span>
-                  <h3>业务单元负责人 / VP / 分管副总</h3>
+                  <div class="persona-head">
+                    <h3>业务单元负责人 / VP / 分管副总</h3>
+                    <span class="badge">做汇报的人</span>
+                  </div>
                   <p>关心能不能把问题讲清楚、把跨业务数据联动起来、把老板追问时需要的底层数据快速打开，而不是靠 PPT 被动解释。</p>
                 </article>
                 <article class="persona">
-                  <span class="badge">准备材料的人</span>
-                  <h3>财务 / 战略 / 业务执行角色</h3>
+                  <div class="persona-head">
+                    <h3>财务 / 战略 / 业务执行角色</h3>
+                    <span class="badge">准备材料的人</span>
+                  </div>
                   <p>关心数据准备效率、对数成本、数据口径不一致导致的返工，以及大量时间被基础整理工作吞掉，无法投入分析本身。</p>
                 </article>
               </div>
