@@ -739,35 +739,30 @@
       margin-bottom: 20px;
     }
 
-    .section-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.82rem;
-      color: var(--navy-700);
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .section-kicker::before {
-      content: "";
-      width: 9px;
-      height: 9px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--navy-700), var(--sky-500));
-    }
-
     .section-title {
-      margin-top: 10px;
-      font-size: clamp(1.28rem, 2vw, 1.7rem);
-      line-height: 1.32;
+      position: relative;
+      margin-top: 0;
+      padding-left: 16px;
+      font-size: clamp(1.42rem, 2vw, 1.92rem);
+      line-height: 1.2;
       color: var(--navy-900);
+    }
+
+    .section-title::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.16em;
+      bottom: 0.16em;
+      width: 4px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--navy-700), var(--sky-500));
+      box-shadow: 0 0 0 6px rgba(204, 228, 255, 0.9);
     }
 
     .section-desc {
       max-width: 760px;
-      margin-top: 10px;
+      margin-top: 12px;
       font-size: 0.98rem;
       line-height: 1.74;
       color: var(--text-soft);
@@ -1727,7 +1722,7 @@
           </button>
           <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-solution" id="btn-solution" data-tab="solution">
             <strong>方案说明</strong>
-            <span>建设边界、能力范围、FAQ</span>
+            <span>建设边界、能力范围、常见问题</span>
           </button>
           <button class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-cases" id="btn-cases" data-tab="cases">
             <strong>案例地图</strong>
@@ -1840,7 +1835,6 @@
             <section class="section-card">
               <div class="section-header">
                 <div>
-                  <div class="section-kicker">Customer Fit</div>
                   <h2 class="section-title">目标客群：优先选择已有经营分析机制与数据基础的客户</h2>
                   <p class="section-desc">更适合已有经营分析会机制、能触达高层、具备一定数据基础，并愿意按阶段推进建设的客户。</p>
                 </div>
@@ -1874,7 +1868,6 @@
             <section class="section-card">
               <div class="section-header">
                 <div>
-                  <div class="section-kicker">Role Pain Points</div>
                   <h2 class="section-title">典型角色痛点：内部同学对外沟通时最值得优先抓的三类人</h2>
                   <p class="section-desc">按“听汇报的人、做汇报的人、准备材料的人”切入，更容易把场景价值讲直白，也更容易对应客户真实购买动机。</p>
                 </div>
@@ -1908,7 +1901,6 @@
             <section class="section-card">
               <div class="section-header">
                 <div>
-                  <div class="section-kicker">Concept Alignment</div>
                   <h2 class="section-title">概念对齐：经分会不等于管报，也不等于财务分析或业务分析</h2>
                   <p class="section-desc">场景推广与需求评估时统一场景语言，避免概念混用，也便于对照后续的各类工具。</p>
                 </div>
@@ -1967,7 +1959,6 @@
             <section class="section-card">
               <div class="section-header">
                 <div>
-                  <div class="section-kicker">Current Recommendation</div>
                   <h2 class="section-title">当前推荐建设边界：先跑通“会中核心包”，再按阶段扩展</h2>
                   <p class="section-desc">根据你提供的 2026 推进方案，短期最重要的是把经分会从高风险项目收敛成有明确边界的解决方案项目，而不是一开始追求全链路完备。</p>
                 </div>
@@ -2004,8 +1995,7 @@
             <section class="section-card">
               <div class="section-header">
                 <div>
-                  <div class="section-kicker">Frequently Asked Questions</div>
-                  <h2 class="section-title">FAQ：内部一线最常遇到、最值得提前统一口径的问题</h2>
+                  <h2 class="section-title">常见问题：内部一线最常遇到、最值得提前统一口径的问题</h2>
                   <p class="section-desc">这一块建议在最终网页保留折叠问答形式，便于快速浏览，也适合作为内部培训时的即时答疑素材。</p>
                 </div>
               </div>
@@ -2041,7 +2031,6 @@
             <section class="section-card">
               <div class="section-header">
                 <div>
-                  <div class="section-kicker">Case Map</div>
                   <h2 class="section-title">案例地图：按民营企业 / 国资企业分开展示，便于一线快速对号入座</h2>
                 </div>
               </div>
@@ -2182,7 +2171,6 @@
             <section class="section-card">
               <div class="section-header">
                 <div>
-                  <div class="section-kicker">How To Use Cases</div>
                   <h2 class="section-title">案例怎么用：给每张卡片预留“详情页”入口，方便后续挂资料</h2>
                 </div>
               </div>
@@ -2210,7 +2198,6 @@
             <section class="section-card">
               <div class="section-header">
                 <div>
-                  <div class="section-kicker">Workbench</div>
                   <h2 class="section-title">场景工具：不是资料堆，而是给一线同学的“作战工具台”</h2>
                 </div>
               </div>
@@ -2278,7 +2265,6 @@
             <section class="section-card">
               <div class="section-header">
                 <div>
-                  <div class="section-kicker">How To Use</div>
                   <h2 class="section-title">推荐使用顺序：让工具服务“判断、讲解、报价、交付”四个动作</h2>
                   <p class="section-desc">理解数字化经分会项目的正确推进顺序。</p>
                 </div>
@@ -2311,8 +2297,7 @@
             <section class="section-card">
               <div class="section-header">
                 <div>
-                  <div class="section-kicker">Two Paths</div>
-                  <h2 class="section-title">推进计划：围绕两条路径展开，而不是只讲一个笼统 roadmap</h2>
+                  <h2 class="section-title">推进计划：围绕两条路径展开，而不是只讲一个笼统路线图</h2>
                   <p class="section-desc">结合你补充的材料，推进计划更适合按“路径一：AI Agent 能力”和“路径二：新产品 FineBiNext”来表达。这样既能承接后续一体两翼演进，也能明确接下来到底往哪里发力。</p>
                 </div>
               </div>
@@ -2361,7 +2346,6 @@
             <section class="section-card">
               <div class="section-header">
                 <div>
-                  <div class="section-kicker">Shared Priorities</div>
                   <h2 class="section-title">两条路径共同依赖的基础前提</h2>
                   <p class="section-desc">无论走 Agent 路径还是新产品路径，都不是简单换个包装就能成功，仍然需要把项目基本面先稳住。</p>
                 </div>

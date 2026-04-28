@@ -381,30 +381,25 @@ p {
   margin-bottom: 20px;
 }
 
-.section-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.82rem;
-  color: var(--navy-700);
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.section-kicker::before {
-  content: "";
-  width: 9px;
-  height: 9px;
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--navy-700), var(--sky-500));
-}
-
 .section-title {
-  margin-top: 10px;
-  font-size: clamp(1.28rem, 2vw, 1.7rem);
-  line-height: 1.32;
+  position: relative;
+  margin-top: 0;
+  padding-left: 16px;
+  font-size: clamp(1.42rem, 2vw, 1.92rem);
+  line-height: 1.2;
   color: var(--navy-900);
+}
+
+.section-title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.16em;
+  bottom: 0.16em;
+  width: 4px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--navy-700), var(--sky-500));
+  box-shadow: 0 0 0 6px rgba(204, 228, 255, 0.9);
 }
 
 .section-note {
