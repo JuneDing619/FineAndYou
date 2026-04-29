@@ -786,8 +786,15 @@
     }
 
     .link-action.demo {
-      color: var(--fr-blue-700);
-      background: rgba(232, 244, 255, 0.72);
+      color: #667792;
+      border-color: rgba(102, 119, 146, 0.18);
+      background: rgba(244, 247, 251, 0.92);
+    }
+
+    .link-action.case {
+      color: #667792;
+      border-color: rgba(102, 119, 146, 0.18);
+      background: rgba(244, 247, 251, 0.92);
     }
 
     .modal {
@@ -1073,7 +1080,7 @@
         </span>
         <span class="brand-copy">
           <strong class="brand-title">财经 Agent 平台</strong>
-          <span class="brand-subtitle">面向财务共享、财经 BP、经营分析与内控合规的智能应用门户</span>
+          <span class="brand-subtitle">powerby：行销总部·财经小组</span>
         </span>
       </a>
     </header>
@@ -1360,6 +1367,7 @@
           <div class="card-actions">
             <div class="action-tags">
               <button class="link-action" type="button" data-detail="${agent.id}">Agent详情</button>
+              <a class="link-action case" href="${demoBase}?case=${agent.id}" target="_blank" rel="noopener">客户案例</a>
               <a class="link-action demo" href="${demoBase}?scene=${agent.id}" target="_blank" rel="noopener">DEMO查看</a>
             </div>
           </div>
