@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>财经 Agent 平台</title>
+  <meta name="description" content="财经 Agent 平台场景门户，覆盖流程提效、经营合规、业财融合、经营洞察与风险管控。">
+  <style>
+    :root {
+      --fr-blue-900: #17346e;
+      --fr-blue-800: #0055cc;
+      --fr-blue-700: #0086e6;
+      --fr-blue-500: #3d93ff;
+      --fr-cyan: #00ace6;
+      --fr-mint: #35db9b;
+      --fr-teal: #3fc4a9;
+      --fr-indigo: #5c6cff;
+      --fr-violet: #7a73fa;
+      --fr-amber: #f7b65c;
+      --fr-orange: #f39600;
+      --fr-page: #edefff;
+      --fr-page-soft: #f3fcff;
+      --fr-surface: rgba(255, 255, 255, 0.82);
+      --fr-surface-strong: rgba(255, 255, 255, 0.96);
+      --fr-surface-blue: rgba(232, 244, 255, 0.78);
+      --fr-line: rgba(184, 190, 204, 0.62);
+      --fr-line-blue: rgba(0, 134, 230, 0.16);
+      --fr-text: #0f0f0f;
+      --fr-text-title: #17346e;
+      --fr-text-body: #566280;
+      --fr-text-subtle: #8f99b3;
+      --fr-success: #1f9d62;
+      --fr-shadow-sm: 0 10px 26px rgba(0, 85, 204, 0.08);
+      --fr-shadow-md: 0 18px 48px rgba(0, 85, 204, 0.12);
+      --fr-shadow-lg: 0 28px 72px rgba(0, 85, 204, 0.14);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --radius-sm: 10px;
+      --container: 1320px;
+      --ease: 220ms cubic-bezier(.2, .8, .2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--fr-text);
+      font-family: "Microsoft YaHei", "PingFang SC", "SF Pro Display", Arial, sans-serif;
+      background:
+        radial-gradient(circle at 8% 8%, rgba(0, 134, 230, 0.16), transparent 24%),
+        radial-gradient(circle at 92% 4%, rgba(0, 172, 230, 0.13), transparent 20%),
+        radial-gradient(circle at 46% 92%, rgba(92, 108, 255, 0.1), transparent 28%),
+        linear-gradient(180deg, #f8fcff 0%, var(--fr-page-soft) 44%, var(--fr-page) 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(0, 134, 230, 0.026) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 134, 230, 0.026) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.86), transparent 95%);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      top: 110px;
+      right: -150px;
+      z-index: -1;
+      width: 480px;
+      height: 480px;
+      border-radius: 34px;
+      transform: rotate(45deg);
+      pointer-events: none;
+      opacity: 0.36;
+      background:
+        radial-gradient(circle, rgba(0, 134, 230, 0.2) 0 13px, transparent 14px 28px, rgba(0, 172, 230, 0.14) 29px 40px, transparent 41px),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      border: 0;
+      color: inherit;
+      font: inherit;
+      background: none;
+      cursor: pointer;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    .shell {
+      width: min(calc(100% - 32px), var(--container));
+      margin: 0 auto;
+      padding: 18px 0 34px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 14px;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 18px;
+      min-height: 68px;
+      padding: 14px 20px;
+      border: 1px solid rgba(218, 222, 230, 0.76);
+      border-radius: 20px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(245, 251, 255, 0.84)),
+        var(--fr-surface);
+      box-shadow: var(--fr-shadow-sm);
+      backdrop-filter: blur(18px) saturate(130%);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      gap: 12px;
+    }
+
+    .brand-mark {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-mark img {
+      display: block;
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+
+    .btn svg,
+    .icon-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2.4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+
+    .brand-copy {
+      display: grid;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .brand-title {
+      color: var(--fr-text-title);
+      font-size: clamp(1.08rem, 1.5vw, 1.36rem);
+      font-weight: 900;
+      line-height: 1.24;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-subtitle {
+      color: var(--fr-text-body);
+      font-size: 0.86rem;
+      line-height: 1.5;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      margin-top: 18px;
+      border: 1px solid rgba(218, 222, 230, 0.76);
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.95), transparent 34%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(243, 250, 255, 0.9));
+      box-shadow: var(--fr-shadow-md);
+      padding: 22px 28px;
+    }
+
+    .hero::before,
+    .section-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 100% 0, rgba(0, 172, 230, 0.1), transparent 26%),
+        radial-gradient(circle at 0 100%, rgba(0, 134, 230, 0.08), transparent 20%);
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 12px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      min-height: 34px;
+      padding: 0 14px;
+      border: 1px solid rgba(0, 134, 230, 0.14);
+      border-radius: 999px;
+      color: var(--fr-blue-700);
+      background: rgba(232, 244, 255, 0.88);
+      font-size: 0.84rem;
+      font-weight: 900;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--fr-blue-700), var(--fr-cyan));
+      box-shadow: 0 0 0 6px rgba(0, 134, 230, 0.1);
+    }
+
+    .hero-copy {
+      display: grid;
+      gap: 10px;
+      align-content: center;
+    }
+
+    .hero h1 {
+      color: var(--fr-text-title);
+      font-size: clamp(1.08rem, 2vw, 1.7rem);
+      line-height: 1.25;
+      letter-spacing: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .hero h1 span {
+      color: var(--fr-blue-700);
+    }
+
+    .hero-desc {
+      max-width: 1040px;
+      color: var(--fr-text-body);
+      font-size: 0.96rem;
+      line-height: 1.68;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 0 16px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 900;
+      transition: transform var(--ease), box-shadow var(--ease), border-color var(--ease), background var(--ease);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--fr-blue-700), var(--fr-blue-800));
+      box-shadow: 0 16px 28px rgba(0, 134, 230, 0.22);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 20px 34px rgba(0, 134, 230, 0.28);
+    }
+
+    .btn-secondary {
+      color: var(--fr-blue-700);
+      border: 1px solid rgba(0, 134, 230, 0.18);
+      background: rgba(255, 255, 255, 0.84);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(0, 134, 230, 0.3);
+      box-shadow: 0 12px 22px rgba(0, 134, 230, 0.08);
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 360px;
+      border: 1px solid rgba(0, 134, 230, 0.1);
+      border-radius: 24px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(232, 244, 255, 0.72)),
+        rgba(255, 255, 255, 0.8);
+      box-shadow: var(--fr-shadow-sm);
+      overflow: hidden;
+    }
+
+    .hero-visual::before {
+      content: "";
+      position: absolute;
+      inset: 22px;
+      border: 1px dashed rgba(0, 134, 230, 0.18);
+      border-radius: 20px;
+    }
+
+    .orbit {
+      position: absolute;
+      inset: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 134, 230, 0.13);
+      animation: spin 28s linear infinite;
+    }
+
+    .orbit:nth-child(2) {
+      inset: 78px;
+      border-color: rgba(92, 108, 255, 0.16);
+      animation-duration: 22s;
+      animation-direction: reverse;
+    }
+
+    .agent-node {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      width: 68px;
+      height: 68px;
+      border-radius: 22px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--node-a), var(--node-b));
+      box-shadow: 0 20px 34px rgba(0, 85, 204, 0.16);
+    }
+
+    .agent-node svg {
+      width: 28px;
+      height: 28px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .node-center {
+      top: 50%;
+      left: 50%;
+      width: 96px;
+      height: 96px;
+      transform: translate(-50%, -50%);
+      --node-a: var(--fr-blue-700);
+      --node-b: var(--fr-blue-800);
+    }
+
+    .node-1 {
+      top: 34px;
+      left: 68px;
+      --node-a: var(--fr-mint);
+      --node-b: var(--fr-teal);
+    }
+
+    .node-2 {
+      top: 66px;
+      right: 54px;
+      --node-a: var(--fr-violet);
+      --node-b: var(--fr-indigo);
+    }
+
+    .node-3 {
+      right: 86px;
+      bottom: 46px;
+      --node-a: var(--fr-amber);
+      --node-b: var(--fr-orange);
+    }
+
+    .node-4 {
+      left: 44px;
+      bottom: 72px;
+      --node-a: var(--fr-cyan);
+      --node-b: var(--fr-blue-500);
+    }
+
+    .visual-pill {
+      position: absolute;
+      left: 28px;
+      right: 28px;
+      bottom: 24px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .visual-pill span {
+      display: grid;
+      gap: 4px;
+      min-height: 64px;
+      padding: 12px;
+      border: 1px solid rgba(0, 134, 230, 0.1);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.78);
+      color: var(--fr-text-body);
+      font-size: 0.78rem;
+      line-height: 1.35;
+    }
+
+    .visual-pill strong {
+      color: var(--fr-text-title);
+      font-size: 1.08rem;
+      line-height: 1;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .stat-card {
+      display: grid;
+      gap: 8px;
+      min-height: 104px;
+      padding: 18px;
+      border: 1px solid rgba(0, 134, 230, 0.1);
+      border-radius: 18px;
+      background: var(--fr-surface);
+      box-shadow: var(--fr-shadow-sm);
+    }
+
+    .stat-card strong {
+      color: var(--fr-text-title);
+      font-size: clamp(1.42rem, 2.6vw, 2.1rem);
+      line-height: 1;
+    }
+
+    .stat-card span {
+      color: var(--fr-text-body);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .tabs-wrap {
+      position: sticky;
+      top: 96px;
+      z-index: 18;
+      margin-top: 20px;
+      padding: 12px;
+      border: 1px solid rgba(218, 222, 230, 0.72);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 18px 36px rgba(0, 85, 204, 0.05);
+      backdrop-filter: blur(14px);
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(0, 134, 230, 0.28) transparent;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 10px;
+      min-width: max-content;
+    }
+
+    .tab-btn {
+      display: grid;
+      flex: 1 0 166px;
+      gap: 3px;
+      align-content: center;
+      justify-items: center;
+      min-height: 64px;
+      padding: 12px 14px;
+      border: 1px solid transparent;
+      border-radius: 16px;
+      color: var(--fr-text-body);
+      white-space: nowrap;
+      transition: transform var(--ease), box-shadow var(--ease), border-color var(--ease), background var(--ease), color var(--ease);
+    }
+
+    .tab-btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(0, 85, 204, 0.1);
+      background: rgba(255, 255, 255, 0.76);
+    }
+
+    .tab-btn strong {
+      color: inherit;
+      font-size: 0.94rem;
+      line-height: 1.35;
+    }
+
+    .tab-btn span {
+      color: inherit;
+      font-size: 0.76rem;
+      line-height: 1.3;
+    }
+
+    .tab-btn.is-active {
+      color: #fff;
+      border-color: rgba(0, 134, 230, 0.28);
+      background: linear-gradient(180deg, rgba(0, 134, 230, 0.98), rgba(0, 85, 204, 0.98));
+      box-shadow: 0 18px 30px rgba(0, 134, 230, 0.2);
+    }
+
+    .section-card {
+      position: relative;
+      overflow: hidden;
+      margin-top: 20px;
+      padding: 28px;
+      border: 1px solid rgba(218, 222, 230, 0.76);
+      border-radius: 24px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(243, 250, 255, 0.92));
+      box-shadow: var(--fr-shadow-md);
+    }
+
+    .section-head {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .section-title {
+      position: relative;
+      padding-left: 16px;
+      color: var(--fr-text-title);
+      font-size: clamp(1.12rem, 1.45vw, 1.42rem);
+      line-height: 1.2;
+    }
+
+    .section-title::before {
+      content: "";
+      position: absolute;
+      top: 0.16em;
+      bottom: 0.16em;
+      left: 0;
+      width: 4px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--fr-blue-700), var(--fr-cyan));
+      box-shadow: 0 0 0 6px rgba(204, 228, 255, 0.9);
+    }
+
+    .section-desc {
+      max-width: 560px;
+      color: var(--fr-text-body);
+      font-size: 0.95rem;
+      line-height: 1.72;
+    }
+
+    .agent-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .agent-card {
+      position: relative;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      min-height: 340px;
+      overflow: hidden;
+      border: 1px solid rgba(218, 222, 230, 0.9);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: 0 12px 30px rgba(23, 52, 110, 0.08);
+      transition: transform var(--ease), box-shadow var(--ease), border-color var(--ease);
+    }
+
+    .agent-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(0, 134, 230, 0.2);
+      box-shadow: 0 18px 38px rgba(23, 52, 110, 0.11);
+    }
+
+    .agent-card.is-hidden {
+      display: none;
+    }
+
+    .card-main {
+      display: grid;
+      gap: 14px;
+      padding: 24px 24px 20px;
+    }
+
+    .card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .category-tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0 9px;
+      border: 1px solid rgba(0, 134, 230, 0.14);
+      border-radius: 999px;
+      color: var(--fr-blue-700);
+      background: rgba(232, 244, 255, 0.88);
+      font-size: 0.74rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 28px;
+      padding: 0 10px;
+      border-radius: 8px;
+      color: var(--fr-success);
+      background: rgba(31, 157, 98, 0.12);
+      font-size: 0.74rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .agent-title {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      gap: 12px;
+      color: var(--fr-text-title);
+      font-size: clamp(0.96rem, 1.15vw, 1.08rem);
+      line-height: 1.3;
+    }
+
+    .agent-title-text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .title-icon {
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--fr-blue-700), var(--fr-cyan));
+      box-shadow: 0 10px 20px rgba(0, 134, 230, 0.12);
+    }
+
+    .title-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .pain {
+      color: var(--fr-text-body);
+      font-size: 0.88rem;
+      font-weight: 400;
+      line-height: 1.72;
+    }
+
+    .pain mark {
+      padding: 0 2px;
+      color: var(--fr-blue-800);
+      background: transparent;
+    }
+
+    .pain .ai {
+      color: var(--fr-orange);
+    }
+
+    .agent-meta {
+      display: grid;
+      gap: 9px;
+      margin-top: 2px;
+    }
+
+    .meta-row {
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr);
+      gap: 12px;
+      align-items: baseline;
+      color: var(--fr-text-body);
+      font-size: 0.88rem;
+      line-height: 1.55;
+    }
+
+    .meta-label {
+      color: var(--fr-text-body);
+    }
+
+    .meta-value {
+      color: #2f3b52;
+      text-align: right;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .card-actions {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 12px;
+      min-height: 64px;
+      padding: 12px 24px;
+      border-top: 1px solid rgba(218, 222, 230, 0.78);
+      background: rgba(255, 255, 255, 0.76);
+    }
+
+    .action-tags {
+      display: flex;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .link-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 38px;
+      padding: 0 14px;
+      border: 1px solid rgba(0, 134, 230, 0.16);
+      border-radius: 10px;
+      color: var(--fr-blue-700);
+      background: rgba(232, 244, 255, 0.72);
+      font-size: 0.76rem;
+      font-weight: 700;
+      box-shadow: none;
+      transition: color var(--ease), background var(--ease), transform var(--ease), box-shadow var(--ease), border-color var(--ease);
+    }
+
+    .link-action::after {
+      content: "→";
+      font-size: 0.96rem;
+      line-height: 1;
+    }
+
+    .link-action:hover {
+      color: var(--fr-blue-800);
+      background: rgba(232, 244, 255, 0.96);
+      border-color: rgba(0, 134, 230, 0.28);
+      box-shadow: 0 8px 18px rgba(0, 134, 230, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .link-action.demo {
+      color: var(--fr-blue-700);
+      background: rgba(232, 244, 255, 0.72);
+    }
+
+    .link-action.demo::after {
+      content: "→";
+      font-size: 0.96rem;
+    }
+
+    .footer-note {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      padding: 18px 22px;
+      border: 1px solid rgba(218, 222, 230, 0.72);
+      border-radius: 18px;
+      color: var(--fr-text-body);
+      background: rgba(255, 255, 255, 0.72);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      background: rgba(10, 31, 62, 0.34);
+      backdrop-filter: blur(12px);
+    }
+
+    .modal.is-open {
+      display: flex;
+    }
+
+    .modal-panel {
+      position: relative;
+      width: min(920px, 100%);
+      max-height: min(780px, calc(100vh - 44px));
+      overflow: auto;
+      border: 1px solid rgba(218, 222, 230, 0.76);
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.98), transparent 34%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(243, 250, 255, 0.96));
+      box-shadow: 0 30px 90px rgba(0, 31, 84, 0.26);
+      animation: modal-in 180ms ease;
+    }
+
+    @keyframes modal-in {
+      from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .modal-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 16px;
+      padding: 26px 28px 18px;
+      border-bottom: 1px solid rgba(0, 134, 230, 0.1);
+    }
+
+    .modal-title-wrap {
+      display: grid;
+      gap: 12px;
+    }
+
+    .modal-title-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .modal h2 {
+      color: var(--fr-text-title);
+      font-size: clamp(1.52rem, 2.6vw, 2.26rem);
+      line-height: 1.2;
+    }
+
+    .modal-summary {
+      max-width: 760px;
+      color: var(--fr-text-body);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    .icon-btn {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(0, 134, 230, 0.14);
+      border-radius: 14px;
+      color: var(--fr-text-title);
+      background: rgba(255, 255, 255, 0.76);
+      transition: color var(--ease), background var(--ease), transform var(--ease);
+    }
+
+    .icon-btn:hover {
+      color: var(--fr-blue-700);
+      background: rgba(232, 244, 255, 0.92);
+      transform: translateY(-1px);
+    }
+
+    .modal-body {
+      display: grid;
+      gap: 18px;
+      padding: 22px 28px 28px;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .detail-card {
+      min-height: 142px;
+      padding: 18px;
+      border: 1px solid rgba(0, 134, 230, 0.1);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.78);
+    }
+
+    .detail-card strong {
+      display: block;
+      color: var(--fr-text-title);
+      font-size: 0.98rem;
+      line-height: 1.45;
+    }
+
+    .detail-card p,
+    .detail-card li {
+      color: var(--fr-text-body);
+      font-size: 0.92rem;
+      line-height: 1.68;
+    }
+
+    .detail-card p {
+      margin-top: 10px;
+    }
+
+    .detail-card ul {
+      display: grid;
+      gap: 8px;
+      margin: 12px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .detail-card li {
+      position: relative;
+      padding-left: 16px;
+    }
+
+    .detail-card li::before {
+      content: "";
+      position: absolute;
+      top: 0.72em;
+      left: 0;
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--fr-blue-700), var(--fr-cyan));
+      transform: translateY(-50%);
+    }
+
+    .modal-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-top: 2px;
+    }
+
+    @media (max-width: 1120px) {
+      .agent-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .tab-btn {
+        flex-basis: 154px;
+      }
+    }
+
+    @media (max-width: 840px) {
+      .topbar,
+      .section-head {
+        display: grid;
+      }
+
+      .tabs-wrap {
+        position: static;
+      }
+
+      .agent-grid,
+      .detail-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .shell {
+        width: min(calc(100% - 18px), var(--container));
+        padding-top: 10px;
+      }
+
+      .hero,
+      .section-card {
+        padding: 20px;
+      }
+
+      .hero h1 {
+        font-size: 0.76rem;
+      }
+
+      .hero-desc {
+        font-size: 0.8rem;
+      }
+
+      .tab-btn {
+        flex-basis: 146px;
+        min-height: 58px;
+        padding: 10px 12px;
+      }
+
+      .agent-card {
+        min-height: auto;
+      }
+
+      .card-main {
+        gap: 12px;
+        padding: 18px 18px 16px;
+      }
+
+      .card-actions {
+        min-height: 58px;
+        padding: 11px 18px;
+      }
+
+      .category-tag,
+      .status {
+        min-height: 26px;
+        font-size: 0.7rem;
+      }
+
+      .agent-title {
+        font-size: 0.92rem;
+      }
+
+      .title-icon {
+        width: 36px;
+        height: 36px;
+      }
+
+      .pain {
+        font-size: 0.82rem;
+        line-height: 1.54;
+      }
+
+      .meta-row {
+        grid-template-columns: 66px minmax(0, 1fr);
+        font-size: 0.82rem;
+        line-height: 1.45;
+      }
+
+      .link-action {
+        min-height: 34px;
+        font-size: 0.74rem;
+        padding: 0 10px;
+      }
+
+      .modal {
+        padding: 10px;
+      }
+
+      .modal-header,
+      .modal-body {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="财经 Agent 平台首页">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="../assets/fanruan-mark.svg" alt="帆软 Logo">
+        </span>
+        <span class="brand-copy">
+          <strong class="brand-title">财经 Agent 平台</strong>
+          <span class="brand-subtitle">面向财务共享、财经 BP、经营分析与内控合规的智能应用门户</span>
+        </span>
+      </a>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <h1>让财经从数据记录走向价值创造，让 <span>AI Agent</span> 成为经营决策与风险治理的智能引擎</h1>
+            <p class="hero-desc">聚焦报告、合规、业财、洞察与风险场景，沉淀数据理解、规则执行和经营分析能力，支撑财务创造价值。</p>
+          </div>
+        </div>
+      </section>
+
+      <nav class="tabs-wrap" aria-label="Agent 分类">
+        <div class="tabs">
+          <button class="tab-btn is-active" type="button" data-filter="all"><strong>全部场景</strong><span>9 个 Agent</span></button>
+          <button class="tab-btn" type="button" data-filter="efficiency"><strong>流程提效类</strong><span>替代重复劳动</span></button>
+          <button class="tab-btn" type="button" data-filter="compliance"><strong>经营合规类</strong><span>事前合规防线</span></button>
+          <button class="tab-btn" type="button" data-filter="integration"><strong>业财融合类</strong><span>打通数据孤岛</span></button>
+          <button class="tab-btn" type="button" data-filter="insight"><strong>经营洞察类</strong><span>自动提炼洞察</span></button>
+          <button class="tab-btn" type="button" data-filter="risk"><strong>风险管控类</strong><span>主动风险防线</span></button>
+        </div>
+      </nav>
+
+      <section class="section-card" id="agents">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Agent 应用矩阵</h2>
+          </div>
+        </div>
+        <div class="agent-grid" id="agentGrid"></div>
+      </section>
+
+      <div class="footer-note">
+        <span>推荐落地节奏：优先选择流程清晰、数据可接入、规则可表达、结果可验收的场景进入试点。</span>
+        <span>视觉风格：FineAndYou / 星河蓝 2.0</span>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal" id="agentModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-panel">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <div class="modal-title-row">
+            <span class="category-tag" id="modalCategory"></span>
+            <span class="status">可试用</span>
+          </div>
+          <h2 id="modalTitle"></h2>
+          <p class="modal-summary" id="modalSummary"></p>
+        </div>
+        <button class="icon-btn" type="button" id="closeModal" aria-label="关闭详情弹窗">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="detail-grid" id="modalDetails"></div>
+        <div class="modal-actions">
+          <button class="btn btn-secondary" type="button" id="closeModalBottom">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+            返回列表
+          </button>
+          <a class="btn btn-primary" id="modalDemo" href="https://demo.fanruan.com/" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 8 16 12 10 16V8Z"/><circle cx="12" cy="12" r="10"/></svg>
+            DEMO 演示
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const demoBase = "https://demo.fanruan.com/";
+
+    const icons = {
+      report: '<svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M14 3v4h4"/><path d="M9 13h6"/><path d="M9 17h4"/><path d="M9 9h2"/></svg>',
+      extract: '<svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M8 8h8"/><path d="M8 12h5"/><path d="M8 16h8"/><path d="m16 11 2 2-2 2"/></svg>',
+      travel: '<svg viewBox="0 0 24 24"><path d="M10 6V4h4v2"/><rect x="4" y="6" width="16" height="14" rx="2"/><path d="M4 12h16"/><path d="M8 10v4"/><path d="M16 10v4"/></svg>',
+      qa: '<svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-8 8H7l-4 3v-7a8 8 0 1 1 18-4Z"/><path d="M10 9a2 2 0 1 1 3 1.7c-.6.4-1 .8-1 1.8"/><path d="M12 16h.01"/></svg>',
+      contract: '<svg viewBox="0 0 24 24"><path d="M7 3h10l3 3v15H7z"/><path d="M16 3v4h4"/><path d="M10 12h6"/><path d="M10 16h4"/><path d="m4 10 2 2 4-5"/></svg>',
+      reconcile: '<svg viewBox="0 0 24 24"><path d="M7 7h10"/><path d="m14 4 3 3-3 3"/><path d="M17 17H7"/><path d="m10 20-3-3 3-3"/><rect x="3" y="3" width="18" height="18" rx="4"/></svg>',
+      analysis: '<svg viewBox="0 0 24 24"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 16v-5"/><path d="M12 16V8"/><path d="M16 16v-3"/></svg>',
+      profit: '<svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M17 6H9.5a3.5 3.5 0 0 0 0 7H14a3.5 3.5 0 0 1 0 7H6"/><path d="m18 10 3-3-3-3"/></svg>',
+      risk: '<svg viewBox="0 0 24 24"><path d="M12 3 5 6v6c0 4 3 7 7 9 4-2 7-5 7-9V6l-7-3Z"/><path d="M12 8v5"/><path d="M12 16h.01"/></svg>'
+    };
+
+    const agents = [
+      {
+        id: "benchmark-report",
+        categoryKey: "efficiency",
+        category: "流程提效类",
+        title: "对标分析报告",
+        icon: "report",
+        accent: ["#00ace6", "#3d93ff"],
+        pain: '行业对标、指标取数、差异归因耗时 <mark>3-5 天</mark>？<br><span class="ai">AI</span> 自动抓取数据、生成分析叙述，<mark>30 分钟</mark>完成初稿。',
+        problem: "报告撰写效率低，口径不一致，分析深度依赖个人经验",
+        role: "财经 BP / 经营分析师 / 管理会计",
+        value: "节省 <em>80%</em> 报告整理时间，稳定输出对标结论",
+        summary: "面向月度经营复盘、行业对标和区域业绩比较，Agent 自动整合内外部指标，识别差距、归因变化，并生成可直接进入评审会的报告初稿。",
+        details: {
+          scene: ["行业与竞品指标对标", "区域、产品线、客户群表现差异分析", "月度经营复盘材料生成"],
+          workflow: ["接入财务、销售、市场与公开数据", "自动识别异常变动和排名变化", "生成摘要、图表说明、原因假设与行动建议"],
+          outputs: ["PPT/Word 分析报告初稿", "关键指标对标表", "管理层摘要与追问清单"]
+        }
+      },
+      {
+        id: "contract-extract",
+        categoryKey: "efficiency",
+        category: "流程提效类",
+        title: "合同信息抽取",
+        icon: "extract",
+        accent: ["#35db9b", "#3fc4a9"],
+        pain: '合同台账靠人工录入、字段校验反复返工？<br><span class="ai">AI</span> 自动识别金额、账期、主体和履约节点，降低漏填错填。',
+        problem: "合同字段分散在正文、附件与补充协议中，人工录入慢且易错",
+        role: "财务共享 / 合同管理 / 应收应付会计",
+        value: "字段抽取准确率提升，台账维护从小时级压缩到分钟级",
+        summary: "Agent 对合同正文、扫描件和附件进行结构化理解，自动抽取关键财经字段并完成格式校验，为收入确认、付款排期和履约跟踪提供可信数据底座。",
+        details: {
+          scene: ["合同台账初始化", "付款、收款、开票节点提取", "合同主数据补全与复核"],
+          workflow: ["上传合同与补充协议", "OCR 与语义抽取识别关键条款", "字段置信度标注并触发人工复核"],
+          outputs: ["结构化合同字段表", "异常字段提醒", "ERP/合同系统导入数据"]
+        }
+      },
+      {
+        id: "travel-control",
+        categoryKey: "compliance",
+        category: "经营合规类",
+        title: "差旅费控",
+        icon: "travel",
+        accent: ["#5c6cff", "#7a73fa"],
+        pain: '差旅报销事后才发现超标、缺附件、绕规则？<br><span class="ai">AI</span> 在申请和报销环节实时拦截风险。',
+        problem: "差旅政策复杂，审批人难以及时判断预算、标准和票据合规",
+        role: "费控专员 / 审批人 / 员工服务台",
+        value: "将合规审查前移，减少退单、补票和沟通成本",
+        summary: "Agent 将差旅制度、预算规则、城市等级和历史报销行为统一建模，在申请、预订、报销各节点进行自动校验，帮助企业从源头控制费用风险。",
+        details: {
+          scene: ["出差申请预算校验", "酒店、机票、补贴标准检查", "报销单据完整性审查"],
+          workflow: ["读取差旅申请与发票附件", "匹配员工级别、城市等级和预算规则", "输出通过、预警或拦截建议"],
+          outputs: ["合规判断结果", "差旅超标原因说明", "审批建议与补充材料清单"]
+        }
+      },
+      {
+        id: "policy-qa",
+        categoryKey: "compliance",
+        category: "经营合规类",
+        title: "费用政策问答",
+        icon: "qa",
+        accent: ["#63d1d7", "#0086e6"],
+        pain: '员工反复咨询报销政策，财务客服被高频问题淹没？<br><span class="ai">AI</span> 基于制度原文即时回答并给出依据。',
+        problem: "费用制度分散且更新频繁，员工理解成本高，财务答疑重复",
+        role: "全员 / 财务共享 / 制度管理",
+        value: "提升政策触达效率，减少低价值咨询与错误提交",
+        summary: "Agent 连接费用制度、FAQ、审批案例和最新通知，提供可追溯的政策问答，并在用户准备提交费用前提前提示材料和标准。",
+        details: {
+          scene: ["报销前政策咨询", "审批退回原因解释", "制度变更影响查询"],
+          workflow: ["识别员工问题意图", "检索制度原文与案例", "生成答案并附上适用条件和引用依据"],
+          outputs: ["政策问答结果", "报销材料检查清单", "制度盲区与高频问题统计"]
+        }
+      },
+      {
+        id: "contract-compliance",
+        categoryKey: "compliance",
+        category: "经营合规类",
+        title: "合同条款合规审查",
+        icon: "contract",
+        accent: ["#f7b65c", "#f39600"],
+        pain: '付款、违约、税务、结算条款靠人工逐条看？<br><span class="ai">AI</span> 对照规则库定位风险条款和修改建议。',
+        problem: "合同条款专业度高，财税与风控规则难以被业务前置理解",
+        role: "法务 / 财务 / 采购 / 销售运营",
+        value: "把合同风险从签署后追责变成签署前拦截",
+        summary: "Agent 基于财务、税务、采购、销售和法务规则库，对合同中的付款条件、发票要求、违约责任、验收结算等条款进行逐项审查。",
+        details: {
+          scene: ["采购与销售合同签署前审查", "非标条款风险识别", "合同修改意见生成"],
+          workflow: ["解析合同条款和业务背景", "匹配内控规则与历史风险案例", "标注风险等级并生成替代表述"],
+          outputs: ["条款风险清单", "合规审查意见", "可复制的修改建议"]
+        }
+      },
+      {
+        id: "reconciliation",
+        categoryKey: "integration",
+        category: "业财融合类",
+        title: "业财对账",
+        icon: "reconcile",
+        accent: ["#3fc4a9", "#35db9b"],
+        pain: '订单、发货、开票、回款与总账对不上？<br><span class="ai">AI</span> 自动匹配差异，定位业务环节根因。',
+        problem: "业务系统与财务系统口径割裂，对账差异难定位、难闭环",
+        role: "财务共享 / 应收应付 / 业务运营",
+        value: "缩短月结对账周期，提升业务数据可信度",
+        summary: "Agent 连接订单、交付、发票、收付款和总账数据，自动完成多源匹配、差异分组、原因解释和责任归属建议，让财务数字真实反映经营过程。",
+        details: {
+          scene: ["收入与回款对账", "采购入库与应付对账", "跨系统月结差异追踪"],
+          workflow: ["统一主数据和匹配规则", "自动识别一对一、一对多、多对多匹配", "按原因、组织和责任人输出差异清单"],
+          outputs: ["对账结果表", "差异原因分类", "待处理任务与闭环状态"]
+        }
+      },
+      {
+        id: "business-analysis",
+        categoryKey: "insight",
+        category: "经营洞察类",
+        title: "经营分析报告",
+        icon: "analysis",
+        accent: ["#0086e6", "#0055cc"],
+        pain: '经营会前临时拼数、写结论、找异常？<br><span class="ai">AI</span> 自动生成指标解读、问题定位和管理建议。',
+        problem: "经营分析周期短、指标多，人工难以及时覆盖所有异常与原因",
+        role: "管理层 / 经营分析 / 财经 BP",
+        value: "让管理者看得清、看得快、看得准",
+        summary: "Agent 围绕收入、毛利、费用、现金流和预算达成等指标自动分析趋势，解释偏差来源，并生成面向经营会议的结构化报告。",
+        details: {
+          scene: ["月度经营会报告", "预算执行复盘", "区域和产品线经营诊断"],
+          workflow: ["拉取多维经营指标", "识别异常波动、贡献变化和预算偏差", "生成结论、证据链和追问建议"],
+          outputs: ["经营分析报告", "指标异常榜单", "管理动作建议"]
+        }
+      },
+      {
+        id: "profit-attribution",
+        categoryKey: "insight",
+        category: "经营洞察类",
+        title: "利润归因分析",
+        icon: "profit",
+        accent: ["#7a73fa", "#5c6cff"],
+        pain: '利润变化到底来自价格、销量、结构、成本还是费用？<br><span class="ai">AI</span> 自动拆解影响因子和贡献金额。',
+        problem: "利润波动原因交织，手工拆解口径复杂，难以快速形成共识",
+        role: "CFO / 财经 BP / 产品经营负责人",
+        value: "把利润变化拆成可行动的经营杠杆",
+        summary: "Agent 基于经营维度和财务口径，按价格、销量、产品结构、成本、费用、汇率等因素拆解利润变化，帮助管理者找到真正影响利润的关键变量。",
+        details: {
+          scene: ["月度利润桥分析", "产品线毛利变化复盘", "预算偏差归因"],
+          workflow: ["定义归因口径与影响因素", "自动计算各因素贡献额和贡献率", "生成利润桥图说明和经营建议"],
+          outputs: ["利润归因矩阵", "贡献因素排序", "改善动作建议"]
+        }
+      },
+      {
+        id: "supplier-risk",
+        categoryKey: "risk",
+        category: "风险管控类",
+        title: "供应商风险评估",
+        icon: "risk",
+        accent: ["#f39600", "#f7b65c"],
+        pain: '供应商财务、交付、合规、舆情风险分散在多个系统？<br><span class="ai">AI</span> 汇总评分并提前预警。',
+        problem: "供应商风险发现滞后，采购、财务、法务信息不能形成统一判断",
+        role: "采购 / 财务 / 内控 / 风险管理",
+        value: "构建主动式财务风险防线，将风险消灭在萌芽状态",
+        summary: "Agent 综合供应商交易、付款、发票、履约、工商、诉讼和舆情信息，形成动态风险评分和预警建议，支持准入、续约和付款前检查。",
+        details: {
+          scene: ["供应商准入评估", "付款前风险复核", "存量供应商周期巡检"],
+          workflow: ["汇聚内外部风险数据", "计算信用、履约、合规和财务风险评分", "对高风险供应商触发预警和处置建议"],
+          outputs: ["供应商风险画像", "评分卡与风险等级", "预警清单和处置建议"]
+        }
+      }
+    ];
+
+    const categoryValue = {
+      efficiency: '用 AI 替代人工重复劳动，让财经团队从"搬运工"变成"分析师"',
+      compliance: '让合规审查从"事后检查"变成"事前拦截"，构建全流程合规防线',
+      integration: '打通业务与财务的数据孤岛，让财务数据真正反映经营实况',
+      insight: '从海量财经数据中自动提炼洞察，让管理者"看得清、看得快、看得准"',
+      risk: '构建主动式财务风险防线，将风险消灭在萌芽状态'
+    };
+
+    const grid = document.querySelector("#agentGrid");
+    const modal = document.querySelector("#agentModal");
+    const modalCategory = document.querySelector("#modalCategory");
+    const modalTitle = document.querySelector("#modalTitle");
+    const modalSummary = document.querySelector("#modalSummary");
+    const modalDetails = document.querySelector("#modalDetails");
+    const modalDemo = document.querySelector("#modalDemo");
+    const closeButtons = [document.querySelector("#closeModal"), document.querySelector("#closeModalBottom")];
+
+    function renderCards() {
+      grid.innerHTML = agents.map((agent) => `
+        <article class="agent-card" data-category="${agent.categoryKey}" style="--accent-a:${agent.accent[0]};--accent-b:${agent.accent[1]}">
+          <div class="card-main">
+            <div class="card-head">
+              <h3 class="agent-title">
+                <span class="title-icon" aria-hidden="true">${icons[agent.icon]}</span>
+                <span class="agent-title-text">${agent.title}</span>
+              </h3>
+              <span class="status">可试用</span>
+            </div>
+            <p class="pain">${agent.pain}</p>
+            <div class="agent-meta">
+              <div class="meta-row"><span class="meta-label">场景分类</span><span class="meta-value">${agent.category}</span></div>
+              <div class="meta-row"><span class="meta-label">适用角色</span><span class="meta-value">${agent.role}</span></div>
+              <div class="meta-row"><span class="meta-label">核心价值</span><span class="meta-value">${agent.value}</span></div>
+            </div>
+          </div>
+          <div class="card-actions">
+            <div class="action-tags">
+              <button class="link-action" type="button" data-detail="${agent.id}">Agent详情</button>
+              <a class="link-action demo" href="${demoBase}?scene=${agent.id}" target="_blank" rel="noopener">DEMO查看</a>
+            </div>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function setFilter(filter) {
+      document.querySelectorAll(".tab-btn").forEach((btn) => {
+        btn.classList.toggle("is-active", btn.dataset.filter === filter);
+      });
+      document.querySelectorAll(".agent-card").forEach((card) => {
+        card.classList.toggle("is-hidden", filter !== "all" && card.dataset.category !== filter);
+      });
+    }
+
+    function detailCard(title, items) {
+      return `
+        <div class="detail-card">
+          <strong>${title}</strong>
+          <ul>${items.map((item) => `<li>${item}</li>`).join("")}</ul>
+        </div>
+      `;
+    }
+
+    function openModal(agentId) {
+      const agent = agents.find((item) => item.id === agentId);
+      if (!agent) return;
+      modalCategory.textContent = agent.category;
+      modalTitle.textContent = agent.title;
+      modalSummary.textContent = agent.summary;
+      modalDemo.href = `${demoBase}?scene=${agent.id}`;
+      modalDetails.innerHTML = `
+        <div class="detail-card">
+          <strong>分类价值主张</strong>
+          <p>${categoryValue[agent.categoryKey]}</p>
+        </div>
+        ${detailCard("典型业务场景", agent.details.scene)}
+        ${detailCard("Agent 工作流", agent.details.workflow)}
+        ${detailCard("关键输出物", agent.details.outputs)}
+        <div class="detail-card">
+          <strong>适用团队</strong>
+          <p>${agent.role}</p>
+        </div>
+        <div class="detail-card">
+          <strong>预期收益</strong>
+          <p>${agent.value.replace(/<[^>]*>/g, "")}</p>
+        </div>
+      `;
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      document.querySelector("#closeModal").focus();
+    }
+
+    function closeModal() {
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    renderCards();
+
+    document.querySelectorAll(".tab-btn").forEach((btn) => {
+      btn.addEventListener("click", () => setFilter(btn.dataset.filter));
+    });
+
+    grid.addEventListener("click", (event) => {
+      const detailButton = event.target.closest("[data-detail]");
+      if (detailButton) {
+        openModal(detailButton.dataset.detail);
+      }
+    });
+
+    closeButtons.forEach((button) => button.addEventListener("click", closeModal));
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) closeModal();
+    });
+
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && modal.classList.contains("is-open")) {
+        closeModal();
+      }
+    });
+  </script>
+</body>
+</html>
