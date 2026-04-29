@@ -124,7 +124,7 @@
       z-index: 20;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: space-between;
       gap: 18px;
       min-height: 68px;
       padding: 14px 20px;
@@ -189,6 +189,38 @@
       color: var(--fr-text-body);
       font-size: 0.86rem;
       line-height: 1.5;
+    }
+
+    .topbar-nav {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      flex: 0 0 auto;
+      min-width: max-content;
+    }
+
+    .view-tab {
+      position: relative;
+      min-height: 40px;
+      padding: 0 16px;
+      border-radius: 12px;
+      color: #667792;
+      font-size: 0.9rem;
+      font-weight: 900;
+      white-space: nowrap;
+      transition: color var(--ease), background var(--ease), box-shadow var(--ease);
+    }
+
+    .view-tab:hover {
+      color: var(--fr-blue-700);
+      background: rgba(232, 244, 255, 0.54);
+    }
+
+    .view-tab.is-active {
+      color: var(--fr-blue-700);
+      background: rgba(232, 244, 255, 0.92);
+      box-shadow: inset 0 -3px 0 rgba(0, 134, 230, 0.62);
     }
 
     .hero {
@@ -548,6 +580,173 @@
       background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(243, 250, 255, 0.92));
       box-shadow: var(--fr-shadow-md);
+    }
+
+    .architecture-card {
+      position: relative;
+      overflow: hidden;
+      margin-top: 20px;
+      padding: 28px;
+      border: 1px solid rgba(218, 222, 230, 0.76);
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(243, 250, 255, 0.92));
+      box-shadow: var(--fr-shadow-md);
+    }
+
+    .architecture-card.is-hidden {
+      display: none;
+    }
+
+    .architecture-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 50% 0, rgba(0, 134, 230, 0.1), transparent 30%),
+        radial-gradient(circle at 100% 100%, rgba(231, 82, 72, 0.06), transparent 24%);
+    }
+
+    .architecture-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.12fr) minmax(0, 0.9fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .arch-panel {
+      position: relative;
+      display: grid;
+      align-content: start;
+      gap: 18px;
+      min-height: 310px;
+      padding: 24px;
+      border: 1px solid rgba(0, 134, 230, 0.12);
+      border-top: 4px solid var(--arch-color, var(--fr-blue-700));
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 12px 30px rgba(23, 52, 110, 0.07);
+    }
+
+    .arch-panel.core {
+      min-height: 360px;
+      border-top-color: var(--fr-blue-700);
+    }
+
+    .arch-panel.risk {
+      --arch-color: #e75248;
+      border-color: rgba(231, 82, 72, 0.14);
+    }
+
+    .arch-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--fr-text-title);
+      font-size: 1.04rem;
+      line-height: 1.3;
+    }
+
+    .arch-icon {
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      color: var(--arch-color, var(--fr-blue-700));
+      background: color-mix(in srgb, var(--arch-color, var(--fr-blue-700)) 12%, white);
+    }
+
+    .arch-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .arch-position {
+      padding: 16px;
+      border-left: 3px solid var(--arch-color, var(--fr-blue-700));
+      border-radius: 12px;
+      color: var(--fr-text-title);
+      background: color-mix(in srgb, var(--arch-color, var(--fr-blue-700)) 8%, white);
+      font-size: 0.92rem;
+      line-height: 1.7;
+      font-weight: 900;
+    }
+
+    .arch-position span {
+      display: block;
+      color: var(--arch-color, var(--fr-blue-700));
+      font-size: 0.82rem;
+      line-height: 1.4;
+    }
+
+    .arch-list {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .arch-list li {
+      position: relative;
+      padding-left: 18px;
+      color: var(--fr-text-body);
+      font-size: 0.86rem;
+      line-height: 1.64;
+    }
+
+    .arch-list li::before {
+      content: "";
+      position: absolute;
+      top: 0.76em;
+      left: 0;
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--arch-color, var(--fr-blue-700));
+      transform: translateY(-50%);
+    }
+
+    .arch-stage {
+      display: grid;
+      gap: 10px;
+      padding: 14px;
+      border: 1px solid rgba(0, 134, 230, 0.1);
+      border-radius: 14px;
+      background: rgba(248, 251, 255, 0.9);
+    }
+
+    .arch-stage strong {
+      color: var(--fr-text-title);
+      font-size: 0.92rem;
+      line-height: 1.35;
+    }
+
+    .arch-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .arch-chips span {
+      min-height: 30px;
+      padding: 6px 10px;
+      border: 1px solid rgba(0, 134, 230, 0.12);
+      border-radius: 8px;
+      color: var(--fr-blue-700);
+      background: rgba(232, 244, 255, 0.72);
+      font-size: 0.78rem;
+      font-weight: 900;
+      line-height: 1.35;
     }
 
     .section-head {
@@ -969,6 +1168,15 @@
     }
 
     @media (max-width: 1120px) {
+      .architecture-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .arch-panel,
+      .arch-panel.core {
+        min-height: auto;
+      }
+
       .agent-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -982,6 +1190,13 @@
       .topbar,
       .section-head {
         display: grid;
+      }
+
+      .topbar-nav {
+        justify-content: flex-start;
+        overflow-x: auto;
+        min-width: 0;
+        width: 100%;
       }
 
       .tabs-wrap {
@@ -1001,6 +1216,7 @@
       }
 
       .hero,
+      .architecture-card,
       .section-card {
         padding: 20px;
       }
@@ -1089,14 +1305,18 @@
           <span class="brand-subtitle">powerby：行销总部·财经小组</span>
         </span>
       </a>
+      <nav class="topbar-nav" aria-label="专题切换">
+        <button class="view-tab is-active" type="button" data-topic="finance">财经总览</button>
+        <button class="view-tab" type="button" data-topic="meeting">经分会专题</button>
+      </nav>
     </header>
 
     <main id="top">
       <section class="hero">
         <div class="hero-grid">
           <div class="hero-copy">
-            <h1>让财经从数据记录走向价值创造，让 <span>AI Agent</span> 成为经营决策与风险治理的智能引擎</h1>
-            <p class="hero-desc">聚焦报告、合规、业财、洞察与风险场景，沉淀数据理解、规则执行和经营分析能力，支撑财务创造价值。</p>
+            <h1 id="heroTitle">让财经从数据记录走向价值创造，让 <span>AI Agent</span> 成为经营决策与风险治理的智能引擎</h1>
+            <p class="hero-desc" id="heroDesc">聚焦报告、合规、业财、洞察与风险场景，沉淀数据理解、规则执行和经营分析能力，支撑财务创造价值。</p>
           </div>
         </div>
       </section>
@@ -1111,6 +1331,61 @@
           <button class="tab-btn" type="button" data-filter="risk"><strong>风险管控类</strong><span>主动风险防线</span></button>
         </div>
       </nav>
+
+      <section class="architecture-card is-hidden" id="meetingArchitecture" aria-label="经分会一体两翼架构">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">一体两翼架构</h2>
+          </div>
+        </div>
+        <div class="architecture-grid">
+          <article class="arch-panel" style="--arch-color: var(--fr-blue-700)">
+            <h3 class="arch-title">
+              <span class="arch-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v4"/><path d="M5 8h14"/><path d="M7 21h10"/><path d="M9 8l-2 13"/><path d="M15 8l2 13"/><path d="M8 13h8"/></svg></span>
+              左翼：1号位早参 Agent
+            </h3>
+            <p class="arch-position"><span>建立日频级高粘性</span>定位：“晨间数字唤醒”</p>
+            <ul class="arch-list">
+              <li>每天定时提炼全公司最核心的经营战况</li>
+              <li>推送早报到 1 号位的 IM 工具中</li>
+              <li>建立 1 号位每天必看数据早报的习惯</li>
+              <li>形成自上而下的系统推广效应</li>
+            </ul>
+          </article>
+          <article class="arch-panel core" style="--arch-color: var(--fr-blue-700)">
+            <h3 class="arch-title">
+              <span class="arch-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19V5"/><path d="M4 19h16"/><path d="m8 15 3-4 3 2 4-6"/></svg></span>
+              一体：智能经营分析会
+            </h3>
+            <p class="arch-position"><span>月度全面检视</span>企业经营的绝对中枢</p>
+            <div class="arch-stage">
+              <strong>会前准备</strong>
+              <div class="arch-chips"><span>归因分析 Agent</span><span>智能预测 Agent</span><span>智能报告 Agent</span></div>
+            </div>
+            <div class="arch-stage">
+              <strong>会中决策</strong>
+              <div class="arch-chips"><span>市场与竞品洞察 Agent</span><span>定量分析 Agent</span><span>会议助手 Agent</span><span>智能问答 Agent</span></div>
+            </div>
+            <div class="arch-stage">
+              <strong>会后执行</strong>
+              <div class="arch-chips"><span>智能督办 Agent</span></div>
+            </div>
+          </article>
+          <article class="arch-panel risk">
+            <h3 class="arch-title">
+              <span class="arch-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v6c0 4 3 7 7 9 4-2 7-5 7-9V6l-7-3Z"/><path d="M12 8v5"/><path d="M12 16h.01"/></svg></span>
+              右翼：风险雷达 Agent
+            </h3>
+            <p class="arch-position"><span>防范突发经营异常</span>定位：“数字吹哨人”</p>
+            <ul class="arch-list">
+              <li>核心防线一日巡查，一旦击穿秒级告警</li>
+              <li>自动带出初筛归因分析，防忽悠防掩盖</li>
+              <li>为日常经营提供精准的狙击靶点</li>
+              <li>预警推送至责任人，导向行动改善</li>
+            </ul>
+          </article>
+        </div>
+      </section>
 
       <section class="section-card" id="agents">
         <div class="section-head">
@@ -1167,10 +1442,15 @@
       reconcile: '<svg viewBox="0 0 24 24"><path d="M7 7h10"/><path d="m14 4 3 3-3 3"/><path d="M17 17H7"/><path d="m10 20-3-3 3-3"/><rect x="3" y="3" width="18" height="18" rx="4"/></svg>',
       analysis: '<svg viewBox="0 0 24 24"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 16v-5"/><path d="M12 16V8"/><path d="M16 16v-3"/></svg>',
       profit: '<svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M17 6H9.5a3.5 3.5 0 0 0 0 7H14a3.5 3.5 0 0 1 0 7H6"/><path d="m18 10 3-3-3-3"/></svg>',
-      risk: '<svg viewBox="0 0 24 24"><path d="M12 3 5 6v6c0 4 3 7 7 9 4-2 7-5 7-9V6l-7-3Z"/><path d="M12 8v5"/><path d="M12 16h.01"/></svg>'
+      risk: '<svg viewBox="0 0 24 24"><path d="M12 3 5 6v6c0 4 3 7 7 9 4-2 7-5 7-9V6l-7-3Z"/><path d="M12 8v5"/><path d="M12 16h.01"/></svg>',
+      morning: '<svg viewBox="0 0 24 24"><path d="M12 3v3"/><path d="M5.6 5.6 7.8 7.8"/><path d="M3 12h3"/><path d="M18 12h3"/><path d="m16.2 7.8 2.2-2.2"/><path d="M7 16a5 5 0 0 1 10 0"/><path d="M5 20h14"/></svg>',
+      predict: '<svg viewBox="0 0 24 24"><path d="M4 18V6"/><path d="M4 18h16"/><path d="m7 15 4-5 3 3 5-7"/><path d="M17 6h2v2"/></svg>',
+      meeting: '<svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="12" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><path d="M8 10h8"/><path d="M8 13h5"/></svg>',
+      ask: '<svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-8 8H7l-4 3v-7a8 8 0 1 1 18-4Z"/><path d="M10 9a2 2 0 1 1 3 1.7c-.6.4-1 .8-1 1.8"/><path d="M12 16h.01"/></svg>',
+      task: '<svg viewBox="0 0 24 24"><path d="M9 11l2 2 4-5"/><path d="M9 18l2 2 4-5"/><rect x="4" y="3" width="16" height="18" rx="3"/></svg>'
     };
 
-    const agents = [
+    const financeAgents = [
       {
         id: "benchmark-report",
         categoryKey: "efficiency",
@@ -1335,6 +1615,189 @@
       }
     ];
 
+    const meetingAgents = [
+      {
+        id: "meeting-morning-brief",
+        categoryKey: "morning",
+        category: "高管早参",
+        title: "1号位早参 Agent",
+        icon: "morning",
+        accent: ["#0086e6", "#3d93ff"],
+        pain: '经营战况每天靠多人汇总、层层转发？<br><span class="ai">AI</span> 定时生成高管早报，把核心变化送到 1 号位桌面。',
+        problem: "高管看数依赖临时汇报，经营异常和关键机会触达不稳定",
+        role: "CEO / CFO / 经营管理层 / 财经 BP",
+        value: "建立日频经营触达机制，形成自上而下的数据经营习惯",
+        summary: "面向 1 号位和核心管理层，Agent 每天定时提炼收入、回款、利润、费用、风险等经营战况，生成可直接推送到 IM 的晨间早参。",
+        details: {
+          scene: ["每日经营战况提醒", "核心指标异常推送", "管理层晨间例行看数"],
+          workflow: ["定时拉取经营与财务核心指标", "识别同比、环比、预算达成和异常波动", "生成早报摘要并推送到指定 IM 群或个人"],
+          outputs: ["晨间经营早报", "异常指标清单", "管理层追问建议"]
+        }
+      },
+      {
+        id: "meeting-cause-analysis",
+        categoryKey: "meeting",
+        category: "数智会议",
+        title: "归因分析 Agent",
+        icon: "analysis",
+        accent: ["#0086e6", "#0055cc"],
+        pain: '指标波动会前才开始追原因？<br><span class="ai">AI</span> 自动拆解根因，把问题定位提前到会议前。',
+        problem: "会前归因依赖人工追数，原因链条不完整，会议容易停留在现象层",
+        role: "经营分析 / 财经 BP / 业务负责人",
+        value: "让经营会议从讨论现象转向讨论行动",
+        summary: "Agent 围绕收入、利润、费用、回款等关键指标，自动拆解组织、产品、客户、区域等维度的贡献变化，输出可用于会前预读的根因线索。",
+        details: {
+          scene: ["经营会前问题定位", "预算偏差原因拆解", "区域或产品线异常追因"],
+          workflow: ["识别异常指标", "按多维口径拆解贡献差异", "生成原因假设和证据链"],
+          outputs: ["根因分析清单", "差异贡献矩阵", "会前追问材料"]
+        }
+      },
+      {
+        id: "meeting-forecast",
+        categoryKey: "meeting",
+        category: "数智会议",
+        title: "智能预测 Agent",
+        icon: "predict",
+        accent: ["#3d93ff", "#00ace6"],
+        pain: '经营缺口到月底才暴露？<br><span class="ai">AI</span> 基于趋势和节奏预测达成风险。',
+        problem: "预算达成和目标缺口发现滞后，管理动作启动太晚",
+        role: "经营管理 / 财经 BP / 销售运营",
+        value: "提前识别经营缺口，给管理层留出调整时间",
+        summary: "Agent 结合历史节奏、当前进度、管道数据和季节性因素，预测收入、回款、利润和费用目标达成情况，并提示缺口来源。",
+        details: {
+          scene: ["月度目标达成预测", "收入与回款滚动预测", "费用与利润缺口预警"],
+          workflow: ["接入历史与当前经营数据", "建立趋势、节奏和场景假设", "输出预测结果和缺口解释"],
+          outputs: ["滚动预测表", "目标缺口预警", "补救动作建议"]
+        }
+      },
+      {
+        id: "meeting-smart-report",
+        categoryKey: "meeting",
+        category: "数智会议",
+        title: "智能报告 Agent",
+        icon: "report",
+        accent: ["#35db9b", "#3fc4a9"],
+        pain: '经营会材料反复拼数、改稿、补图？<br><span class="ai">AI</span> 自动生成会议报告初稿和摘要。',
+        problem: "会议材料制作周期长，口径校对和结论撰写消耗大量人力",
+        role: "经营分析 / 财经 BP / 总办",
+        value: "缩短会前材料准备时间，稳定输出会议叙事",
+        summary: "Agent 根据经营会议主题自动组织指标、图表、问题和建议，生成结构化经营分析报告，支撑会前预读和会中汇报。",
+        details: {
+          scene: ["月度经营会报告", "专题经营复盘", "高管预读材料生成"],
+          workflow: ["汇总会议相关指标", "自动生成图表解读和核心结论", "输出报告初稿并标注数据来源"],
+          outputs: ["经营会议报告", "管理层摘要", "图表说明与追问清单"]
+        }
+      },
+      {
+        id: "meeting-market-competitive",
+        categoryKey: "meeting",
+        category: "数智会议",
+        title: "市场与竞品洞察 Agent",
+        icon: "analysis",
+        accent: ["#63d1d7", "#0086e6"],
+        pain: '内部经营数据缺少外部参照？<br><span class="ai">AI</span> 汇总市场与竞品信号，补齐会中决策视角。',
+        problem: "经营会议容易只看内部结果，缺少市场、竞品和客户侧解释",
+        role: "市场经营 / 战略 / 管理层 / 财经 BP",
+        value: "把外部变化纳入经营判断，提升决策完整度",
+        summary: "Agent 汇聚市场趋势、竞品动态、客户变化和公开信息，为经营会议提供外部环境解释和机会风险提示。",
+        details: {
+          scene: ["市场环境解读", "竞品动作复盘", "客户与行业机会识别"],
+          workflow: ["抓取外部市场与竞品信息", "匹配内部经营波动", "生成洞察摘要和影响判断"],
+          outputs: ["市场竞品摘要", "外部影响判断", "机会与风险提示"]
+        }
+      },
+      {
+        id: "meeting-quant-analysis",
+        categoryKey: "meeting",
+        category: "数智会议",
+        title: "定量分析 Agent",
+        icon: "profit",
+        accent: ["#5c6cff", "#7a73fa"],
+        pain: '会中临时追问需要马上算数？<br><span class="ai">AI</span> 快速完成口径计算、分组对比和影响测算。',
+        problem: "会中问题需要即时量化，但人工取数和计算跟不上讨论节奏",
+        role: "经营分析 / 财经 BP / 会议主持人",
+        value: "提升会中决策的数字响应速度",
+        summary: "Agent 面向经营会中的临时量化问题，快速完成口径选择、维度切片、贡献测算和敏感性分析，让讨论有数可依。",
+        details: {
+          scene: ["会中即时测算", "方案影响评估", "经营指标分组对比"],
+          workflow: ["理解会议问题和计算口径", "自动取数并执行分析模型", "返回结论、表格和解释"],
+          outputs: ["即时测算结果", "对比分析表", "影响因素说明"]
+        }
+      },
+      {
+        id: "meeting-assistant",
+        categoryKey: "meeting",
+        category: "数智会议",
+        title: "会议助手 Agent",
+        icon: "meeting",
+        accent: ["#00ace6", "#3d93ff"],
+        pain: '会议纪要、议题推进和结论沉淀靠人工补记？<br><span class="ai">AI</span> 自动整理会议过程和关键决策。',
+        problem: "经营会议过程信息分散，结论和责任事项容易丢失",
+        role: "总办 / 会议秘书 / 经营管理",
+        value: "让会议过程可沉淀、可追踪、可复盘",
+        summary: "Agent 辅助经营会议记录议题、问题、结论、责任人和时间节点，自动形成结构化会议纪要和后续任务。",
+        details: {
+          scene: ["经营会纪要生成", "会议议题管理", "决策事项沉淀"],
+          workflow: ["识别会议主题和发言内容", "抽取结论、分歧和待办", "生成纪要并同步任务系统"],
+          outputs: ["会议纪要", "决策清单", "待办任务列表"]
+        }
+      },
+      {
+        id: "meeting-smart-qa",
+        categoryKey: "meeting",
+        category: "数智会议",
+        title: "智能问答 Agent",
+        icon: "ask",
+        accent: ["#35db9b", "#00ace6"],
+        pain: '会议现场追问数据口径和历史原因？<br><span class="ai">AI</span> 即时回答经营数据问题并给出依据。',
+        problem: "数据口径、历史结论和业务背景分散，现场问答效率低",
+        role: "管理层 / 财经 BP / 经营分析",
+        value: "提升会议现场的信息获取效率和答案可信度",
+        summary: "Agent 连接经营指标、历史报告、会议纪要和制度口径，支持自然语言提问，返回带依据的答案和可追溯来源。",
+        details: {
+          scene: ["会中数据问答", "指标口径查询", "历史结论追溯"],
+          workflow: ["理解问题意图", "检索数据、报告和纪要", "生成答案并附带依据"],
+          outputs: ["问答结果", "引用依据", "相关追问建议"]
+        }
+      },
+      {
+        id: "meeting-supervision",
+        categoryKey: "meeting",
+        category: "数智会议",
+        title: "智能督办 Agent",
+        icon: "task",
+        accent: ["#7a73fa", "#5c6cff"],
+        pain: '会后任务没人跟、进度难追、闭环靠催？<br><span class="ai">AI</span> 自动拆解行动项并持续督办。',
+        problem: "会议决策难以转化为闭环行动，责任和进度追踪成本高",
+        role: "总办 / 经营管理 / 责任部门负责人",
+        value: "把会议结论转为可追踪、可验收的经营动作",
+        summary: "Agent 从会议纪要和决策事项中抽取行动项，自动分配责任人、设置节点、跟踪进度，并对延期或风险任务发出提醒。",
+        details: {
+          scene: ["会后行动项管理", "跨部门任务督办", "经营改善闭环追踪"],
+          workflow: ["抽取会议任务和责任人", "设置截止时间和验收标准", "持续跟踪进度并提醒风险"],
+          outputs: ["督办任务清单", "进度看板", "闭环复盘报告"]
+        }
+      },
+      {
+        id: "meeting-risk-radar",
+        categoryKey: "radar",
+        category: "风险雷达",
+        title: "风险雷达 Agent",
+        icon: "risk",
+        accent: ["#e75248", "#f7b65c"],
+        pain: '经营异常等到汇报时才被发现？<br><span class="ai">AI</span> 每日巡查核心防线，击穿阈值即时吹哨。',
+        problem: "经营风险信号分散且发现滞后，责任人接收和行动链路不清晰",
+        role: "管理层 / 内控 / 经营管理 / 财经 BP",
+        value: "构建日频风险雷达，把突发经营异常前置暴露",
+        summary: "Agent 围绕收入、回款、毛利、费用、库存、项目等核心防线进行日频巡查，识别突发异常并给出初筛归因和责任推送。",
+        details: {
+          scene: ["经营异常日巡检", "核心阈值击穿告警", "责任人风险推送"],
+          workflow: ["配置核心防线和阈值", "每日扫描异常波动", "生成告警、初筛归因和改善建议"],
+          outputs: ["风险告警卡片", "初筛归因分析", "责任人处置建议"]
+        }
+      }
+    ];
+
     const categoryValue = {
       efficiency: '用 AI 替代人工重复劳动，让财经团队从"搬运工"变成"分析师"',
       compliance: '让合规审查从"事后检查"变成"事前拦截"，构建全流程合规防线',
@@ -1343,6 +1806,46 @@
       risk: '构建主动式财务风险防线，将风险消灭在萌芽状态'
     };
 
+    const meetingCategoryValue = {
+      morning: "建立日频级高粘性的经营早参，让关键经营变化每天抵达 1 号位",
+      meeting: "以数智会议为经营中枢，贯通会前准备、会中决策与会后执行",
+      radar: "构建主动式经营风险雷达，将突发异常从事后复盘前移到实时吹哨"
+    };
+
+    const topics = {
+      finance: {
+        title: '让财经从数据记录走向价值创造，让 <span>AI Agent</span> 成为经营决策与风险治理的智能引擎',
+        desc: "聚焦报告、合规、业财、洞察与风险场景，沉淀数据理解、规则执行和经营分析能力，支撑财务创造价值。",
+        agents: financeAgents,
+        valueMap: categoryValue,
+        filters: [
+          { key: "all", title: "全部场景", desc: "全局总览" },
+          { key: "efficiency", title: "流程提效类", desc: "替代重复劳动" },
+          { key: "compliance", title: "经营合规类", desc: "事前合规防线" },
+          { key: "integration", title: "业财融合类", desc: "打通数据孤岛" },
+          { key: "insight", title: "经营洞察类", desc: "自动提炼洞察" },
+          { key: "risk", title: "风险管控类", desc: "主动风险防线" }
+        ]
+      },
+      meeting: {
+        title: '让经分会从例行汇报升级为 <span>AI Agent</span> 驱动的一体两翼经营中枢',
+        desc: "围绕高管早参、数智会议与风险雷达，形成会前有准备、会中有洞察、会后有督办的经营闭环。",
+        agents: meetingAgents,
+        valueMap: meetingCategoryValue,
+        filters: [
+          { key: "all", title: "总览", desc: "一体两翼" },
+          { key: "morning", title: "高管早参", desc: "晨间数字唤醒" },
+          { key: "meeting", title: "数智会议", desc: "经营决策中枢" },
+          { key: "radar", title: "风险雷达", desc: "数字吹哨人" }
+        ]
+      }
+    };
+
+    const heroTitle = document.querySelector("#heroTitle");
+    const heroDesc = document.querySelector("#heroDesc");
+    const topicButtons = document.querySelectorAll(".view-tab");
+    const tabs = document.querySelector(".tabs");
+    const meetingArchitecture = document.querySelector("#meetingArchitecture");
     const grid = document.querySelector("#agentGrid");
     const modal = document.querySelector("#agentModal");
     const modalCategory = document.querySelector("#modalCategory");
@@ -1351,9 +1854,19 @@
     const modalDetails = document.querySelector("#modalDetails");
     const modalDemo = document.querySelector("#modalDemo");
     const closeButtons = [document.querySelector("#closeModal"), document.querySelector("#closeModalBottom")];
+    let currentTopic = "finance";
+    let currentFilter = "all";
+
+    function getCurrentConfig() {
+      return topics[currentTopic];
+    }
+
+    function getCurrentAgents() {
+      return getCurrentConfig().agents;
+    }
 
     function renderCards() {
-      grid.innerHTML = agents.map((agent) => `
+      grid.innerHTML = getCurrentAgents().map((agent) => `
         <article class="agent-card" data-category="${agent.categoryKey}" style="--accent-a:${agent.accent[0]};--accent-b:${agent.accent[1]}">
           <div class="card-main">
             <div class="card-head">
@@ -1374,7 +1887,7 @@
             <div class="action-tags">
               <button class="link-action" type="button" data-detail="${agent.id}">Agent详情</button>
               <a class="link-action demo" href="${demoBase}?scene=${agent.id}" target="_blank" rel="noopener">DEMO查看</a>
-              ${agent.id === "reconciliation"
+              ${currentTopic === "finance" && agent.id === "reconciliation"
                 ? '<a class="link-action case has-link" href="https://fanruan-x.feishu.cn/wiki/J4GhwaywliZEj1kv58wcx46Unfh" target="_blank" rel="noopener">客户案例</a>'
                 : '<span class="link-action case" aria-disabled="true">客户案例</span>'}
             </div>
@@ -1383,13 +1896,37 @@
       `).join("");
     }
 
+    function renderFilters() {
+      tabs.innerHTML = getCurrentConfig().filters.map((filter, index) => `
+        <button class="tab-btn${index === 0 ? " is-active" : ""}" type="button" data-filter="${filter.key}">
+          <strong>${filter.title}</strong><span>${filter.desc}</span>
+        </button>
+      `).join("");
+    }
+
+    function setTopic(topic) {
+      currentTopic = topic;
+      currentFilter = "all";
+      const config = getCurrentConfig();
+      heroTitle.innerHTML = config.title;
+      heroDesc.textContent = config.desc;
+      topicButtons.forEach((btn) => {
+        btn.classList.toggle("is-active", btn.dataset.topic === topic);
+      });
+      renderFilters();
+      renderCards();
+      setFilter("all");
+    }
+
     function setFilter(filter) {
+      currentFilter = filter;
       document.querySelectorAll(".tab-btn").forEach((btn) => {
         btn.classList.toggle("is-active", btn.dataset.filter === filter);
       });
       document.querySelectorAll(".agent-card").forEach((card) => {
         card.classList.toggle("is-hidden", filter !== "all" && card.dataset.category !== filter);
       });
+      meetingArchitecture.classList.toggle("is-hidden", currentTopic !== "meeting" || filter !== "all");
     }
 
     function detailCard(title, items) {
@@ -1402,7 +1939,7 @@
     }
 
     function openModal(agentId) {
-      const agent = agents.find((item) => item.id === agentId);
+      const agent = getCurrentAgents().find((item) => item.id === agentId);
       if (!agent) return;
       modalCategory.textContent = agent.category;
       modalTitle.textContent = agent.title;
@@ -1411,7 +1948,7 @@
       modalDetails.innerHTML = `
         <div class="detail-card">
           <strong>分类价值主张</strong>
-          <p>${categoryValue[agent.categoryKey]}</p>
+          <p>${getCurrentConfig().valueMap[agent.categoryKey]}</p>
         </div>
         ${detailCard("典型业务场景", agent.details.scene)}
         ${detailCard("Agent 工作流", agent.details.workflow)}
@@ -1437,10 +1974,17 @@
       document.body.style.overflow = "";
     }
 
-    renderCards();
+    setTopic("finance");
 
-    document.querySelectorAll(".tab-btn").forEach((btn) => {
-      btn.addEventListener("click", () => setFilter(btn.dataset.filter));
+    topicButtons.forEach((btn) => {
+      btn.addEventListener("click", () => setTopic(btn.dataset.topic));
+    });
+
+    tabs.addEventListener("click", (event) => {
+      const filterButton = event.target.closest(".tab-btn");
+      if (filterButton) {
+        setFilter(filterButton.dataset.filter);
+      }
     });
 
     grid.addEventListener("click", (event) => {
