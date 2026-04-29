@@ -663,13 +663,49 @@
       border-color: rgba(231, 82, 72, 0.14);
     }
 
+    .arch-panel.morning {
+      --arch-color: #35db9b;
+      border-color: rgba(53, 219, 155, 0.2);
+    }
+
+    .arch-panel.core {
+      --arch-color: var(--fr-blue-700);
+    }
+
     .arch-title {
       display: flex;
       align-items: center;
       gap: 10px;
+      justify-content: space-between;
       color: var(--fr-text-title);
       font-size: 0.98rem;
       line-height: 1.3;
+    }
+
+    .arch-title-main {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .arch-title-text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .arch-badge {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 0 9px;
+      border-radius: 999px;
+      color: var(--arch-color, var(--fr-blue-700));
+      background: color-mix(in srgb, var(--arch-color, var(--fr-blue-700)) 10%, white);
+      font-size: 0.72rem;
+      font-weight: 900;
+      white-space: nowrap;
     }
 
     .arch-icon {
@@ -709,16 +745,7 @@
     }
 
     .arch-position span {
-      display: inline-flex;
-      align-items: center;
-      width: fit-content;
-      min-height: 22px;
-      padding: 0 8px;
-      border-radius: 999px;
-      color: var(--arch-color, var(--fr-blue-700));
-      background: color-mix(in srgb, var(--arch-color, var(--fr-blue-700)) 10%, white);
-      font-size: 0.72rem;
-      line-height: 1.4;
+      display: none;
     }
 
     .arch-list {
@@ -792,6 +819,44 @@
       margin-bottom: 22px;
     }
 
+    .meeting-phase-tabs {
+      display: none;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .meeting-phase-tabs.is-visible {
+      display: flex;
+    }
+
+    .phase-tab {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 36px;
+      padding: 7px 12px;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      color: rgba(86, 98, 128, 0.86);
+      font-size: 0.82rem;
+      font-weight: 800;
+      white-space: nowrap;
+      transition: color var(--ease), background var(--ease), border-color var(--ease);
+    }
+
+    .phase-tab:hover {
+      color: var(--fr-blue-700);
+      background: rgba(232, 244, 255, 0.72);
+    }
+
+    .phase-tab.is-active {
+      color: var(--fr-blue-700);
+      border-color: rgba(128, 202, 255, 0.4);
+      background: rgba(232, 244, 255, 0.92);
+    }
+
     .section-title {
       position: relative;
       padding-left: 16px;
@@ -849,15 +914,6 @@
       color: var(--fr-text-title);
       font-size: 1rem;
       line-height: 1.35;
-    }
-
-    .phase-title::before {
-      content: "";
-      width: 8px;
-      height: 22px;
-      border-radius: 999px;
-      background: linear-gradient(180deg, var(--fr-blue-700), var(--fr-cyan));
-      box-shadow: 0 0 0 6px rgba(204, 228, 255, 0.68);
     }
 
     .phase-title span {
@@ -1421,10 +1477,13 @@
           </div>
         </div>
         <div class="architecture-grid">
-          <article class="arch-panel" style="--arch-color: var(--fr-blue-700)">
+          <article class="arch-panel morning">
             <h3 class="arch-title">
-              <span class="arch-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v4"/><path d="M5 8h14"/><path d="M7 21h10"/><path d="M9 8l-2 13"/><path d="M15 8l2 13"/><path d="M8 13h8"/></svg></span>
-              左翼：1号位早参 Agent
+              <span class="arch-title-main">
+                <span class="arch-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3v4"/><path d="M5 8h14"/><path d="M7 21h10"/><path d="M9 8l-2 13"/><path d="M15 8l2 13"/><path d="M8 13h8"/></svg></span>
+                <span class="arch-title-text">左翼：1号位早参 Agent</span>
+              </span>
+              <span class="arch-badge">建立日频级高粘性</span>
             </h3>
             <p class="arch-position"><span>建立日频级高粘性</span>定位：“晨间数字唤醒”</p>
             <ul class="arch-list">
@@ -1436,8 +1495,11 @@
           </article>
           <article class="arch-panel core" style="--arch-color: var(--fr-blue-700)">
             <h3 class="arch-title">
-              <span class="arch-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19V5"/><path d="M4 19h16"/><path d="m8 15 3-4 3 2 4-6"/></svg></span>
-              一体：智能经营分析会
+              <span class="arch-title-main">
+                <span class="arch-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 19V5"/><path d="M4 19h16"/><path d="m8 15 3-4 3 2 4-6"/></svg></span>
+                <span class="arch-title-text">一体：智能经营分析会</span>
+              </span>
+              <span class="arch-badge">月度全面检视</span>
             </h3>
             <p class="arch-position"><span>月度全面检视</span>企业经营的绝对中枢</p>
             <div class="arch-stage">
@@ -1455,8 +1517,11 @@
           </article>
           <article class="arch-panel risk">
             <h3 class="arch-title">
-              <span class="arch-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v6c0 4 3 7 7 9 4-2 7-5 7-9V6l-7-3Z"/><path d="M12 8v5"/><path d="M12 16h.01"/></svg></span>
-              右翼：风险雷达 Agent
+              <span class="arch-title-main">
+                <span class="arch-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v6c0 4 3 7 7 9 4-2 7-5 7-9V6l-7-3Z"/><path d="M12 8v5"/><path d="M12 16h.01"/></svg></span>
+                <span class="arch-title-text">右翼：风险雷达 Agent</span>
+              </span>
+              <span class="arch-badge">防范突发经营异常</span>
             </h3>
             <p class="arch-position"><span>防范突发经营异常</span>定位：“数字吹哨人”</p>
             <ul class="arch-list">
@@ -1473,6 +1538,11 @@
         <div class="section-head">
           <div>
             <h2 class="section-title">Agent 应用矩阵</h2>
+          </div>
+          <div class="meeting-phase-tabs" id="meetingPhaseTabs" role="tablist" aria-label="数智会议阶段切换">
+            <button class="phase-tab is-active" type="button" data-phase="prepare">会前准备</button>
+            <button class="phase-tab" type="button" data-phase="during">会中汇报</button>
+            <button class="phase-tab" type="button" data-phase="after">会后总结</button>
           </div>
         </div>
         <div class="agent-grid" id="agentGrid"></div>
@@ -1937,6 +2007,7 @@
     const tabs = document.querySelector(".tabs");
     const meetingArchitecture = document.querySelector("#meetingArchitecture");
     const agentSection = document.querySelector("#agents");
+    const meetingPhaseTabs = document.querySelector("#meetingPhaseTabs");
     const grid = document.querySelector("#agentGrid");
     const modal = document.querySelector("#agentModal");
     const modalCategory = document.querySelector("#modalCategory");
@@ -1947,6 +2018,7 @@
     const closeButtons = [document.querySelector("#closeModal"), document.querySelector("#closeModalBottom")];
     let currentTopic = "finance";
     let currentFilter = "all";
+    let currentMeetingPhase = "prepare";
 
     function getCurrentConfig() {
       return topics[currentTopic];
@@ -2002,15 +2074,18 @@
       `;
     }
 
+    const meetingPhases = {
+      prepare: { title: "会前准备", desc: "根因、预测、报告先行" },
+      during: { title: "会中汇报", desc: "洞察、测算、问答支撑决策" },
+      after: { title: "会后总结", desc: "任务督办与改善闭环" }
+    };
+
     function renderCards() {
       grid.classList.toggle("is-grouped", currentTopic === "meeting" && currentFilter === "meeting");
       if (currentTopic === "meeting" && currentFilter === "meeting") {
         const meetingCards = getCurrentAgents().filter((agent) => agent.categoryKey === "meeting");
-        grid.innerHTML = [
-          phaseBlock("会前准备", "根因、预测、报告先行", meetingCards.filter((agent) => agent.phase === "prepare")),
-          phaseBlock("会中汇报", "洞察、测算、问答支撑决策", meetingCards.filter((agent) => agent.phase === "during")),
-          phaseBlock("会后总结", "任务督办与改善闭环", meetingCards.filter((agent) => agent.phase === "after"))
-        ].join("");
+        const phase = meetingPhases[currentMeetingPhase];
+        grid.innerHTML = phaseBlock(phase.title, phase.desc, meetingCards.filter((agent) => agent.phase === currentMeetingPhase));
         return;
       }
       grid.innerHTML = getCurrentAgents().map(cardMarkup).join("");
@@ -2040,6 +2115,9 @@
 
     function setFilter(filter) {
       currentFilter = filter;
+      if (currentTopic === "meeting" && filter === "meeting") {
+        currentMeetingPhase = "prepare";
+      }
       renderCards();
       document.querySelectorAll(".tab-btn").forEach((btn) => {
         btn.classList.toggle("is-active", btn.dataset.filter === filter);
@@ -2049,6 +2127,10 @@
       });
       meetingArchitecture.classList.toggle("is-hidden", currentTopic !== "meeting" || filter !== "all");
       agentSection.classList.toggle("is-hidden", currentTopic === "meeting" && filter === "all");
+      meetingPhaseTabs.classList.toggle("is-visible", currentTopic === "meeting" && filter === "meeting");
+      document.querySelectorAll(".phase-tab").forEach((btn) => {
+        btn.classList.toggle("is-active", btn.dataset.phase === currentMeetingPhase);
+      });
     }
 
     function detailCard(title, items) {
@@ -2106,6 +2188,17 @@
       const filterButton = event.target.closest(".tab-btn");
       if (filterButton) {
         setFilter(filterButton.dataset.filter);
+      }
+    });
+
+    meetingPhaseTabs.addEventListener("click", (event) => {
+      const phaseButton = event.target.closest(".phase-tab");
+      if (phaseButton) {
+        currentMeetingPhase = phaseButton.dataset.phase;
+        renderCards();
+        document.querySelectorAll(".phase-tab").forEach((btn) => {
+          btn.classList.toggle("is-active", btn.dataset.phase === currentMeetingPhase);
+        });
       }
     });
 
