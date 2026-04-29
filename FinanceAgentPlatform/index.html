@@ -582,6 +582,10 @@
       box-shadow: var(--fr-shadow-md);
     }
 
+    .section-card.is-hidden {
+      display: none;
+    }
+
     .architecture-card {
       position: relative;
       overflow: hidden;
@@ -671,20 +675,30 @@
     }
 
     .arch-position {
-      padding: 16px;
-      border-left: 3px solid var(--arch-color, var(--fr-blue-700));
-      border-radius: 12px;
+      display: grid;
+      gap: 7px;
+      padding: 12px 14px;
+      border: 1px solid color-mix(in srgb, var(--arch-color, var(--fr-blue-700)) 16%, #dfe8f4);
+      border-radius: 14px;
       color: var(--fr-text-title);
-      background: color-mix(in srgb, var(--arch-color, var(--fr-blue-700)) 8%, white);
-      font-size: 0.92rem;
-      line-height: 1.7;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(248, 251, 255, 0.92)),
+        color-mix(in srgb, var(--arch-color, var(--fr-blue-700)) 5%, white);
+      font-size: 0.9rem;
+      line-height: 1.56;
       font-weight: 900;
     }
 
     .arch-position span {
-      display: block;
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      min-height: 24px;
+      padding: 0 9px;
+      border-radius: 999px;
       color: var(--arch-color, var(--fr-blue-700));
-      font-size: 0.82rem;
+      background: color-mix(in srgb, var(--arch-color, var(--fr-blue-700)) 10%, white);
+      font-size: 0.76rem;
       line-height: 1.4;
     }
 
@@ -792,6 +806,51 @@
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
+    }
+
+    .agent-grid.is-grouped {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .phase-block {
+      display: grid;
+      gap: 16px;
+      padding: 18px;
+      border: 1px solid rgba(0, 134, 230, 0.1);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 10px 24px rgba(23, 52, 110, 0.06);
+    }
+
+    .phase-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--fr-text-title);
+      font-size: 1rem;
+      line-height: 1.35;
+    }
+
+    .phase-title::before {
+      content: "";
+      width: 8px;
+      height: 22px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--fr-blue-700), var(--fr-cyan));
+      box-shadow: 0 0 0 6px rgba(204, 228, 255, 0.68);
+    }
+
+    .phase-title span {
+      color: var(--fr-text-body);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .phase-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
     }
 
     .agent-card {
@@ -946,9 +1005,9 @@
       flex-wrap: nowrap;
       align-items: center;
       justify-content: flex-start;
-      gap: 12px;
-      min-height: 64px;
-      padding: 12px 24px;
+      gap: 10px;
+      min-height: 48px;
+      padding: 8px 24px;
       border-top: 1px solid rgba(218, 222, 230, 0.78);
       background: rgba(255, 255, 255, 0.76);
     }
@@ -964,13 +1023,13 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      min-height: 38px;
-      padding: 0 14px;
+      min-height: 32px;
+      padding: 0 12px;
       border: 1px solid rgba(0, 134, 230, 0.16);
       border-radius: 10px;
       color: var(--fr-blue-700);
       background: rgba(232, 244, 255, 0.72);
-      font-size: 0.76rem;
+      font-size: 0.72rem;
       font-weight: 700;
       box-shadow: none;
       transition: color var(--ease), background var(--ease), transform var(--ease), box-shadow var(--ease), border-color var(--ease);
@@ -1181,6 +1240,10 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
+      .phase-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .tab-btn {
         flex-basis: 154px;
       }
@@ -1204,6 +1267,7 @@
       }
 
       .agent-grid,
+      .phase-grid,
       .detail-grid {
         grid-template-columns: 1fr;
       }
@@ -1245,8 +1309,8 @@
       }
 
       .card-actions {
-        min-height: 58px;
-        padding: 11px 18px;
+        min-height: 46px;
+        padding: 8px 18px;
       }
 
       .category-tag,
@@ -1276,9 +1340,9 @@
       }
 
       .link-action {
-        min-height: 34px;
-        font-size: 0.74rem;
-        padding: 0 10px;
+        min-height: 30px;
+        font-size: 0.7rem;
+        padding: 0 9px;
       }
 
       .modal {
@@ -1363,11 +1427,11 @@
               <div class="arch-chips"><span>归因分析 Agent</span><span>智能预测 Agent</span><span>智能报告 Agent</span></div>
             </div>
             <div class="arch-stage">
-              <strong>会中决策</strong>
+              <strong>会中汇报</strong>
               <div class="arch-chips"><span>市场与竞品洞察 Agent</span><span>定量分析 Agent</span><span>会议助手 Agent</span><span>智能问答 Agent</span></div>
             </div>
             <div class="arch-stage">
-              <strong>会后执行</strong>
+              <strong>会后总结</strong>
               <div class="arch-chips"><span>智能督办 Agent</span></div>
             </div>
           </article>
@@ -1639,6 +1703,7 @@
         categoryKey: "meeting",
         category: "数智会议",
         title: "归因分析 Agent",
+        phase: "prepare",
         icon: "analysis",
         accent: ["#0086e6", "#0055cc"],
         pain: '指标波动会前才开始追原因？<br><span class="ai">AI</span> 自动拆解根因，把问题定位提前到会议前。',
@@ -1657,6 +1722,7 @@
         categoryKey: "meeting",
         category: "数智会议",
         title: "智能预测 Agent",
+        phase: "prepare",
         icon: "predict",
         accent: ["#3d93ff", "#00ace6"],
         pain: '经营缺口到月底才暴露？<br><span class="ai">AI</span> 基于趋势和节奏预测达成风险。',
@@ -1675,6 +1741,7 @@
         categoryKey: "meeting",
         category: "数智会议",
         title: "智能报告 Agent",
+        phase: "prepare",
         icon: "report",
         accent: ["#35db9b", "#3fc4a9"],
         pain: '经营会材料反复拼数、改稿、补图？<br><span class="ai">AI</span> 自动生成会议报告初稿和摘要。',
@@ -1693,6 +1760,7 @@
         categoryKey: "meeting",
         category: "数智会议",
         title: "市场与竞品洞察 Agent",
+        phase: "during",
         icon: "analysis",
         accent: ["#63d1d7", "#0086e6"],
         pain: '内部经营数据缺少外部参照？<br><span class="ai">AI</span> 汇总市场与竞品信号，补齐会中决策视角。',
@@ -1711,6 +1779,7 @@
         categoryKey: "meeting",
         category: "数智会议",
         title: "定量分析 Agent",
+        phase: "during",
         icon: "profit",
         accent: ["#5c6cff", "#7a73fa"],
         pain: '会中临时追问需要马上算数？<br><span class="ai">AI</span> 快速完成口径计算、分组对比和影响测算。',
@@ -1729,6 +1798,7 @@
         categoryKey: "meeting",
         category: "数智会议",
         title: "会议助手 Agent",
+        phase: "during",
         icon: "meeting",
         accent: ["#00ace6", "#3d93ff"],
         pain: '会议纪要、议题推进和结论沉淀靠人工补记？<br><span class="ai">AI</span> 自动整理会议过程和关键决策。',
@@ -1747,6 +1817,7 @@
         categoryKey: "meeting",
         category: "数智会议",
         title: "智能问答 Agent",
+        phase: "during",
         icon: "ask",
         accent: ["#35db9b", "#00ace6"],
         pain: '会议现场追问数据口径和历史原因？<br><span class="ai">AI</span> 即时回答经营数据问题并给出依据。',
@@ -1765,6 +1836,7 @@
         categoryKey: "meeting",
         category: "数智会议",
         title: "智能督办 Agent",
+        phase: "after",
         icon: "task",
         accent: ["#7a73fa", "#5c6cff"],
         pain: '会后任务没人跟、进度难追、闭环靠催？<br><span class="ai">AI</span> 自动拆解行动项并持续督办。',
@@ -1828,7 +1900,7 @@
         ]
       },
       meeting: {
-        title: '让经分会从例行汇报升级为 <span>AI Agent</span> 驱动的一体两翼经营中枢',
+        title: '为1号位配置全天候<span>AI</span>数据管家，建立“日感知、秒排雷、月复盘”的全方位立体防线。',
         desc: "围绕高管早参、数智会议与风险雷达，形成会前有准备、会中有洞察、会后有督办的经营闭环。",
         agents: meetingAgents,
         valueMap: meetingCategoryValue,
@@ -1846,6 +1918,7 @@
     const topicButtons = document.querySelectorAll(".view-tab");
     const tabs = document.querySelector(".tabs");
     const meetingArchitecture = document.querySelector("#meetingArchitecture");
+    const agentSection = document.querySelector("#agents");
     const grid = document.querySelector("#agentGrid");
     const modal = document.querySelector("#agentModal");
     const modalCategory = document.querySelector("#modalCategory");
@@ -1865,8 +1938,22 @@
       return getCurrentConfig().agents;
     }
 
-    function renderCards() {
-      grid.innerHTML = getCurrentAgents().map((agent) => `
+    function actionMarkup(agent) {
+      return `
+        <div class="card-actions">
+          <div class="action-tags">
+            <button class="link-action" type="button" data-detail="${agent.id}">Agent详情</button>
+            <a class="link-action demo" href="${demoBase}?scene=${agent.id}" target="_blank" rel="noopener">DEMO查看</a>
+            ${currentTopic === "finance" && agent.id === "reconciliation"
+              ? '<a class="link-action case has-link" href="https://fanruan-x.feishu.cn/wiki/J4GhwaywliZEj1kv58wcx46Unfh" target="_blank" rel="noopener">客户案例</a>'
+              : '<span class="link-action case" aria-disabled="true">客户案例</span>'}
+          </div>
+        </div>
+      `;
+    }
+
+    function cardMarkup(agent) {
+      return `
         <article class="agent-card" data-category="${agent.categoryKey}" style="--accent-a:${agent.accent[0]};--accent-b:${agent.accent[1]}">
           <div class="card-main">
             <div class="card-head">
@@ -1883,17 +1970,32 @@
               <div class="meta-row"><span class="meta-label">核心价值</span><span class="meta-value">${agent.value}</span></div>
             </div>
           </div>
-          <div class="card-actions">
-            <div class="action-tags">
-              <button class="link-action" type="button" data-detail="${agent.id}">Agent详情</button>
-              <a class="link-action demo" href="${demoBase}?scene=${agent.id}" target="_blank" rel="noopener">DEMO查看</a>
-              ${currentTopic === "finance" && agent.id === "reconciliation"
-                ? '<a class="link-action case has-link" href="https://fanruan-x.feishu.cn/wiki/J4GhwaywliZEj1kv58wcx46Unfh" target="_blank" rel="noopener">客户案例</a>'
-                : '<span class="link-action case" aria-disabled="true">客户案例</span>'}
-            </div>
-          </div>
+          ${actionMarkup(agent)}
         </article>
-      `).join("");
+      `;
+    }
+
+    function phaseBlock(title, desc, agents) {
+      return `
+        <section class="phase-block">
+          <h3 class="phase-title">${title}<span>${desc}</span></h3>
+          <div class="phase-grid">${agents.map(cardMarkup).join("")}</div>
+        </section>
+      `;
+    }
+
+    function renderCards() {
+      grid.classList.toggle("is-grouped", currentTopic === "meeting" && currentFilter === "meeting");
+      if (currentTopic === "meeting" && currentFilter === "meeting") {
+        const meetingCards = getCurrentAgents().filter((agent) => agent.categoryKey === "meeting");
+        grid.innerHTML = [
+          phaseBlock("会前准备", "根因、预测、报告先行", meetingCards.filter((agent) => agent.phase === "prepare")),
+          phaseBlock("会中汇报", "洞察、测算、问答支撑决策", meetingCards.filter((agent) => agent.phase === "during")),
+          phaseBlock("会后总结", "任务督办与改善闭环", meetingCards.filter((agent) => agent.phase === "after"))
+        ].join("");
+        return;
+      }
+      grid.innerHTML = getCurrentAgents().map(cardMarkup).join("");
     }
 
     function renderFilters() {
@@ -1920,6 +2022,7 @@
 
     function setFilter(filter) {
       currentFilter = filter;
+      renderCards();
       document.querySelectorAll(".tab-btn").forEach((btn) => {
         btn.classList.toggle("is-active", btn.dataset.filter === filter);
       });
@@ -1927,6 +2030,7 @@
         card.classList.toggle("is-hidden", filter !== "all" && card.dataset.category !== filter);
       });
       meetingArchitecture.classList.toggle("is-hidden", currentTopic !== "meeting" || filter !== "all");
+      agentSection.classList.toggle("is-hidden", currentTopic === "meeting" && filter === "all");
     }
 
     function detailCard(title, items) {
