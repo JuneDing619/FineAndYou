@@ -797,6 +797,12 @@
       background: rgba(244, 247, 251, 0.92);
     }
 
+    .link-action.case.has-link {
+      color: var(--fr-blue-700);
+      border-color: rgba(0, 134, 230, 0.16);
+      background: rgba(232, 244, 255, 0.72);
+    }
+
     .modal {
       position: fixed;
       inset: 0;
@@ -1190,7 +1196,7 @@
         title: "合同信息抽取",
         icon: "extract",
         accent: ["#35db9b", "#3fc4a9"],
-        pain: '合同台账靠人工录入、字段校验反复返工？<br><span class="ai">AI</span> 自动识别金额、账期、主体和履约节点，降低漏填错填。',
+        pain: '合同台账靠人工录入、字段校验反复返工？<br>自动识别金额、账期、主体和履约节点，降低漏填错填。',
         problem: "合同字段分散在正文、附件与补充协议中，人工录入慢且易错",
         role: "财务共享 / 合同管理 / 应收应付会计",
         value: "字段抽取准确率提升，台账维护从小时级压缩到分钟级",
@@ -1368,7 +1374,9 @@
             <div class="action-tags">
               <button class="link-action" type="button" data-detail="${agent.id}">Agent详情</button>
               <a class="link-action demo" href="${demoBase}?scene=${agent.id}" target="_blank" rel="noopener">DEMO查看</a>
-              <a class="link-action case" href="https://fanruan-x.feishu.cn/wiki/J4GhwaywliZEj1kv58wcx46Unfh" target="_blank" rel="noopener">客户案例</a>
+              ${agent.id === "reconciliation"
+                ? '<a class="link-action case has-link" href="https://fanruan-x.feishu.cn/wiki/J4GhwaywliZEj1kv58wcx46Unfh" target="_blank" rel="noopener">客户案例</a>'
+                : '<span class="link-action case" aria-disabled="true">客户案例</span>'}
             </div>
           </div>
         </article>
