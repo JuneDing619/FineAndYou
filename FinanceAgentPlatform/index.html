@@ -777,12 +777,6 @@
       transition: color var(--ease), background var(--ease), transform var(--ease), box-shadow var(--ease), border-color var(--ease);
     }
 
-    .link-action::after {
-      content: "→";
-      font-size: 0.96rem;
-      line-height: 1;
-    }
-
     .link-action:hover {
       color: var(--fr-blue-800);
       background: rgba(232, 244, 255, 0.96);
@@ -794,26 +788,6 @@
     .link-action.demo {
       color: var(--fr-blue-700);
       background: rgba(232, 244, 255, 0.72);
-    }
-
-    .link-action.demo::after {
-      content: "→";
-      font-size: 0.96rem;
-    }
-
-    .footer-note {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-top: 20px;
-      padding: 18px 22px;
-      border: 1px solid rgba(218, 222, 230, 0.72);
-      border-radius: 18px;
-      color: var(--fr-text-body);
-      background: rgba(255, 255, 255, 0.72);
-      font-size: 0.9rem;
-      line-height: 1.7;
     }
 
     .modal {
@@ -1116,7 +1090,7 @@
 
       <nav class="tabs-wrap" aria-label="Agent 分类">
         <div class="tabs">
-          <button class="tab-btn is-active" type="button" data-filter="all"><strong>全部场景</strong><span>9 个 Agent</span></button>
+          <button class="tab-btn is-active" type="button" data-filter="all"><strong>全部场景</strong><span>全局总览</span></button>
           <button class="tab-btn" type="button" data-filter="efficiency"><strong>流程提效类</strong><span>替代重复劳动</span></button>
           <button class="tab-btn" type="button" data-filter="compliance"><strong>经营合规类</strong><span>事前合规防线</span></button>
           <button class="tab-btn" type="button" data-filter="integration"><strong>业财融合类</strong><span>打通数据孤岛</span></button>
@@ -1134,10 +1108,6 @@
         <div class="agent-grid" id="agentGrid"></div>
       </section>
 
-      <div class="footer-note">
-        <span>推荐落地节奏：优先选择流程清晰、数据可接入、规则可表达、结果可验收的场景进入试点。</span>
-        <span>视觉风格：FineAndYou / 星河蓝 2.0</span>
-      </div>
     </main>
   </div>
 
