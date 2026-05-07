@@ -2070,13 +2070,19 @@
     }
 
     function actionMarkup(agent) {
+      const caseLink = currentTopic === "finance" && agent.id === "reconciliation"
+        ? "https://fanruan-x.feishu.cn/wiki/J4GhwaywliZEj1kv58wcx46Unfh"
+        : currentTopic === "meeting" && agent.id === "meeting-executive-interaction"
+          ? "https://fanruan-x.feishu.cn/wiki/XONNwMFFDiLh0Okvp4ScMCpFnnc"
+          : "";
+
       return `
         <div class="card-actions">
           <div class="action-tags">
             <button class="link-action" type="button" data-detail="${agent.id}">Agent详情</button>
             <span class="link-action demo" aria-disabled="true">DEMO查看</span>
-            ${currentTopic === "finance" && agent.id === "reconciliation"
-              ? '<a class="link-action case has-link" href="https://fanruan-x.feishu.cn/wiki/J4GhwaywliZEj1kv58wcx46Unfh" target="_blank" rel="noopener">客户案例</a>'
+            ${caseLink
+              ? `<a class="link-action case has-link" href="${caseLink}" target="_blank" rel="noopener">客户案例</a>`
               : '<span class="link-action case" aria-disabled="true">客户案例</span>'}
           </div>
         </div>
