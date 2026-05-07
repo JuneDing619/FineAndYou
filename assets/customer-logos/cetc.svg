@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 120" role="img" aria-label="中国电子科技集团财务公司">
+  <rect width="420" height="120" fill="none"/>
+  <g transform="translate(22 28)">
+    <path d="M0 34C0 15.2 15.2 0 34 0h58v18H36c-8.8 0-16 7.2-16 16s7.2 16 16 16h56v18H34C15.2 68 0 52.8 0 34Z" fill="#005BAC"/>
+    <path d="M42 25h70v18H42z" fill="#E60012"/>
+    <path d="M118 0h22v68h-22z" fill="#005BAC"/>
+  </g>
+  <text x="184" y="50" fill="#005BAC" font-family="PingFang SC, Microsoft YaHei, Arial, sans-serif" font-size="25" font-weight="700">中国电科财务</text>
+  <text x="186" y="82" fill="#E60012" font-family="Arial, sans-serif" font-size="21" font-weight="700" letter-spacing=".6">CETC FINANCE</text>
+</svg>
