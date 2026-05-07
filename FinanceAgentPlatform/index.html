@@ -1580,18 +1580,16 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
             返回列表
           </button>
-          <a class="btn btn-primary" id="modalDemo" href="https://demo.fanruan.com/" target="_blank" rel="noopener">
+          <span class="btn btn-primary" id="modalDemo" aria-disabled="true">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 8 16 12 10 16V8Z"/><circle cx="12" cy="12" r="10"/></svg>
             DEMO 演示
-          </a>
+          </span>
         </div>
       </div>
     </div>
   </div>
 
   <script>
-    const demoBase = "https://demo.fanruan.com/";
-
     const icons = {
       report: '<svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6z"/><path d="M14 3v4h4"/><path d="M9 13h6"/><path d="M9 17h4"/><path d="M9 9h2"/></svg>',
       extract: '<svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M8 8h8"/><path d="M8 12h5"/><path d="M8 16h8"/><path d="m16 11 2 2-2 2"/></svg>',
@@ -2021,7 +2019,6 @@
     const modalTitle = document.querySelector("#modalTitle");
     const modalSummary = document.querySelector("#modalSummary");
     const modalDetails = document.querySelector("#modalDetails");
-    const modalDemo = document.querySelector("#modalDemo");
     const closeButtons = [document.querySelector("#closeModal"), document.querySelector("#closeModalBottom")];
     let currentTopic = "finance";
     let currentFilter = "all";
@@ -2040,7 +2037,7 @@
         <div class="card-actions">
           <div class="action-tags">
             <button class="link-action" type="button" data-detail="${agent.id}">Agent详情</button>
-            <a class="link-action demo" href="${demoBase}?scene=${agent.id}" target="_blank" rel="noopener">DEMO查看</a>
+            <span class="link-action demo" aria-disabled="true">DEMO查看</span>
             ${currentTopic === "finance" && agent.id === "reconciliation"
               ? '<a class="link-action case has-link" href="https://fanruan-x.feishu.cn/wiki/J4GhwaywliZEj1kv58wcx46Unfh" target="_blank" rel="noopener">客户案例</a>'
               : '<span class="link-action case" aria-disabled="true">客户案例</span>'}
@@ -2155,7 +2152,6 @@
       modalCategory.textContent = agent.category;
       modalTitle.textContent = agent.title;
       modalSummary.textContent = agent.summary;
-      modalDemo.href = `${demoBase}?scene=${agent.id}`;
       modalDetails.innerHTML = `
         <div class="detail-card">
           <strong>分类价值主张</strong>
