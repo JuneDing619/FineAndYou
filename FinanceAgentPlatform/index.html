@@ -1512,7 +1512,7 @@
             </h3>
             <div class="arch-stage">
               <strong>会前准备</strong>
-              <div class="arch-chips"><span>市场与竞品洞察 Moss</span><span>智能预测 Agent</span><span>定量分析 Agent</span><span>智能报告 Agent</span></div>
+              <div class="arch-chips"><span>市场与竞品洞察 Moss</span><span>智能预测 Agent</span><span>定量分析 Agent</span><span>智能报告Dora</span><span>高管互动 Agent</span></div>
             </div>
             <div class="arch-stage">
               <strong>会中汇报</strong>
@@ -1851,7 +1851,7 @@
         id: "meeting-smart-report",
         categoryKey: "meeting",
         category: "数智会议",
-        title: "智能报告 Agent",
+        title: "智能报告Dora",
         phase: "prepare",
         icon: "report",
         accent: ["#35db9b", "#3fc4a9"],
@@ -1864,6 +1864,25 @@
           scene: ["月度经营会报告", "专题经营复盘", "高管预读材料生成"],
           workflow: ["汇总会议相关指标", "自动生成图表解读和核心结论", "输出报告初稿并标注数据来源"],
           outputs: ["经营会议报告", "管理层摘要", "图表说明与追问清单"]
+        }
+      },
+      {
+        id: "meeting-executive-interaction",
+        categoryKey: "meeting",
+        category: "数智会议",
+        title: "高管互动 Agent",
+        phase: "prepare",
+        icon: "ask",
+        accent: ["#7a73fa", "#5c6cff"],
+        pain: '高管会前想追问指标、口径和风险点？<br><span class="ai">AI</span> 支持围绕经营报告进行交互式问答和追问准备。',
+        problem: "会前材料信息密度高，高管临时追问需要快速定位数据依据、业务口径和风险解释",
+        role: "CEO / CFO / 经营管理层 / 财经 BP",
+        value: "让高管会前快速形成追问清单和决策关注点",
+        summary: "Agent 面向经营会前的高管交互场景，围绕经营分析报告、预测结果、竞品洞察和定量测算提供自然语言问答，帮助管理层快速理解关键变化、定位风险点并形成会中追问。",
+        details: {
+          scene: ["高管会前报告问答", "指标口径与数据依据追溯", "重点风险和机会追问准备"],
+          workflow: ["读取经营会预读材料和关键指标", "理解高管追问意图并检索相关证据", "生成解释、追问建议和会议关注点"],
+          outputs: ["高管问答结果", "会前追问清单", "指标依据与风险提示"]
         }
       },
       {
@@ -2097,9 +2116,21 @@
     }
 
     const meetingPhases = {
-      prepare: { title: "会前准备", desc: "根因、预测、报告先行" },
-      during: { title: "会中汇报", desc: "洞察、测算、问答支撑决策" },
+      prepare: { title: "会前准备", desc: "洞察、预测、测算、报告先行" },
+      during: { title: "会中汇报", desc: "归因、问答、会议助手支撑决策" },
       after: { title: "会后总结", desc: "任务督办与改善闭环" }
+    };
+
+    const meetingPhaseOrder = {
+      "meeting-market-competitive": 1,
+      "meeting-forecast": 2,
+      "meeting-quant-analysis": 3,
+      "meeting-smart-report": 4,
+      "meeting-executive-interaction": 5,
+      "meeting-cause-analysis": 6,
+      "meeting-assistant": 7,
+      "meeting-smart-qa": 8,
+      "meeting-supervision": 9
     };
 
     function renderCards() {
@@ -2107,7 +2138,10 @@
       if (currentTopic === "meeting" && currentFilter === "meeting") {
         const meetingCards = getCurrentAgents().filter((agent) => agent.categoryKey === "meeting");
         const phase = meetingPhases[currentMeetingPhase];
-        grid.innerHTML = phaseBlock(phase.title, phase.desc, meetingCards.filter((agent) => agent.phase === currentMeetingPhase));
+        const phaseCards = meetingCards
+          .filter((agent) => agent.phase === currentMeetingPhase)
+          .sort((a, b) => meetingPhaseOrder[a.id] - meetingPhaseOrder[b.id]);
+        grid.innerHTML = phaseBlock(phase.title, phase.desc, phaseCards);
         return;
       }
       grid.innerHTML = getCurrentAgents().map(cardMarkup).join("");
