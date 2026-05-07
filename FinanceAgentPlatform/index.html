@@ -995,11 +995,19 @@
       min-height: 28px;
       padding: 0 10px;
       border-radius: 8px;
-      color: var(--fr-success);
-      background: rgba(31, 157, 98, 0.12);
       font-size: 0.74rem;
       font-weight: 900;
       white-space: nowrap;
+    }
+
+    .status.is-landed {
+      color: var(--fr-success);
+      background: rgba(31, 157, 98, 0.12);
+    }
+
+    .status.is-cocreation {
+      color: var(--fr-blue-700);
+      background: rgba(0, 134, 230, 0.12);
     }
 
     .agent-title {
@@ -1564,7 +1572,7 @@
         <div class="modal-title-wrap">
           <div class="modal-title-row">
             <span class="category-tag" id="modalCategory"></span>
-            <span class="status">可试用</span>
+            <span class="status is-cocreation" id="modalStatus">共创中</span>
           </div>
           <h2 id="modalTitle"></h2>
           <p class="modal-summary" id="modalSummary"></p>
@@ -2053,6 +2061,7 @@
     const grid = document.querySelector("#agentGrid");
     const modal = document.querySelector("#agentModal");
     const modalCategory = document.querySelector("#modalCategory");
+    const modalStatus = document.querySelector("#modalStatus");
     const modalTitle = document.querySelector("#modalTitle");
     const modalSummary = document.querySelector("#modalSummary");
     const modalDetails = document.querySelector("#modalDetails");
@@ -2069,12 +2078,27 @@
       return getCurrentConfig().agents;
     }
 
-    function actionMarkup(agent) {
-      const caseLink = currentTopic === "finance" && agent.id === "reconciliation"
+    function getCaseLink(agent) {
+      return currentTopic === "finance" && agent.id === "reconciliation"
         ? "https://fanruan-x.feishu.cn/wiki/J4GhwaywliZEj1kv58wcx46Unfh"
         : currentTopic === "meeting" && agent.id === "meeting-executive-interaction"
           ? "https://fanruan-x.feishu.cn/wiki/XONNwMFFDiLh0Okvp4ScMCpFnnc"
           : "";
+    }
+
+    function getAgentStatus(agent) {
+      return getCaseLink(agent)
+        ? { label: "已落地", className: "is-landed" }
+        : { label: "共创中", className: "is-cocreation" };
+    }
+
+    function statusMarkup(agent) {
+      const status = getAgentStatus(agent);
+      return `<span class="status ${status.className}">${status.label}</span>`;
+    }
+
+    function actionMarkup(agent) {
+      const caseLink = getCaseLink(agent);
 
       return `
         <div class="card-actions">
@@ -2098,7 +2122,7 @@
                 <span class="title-icon" aria-hidden="true">${icons[agent.icon]}</span>
                 <span class="agent-title-text">${agent.title}</span>
               </h3>
-              <span class="status">可试用</span>
+              ${statusMarkup(agent)}
             </div>
             <p class="pain">${agent.pain}</p>
             <div class="agent-meta">
@@ -2207,7 +2231,10 @@
     function openModal(agentId) {
       const agent = getCurrentAgents().find((item) => item.id === agentId);
       if (!agent) return;
+      const status = getAgentStatus(agent);
       modalCategory.textContent = agent.category;
+      modalStatus.textContent = status.label;
+      modalStatus.className = `status ${status.className}`;
       modalTitle.textContent = agent.title;
       modalSummary.textContent = agent.summary;
       modalDetails.innerHTML = `
