@@ -651,6 +651,98 @@
       background: rgba(232, 244, 255, 0.36);
     }
 
+    .customer-wall {
+      display: grid;
+      gap: 14px;
+      padding: 16px;
+      border-radius: 16px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(245, 250, 255, 0.84)),
+        rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(204, 228, 255, 0.9);
+    }
+
+    .customer-wall-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--text-soft);
+      font-size: 0.82rem;
+    }
+
+    .customer-wall-head strong {
+      color: var(--navy-900);
+      font-size: 0.96rem;
+    }
+
+    .customer-logo-stage {
+      height: 150px;
+      overflow: hidden;
+      border-radius: 12px;
+      mask-image: linear-gradient(180deg, transparent 0, #000 10%, #000 90%, transparent 100%);
+    }
+
+    .customer-logo-pages {
+      display: grid;
+      gap: 12px;
+      animation: logoPageShift 13s ease-in-out infinite;
+    }
+
+    .customer-logo-page {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .customer-logo {
+      display: grid;
+      grid-template-columns: 32px minmax(0, 1fr);
+      align-items: center;
+      gap: 10px;
+      min-height: 66px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid rgba(204, 228, 255, 0.64);
+    }
+
+    .customer-logo img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      display: block;
+      filter: saturate(0.9);
+    }
+
+    .customer-logo span {
+      min-width: 0;
+      color: rgba(23, 52, 110, 0.78);
+      font-size: 0.8rem;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    @keyframes logoPageShift {
+      0%, 38% {
+        transform: translateY(0);
+      }
+
+      50%, 88% {
+        transform: translateY(calc(-50% - 6px));
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .customer-logo-pages {
+        animation: none;
+      }
+    }
+
     .profile-grid {
       position: relative;
       z-index: 1;
@@ -928,6 +1020,14 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
+      .customer-logo-page {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .customer-logo-stage {
+        height: 218px;
+      }
+
       .portrait-wrap {
         justify-items: start;
       }
@@ -991,6 +1091,14 @@
       .mini-grid,
       .case-grid {
         grid-template-columns: 1fr;
+      }
+
+      .customer-logo-page {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .customer-logo-stage {
+        height: 294px;
       }
     }
 
@@ -1134,6 +1242,32 @@
         height: 8px;
       }
 
+      .customer-wall {
+        padding: 12px;
+      }
+
+      .customer-wall-head {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .customer-logo {
+        grid-template-columns: 28px minmax(0, 1fr);
+        gap: 8px;
+        min-height: 62px;
+        padding: 9px 10px;
+      }
+
+      .customer-logo img {
+        width: 28px;
+        height: 28px;
+      }
+
+      .customer-logo span {
+        font-size: 0.74rem;
+      }
+
       .profile-top {
         grid-template-columns: 1fr;
         gap: 12px;
@@ -1272,6 +1406,84 @@
                     <span class="case-link">进入页面</span>
                   </a>
                 </div>
+                <section class="customer-wall" aria-label="财经破圈典型客户">
+                  <div class="customer-wall-head">
+                    <strong>典型客户</strong>
+                    <span>财经场景实践样本</span>
+                  </div>
+                  <div class="customer-logo-stage">
+                    <div class="customer-logo-pages">
+                      <div class="customer-logo-page">
+                        <div class="customer-logo">
+                          <img src="./assets/customer-logos/cnooc.png" alt="中国海洋石油集团 Logo">
+                          <span>中国海洋石油集团</span>
+                        </div>
+                        <div class="customer-logo">
+                          <img src="./assets/customer-logos/cetc.png" alt="中国电子科技集团财务公司 Logo">
+                          <span>中国电子科技集团财务公司</span>
+                        </div>
+                        <div class="customer-logo">
+                          <img src="./assets/customer-logos/cccc.png" alt="中国交通建设集团 Logo">
+                          <span>中国交通建设集团（待定）</span>
+                        </div>
+                        <div class="customer-logo">
+                          <img src="./assets/customer-logos/shandong-energy.png" alt="山东能源集团有限公司 Logo">
+                          <span>山东能源集团有限公司</span>
+                        </div>
+                        <div class="customer-logo">
+                          <img src="./assets/customer-logos/sph.png" alt="上海医药集团股份有限公司 Logo">
+                          <span>上海医药集团股份有限公司</span>
+                        </div>
+                        <div class="customer-logo">
+                          <img src="./assets/customer-logos/gzmtr.png" alt="广州地铁集团有限公司 Logo">
+                          <span>广州地铁集团有限公司</span>
+                        </div>
+                        <div class="customer-logo">
+                          <img src="./assets/customer-logos/seres.png" alt="赛力斯集团股份有限公司 Logo">
+                          <span>赛力斯集团股份有限公司</span>
+                        </div>
+                        <div class="customer-logo">
+                          <img src="./assets/customer-logos/sungrow.png" alt="阳光电源股份有限公司 Logo">
+                          <span>阳光电源股份有限公司</span>
+                        </div>
+                      </div>
+                      <div class="customer-logo-page">
+                        <div class="customer-logo">
+                          <img src="./assets/customer-logos/eastups.png" alt="易事特集团股份有限公司 Logo">
+                          <span>易事特集团股份有限公司（待定）</span>
+                        </div>
+                        <div class="customer-logo">
+                          <img src="./assets/customer-logos/purcotton.png" alt="全棉时代科技有限公司 Logo">
+                          <span>全棉时代科技有限公司</span>
+                        </div>
+                        <div class="customer-logo">
+                          <img src="./assets/customer-logos/karl-storz.png" alt="卡尔史托斯 Logo">
+                          <span>卡尔史托斯（KARL STORZ）</span>
+                        </div>
+                        <div class="customer-logo">
+                          <img src="./assets/customer-logos/cnooc.png" alt="中国海洋石油集团 Logo">
+                          <span>中国海洋石油集团</span>
+                        </div>
+                        <div class="customer-logo">
+                          <img src="./assets/customer-logos/seres.png" alt="赛力斯集团股份有限公司 Logo">
+                          <span>赛力斯集团股份有限公司</span>
+                        </div>
+                        <div class="customer-logo">
+                          <img src="./assets/customer-logos/sungrow.png" alt="阳光电源股份有限公司 Logo">
+                          <span>阳光电源股份有限公司</span>
+                        </div>
+                        <div class="customer-logo">
+                          <img src="./assets/customer-logos/sph.png" alt="上海医药集团股份有限公司 Logo">
+                          <span>上海医药集团股份有限公司</span>
+                        </div>
+                        <div class="customer-logo">
+                          <img src="./assets/customer-logos/shandong-energy.png" alt="山东能源集团有限公司 Logo">
+                          <span>山东能源集团有限公司</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
               </article>
             </div>
 
