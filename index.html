@@ -303,8 +303,7 @@
     .asset-card,
     .modal-panel,
     .diagnosis-result,
-    .tool-row,
-    .update-card {
+    .tool-row {
       border-radius: var(--radius-lg);
       background: rgba(255, 255, 255, 0.9);
       border: 1px solid rgba(204, 228, 255, 0.9);
@@ -435,7 +434,6 @@
 
     .section-title p,
     .asset-card p,
-    .update-card p,
     .tool-row p,
     .diagnosis-result p {
       color: var(--text-soft);
@@ -574,6 +572,17 @@
       margin-top: auto;
     }
 
+    .case-link.is-muted,
+    .asset-card.is-disabled .case-link {
+      color: rgba(86, 98, 128, 0.58);
+      pointer-events: none;
+    }
+
+    .case-link.is-muted::after,
+    .asset-card.is-disabled .case-link::after {
+      content: "";
+    }
+
     .case-link::after {
       content: ">";
       font-size: 0.9rem;
@@ -630,26 +639,6 @@
       filter: saturate(0.9);
     }
 
-    .update-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .update-card {
-      padding: 16px;
-      display: grid;
-      gap: 8px;
-      box-shadow: none;
-    }
-
-    .update-card strong {
-      color: var(--navy-900);
-      font-size: 1rem;
-    }
-
     .modal {
       position: fixed;
       inset: 0;
@@ -674,7 +663,7 @@
     .modal-panel {
       position: relative;
       z-index: 1;
-      width: min(1120px, 100%);
+      width: min(1240px, 100%);
       max-height: min(88vh, 860px);
       overflow: auto;
       padding: 20px;
@@ -728,13 +717,14 @@
 
     .diagnosis-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       gap: 14px;
       align-items: start;
     }
 
     .option-groups {
       display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
     }
 
@@ -795,6 +785,10 @@
       flex-wrap: wrap;
     }
 
+    .diagnosis-actions {
+      grid-column: 1 / -1;
+    }
+
     .diagnosis-result {
       padding: 16px;
       display: grid;
@@ -803,6 +797,8 @@
       background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(232, 244, 255, 0.74)),
         rgba(255, 255, 255, 0.94);
+      align-content: start;
+      min-height: 100%;
     }
 
     .result-block {
@@ -939,8 +935,7 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .asset-grid,
-      .update-grid {
+      .asset-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
@@ -948,9 +943,6 @@
         grid-template-columns: repeat(4, minmax(0, 1fr));
       }
 
-      .diagnosis-grid {
-        grid-template-columns: 1fr;
-      }
     }
 
     @media (max-width: 920px) {
@@ -974,6 +966,11 @@
       .hero,
       .section-card {
         padding: 22px;
+      }
+
+      .diagnosis-grid,
+      .option-groups {
+        grid-template-columns: 1fr;
       }
 
       .tool-row,
@@ -1002,7 +999,6 @@
 
     @media (max-width: 760px) {
       .asset-grid,
-      .update-grid,
       .customer-logo-grid {
         grid-template-columns: 1fr;
       }
@@ -1137,7 +1133,6 @@
         <a href="#hero">首页</a>
         <a href="#workbench">工作台</a>
         <a href="#scene-assets">场景资产</a>
-        <a href="#updates">最近更新</a>
       </nav>
     </header>
 
@@ -1175,7 +1170,7 @@
                 <h2>拿工具</h2>
                 <p>按场景和工具类型查找调研问卷、报价模板、交付模板等资产。</p>
               </span>
-              <span class="task-action">打开工具台</span>
+              <span class="task-action">工具清单</span>
             </button>
 
             <a class="task-card" href="./CaseLibrary/">
@@ -1206,14 +1201,14 @@
         <div class="section-inner">
           <div class="arsenal-pane is-active" id="arsenal-finance" role="tabpanel" aria-labelledby="tab-finance">
             <div class="asset-grid">
-              <a class="asset-card" href="./FinanceBrandHouse/">
+              <article class="asset-card is-disabled" aria-label="财经品牌屋入口暂不跳转">
                 <div class="asset-card-head">
                   <h3>财经品牌屋</h3>
                   <span class="status is-live">已上线</span>
                 </div>
                 <p>帆软财经品牌的价值主张、品牌定位、面向人群与能力支撑。</p>
-                <span class="case-link">进入页面</span>
-              </a>
+                <span class="case-link is-muted">进入页面</span>
+              </article>
 
               <a class="asset-card" href="./JFH/">
                 <div class="asset-card-head">
@@ -1230,17 +1225,17 @@
                   <span class="status is-build">建设中</span>
                 </div>
                 <p>围绕财务管报自动化，覆盖场景说明、案例地图与工具资产。当前入口待补齐，避免跳转到无效页面。</p>
-                <span class="case-link">建设中</span>
+                <span class="case-link is-muted">进入页面</span>
               </article>
 
-              <a class="asset-card" href="./PenetratingSupervision/">
+              <article class="asset-card is-disabled" aria-label="穿透式监管入口暂不跳转">
                 <div class="asset-card-head">
                   <h3>穿透式监管</h3>
                   <span class="status is-live">已上线</span>
                 </div>
                 <p>聚焦央国企，围绕国资穿透式监管政策要求的场景方案。</p>
-                <span class="case-link">进入页面</span>
-              </a>
+                <span class="case-link is-muted">进入页面</span>
+              </article>
 
               <a class="asset-card" href="./FinanceAnalysisPlatform/">
                 <div class="asset-card-head">
@@ -1264,7 +1259,6 @@
             <section class="customer-wall" aria-label="财经破圈典型客户">
               <div class="customer-wall-head">
                 <strong>典型客户</strong>
-                <span>用于一线同学快速建立客户参照感，后续统一沉淀到案例库。</span>
               </div>
               <div class="customer-logo-grid">
                 <div class="customer-logo"><img src="./assets/customer-logos/cnooc.svg" alt="中国海洋石油集团 Logo"></div>
@@ -1343,31 +1337,6 @@
         </div>
       </section>
 
-      <section class="section-card" id="updates">
-        <div class="section-head">
-          <div class="section-title">
-            <h2>最近更新</h2>
-            <p>首页优先展示已经可用的作战资产和明确建设中的内容，避免一线同学进入后遇到无反馈或 404。</p>
-          </div>
-        </div>
-        <div class="update-grid">
-          <article class="update-card">
-            <span class="status is-live">已上线</span>
-            <strong>数字化经分会专题页</strong>
-            <p>已沉淀场景总览、方案说明、案例地图、工具与推进计划。</p>
-          </article>
-          <article class="update-card">
-            <span class="status is-live">已上线</span>
-            <strong>首页任务入口</strong>
-            <p>支持客户诊断、场景浏览、工具检索与案例库入口。</p>
-          </article>
-          <article class="update-card">
-            <span class="status is-build">建设中</span>
-            <strong>案例库与财务管报</strong>
-            <p>保留明确入口与状态提示，待真实内容补齐后替换为正式页面。</p>
-          </article>
-        </div>
-      </section>
     </main>
 
     <footer class="footer-note">
