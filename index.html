@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FineAndYou | 帆软行销·总工办</title>
-  <meta name="description" content="帆软行销·总工办（COE）数字化开源阵地首页，涵盖财经破圈、数据治理与 COE 团队介绍。">
+  <title>FineAndYou | 财经与数据治理知识资产工作台</title>
+  <meta name="description" content="帆软行销·总工办知识资产工作台，面向一线同学沉淀客户判断、场景方案、案例材料与交付工具。">
   <link rel="stylesheet" href="./tokens.css">
   <style>
     :root {
@@ -21,13 +21,16 @@
       --line-strong: rgba(0, 85, 204, 0.2);
       --text: #17346E;
       --text-soft: #566280;
+      --text-muted: #8F99B3;
       --accent: #0086E6;
-      --shadow-lg: 0 28px 72px rgba(23, 52, 110, 0.10);
-      --shadow-md: 0 18px 40px rgba(23, 52, 110, 0.07);
-      --radius-xl: 30px;
-      --radius-lg: 22px;
-      --radius-md: 16px;
-      --radius-sm: 10px;
+      --success: #00B35C;
+      --warning: #F39600;
+      --shadow-lg: 0 26px 68px rgba(23, 52, 110, 0.10);
+      --shadow-md: 0 16px 36px rgba(23, 52, 110, 0.07);
+      --radius-xl: 22px;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
       --max-width: 1440px;
       --nav-height: 74px;
       --anim: 220ms cubic-bezier(.2, .8, .2, 1);
@@ -46,11 +49,14 @@
       font-family: var(--font-family);
       color: var(--text);
       background:
-        radial-gradient(circle at 8% 10%, rgba(0, 134, 230, 0.14), transparent 20%),
+        radial-gradient(circle at 8% 8%, rgba(0, 134, 230, 0.14), transparent 22%),
         radial-gradient(circle at 92% 6%, rgba(0, 172, 230, 0.12), transparent 18%),
-        radial-gradient(circle at 50% 100%, rgba(0, 85, 204, 0.05), transparent 28%),
-        linear-gradient(180deg, #ffffff 0%, #F5FAFF 46%, #F0F4F8 100%);
+        linear-gradient(180deg, #ffffff 0%, #F5FAFF 48%, #F0F4F8 100%);
       overflow-x: hidden;
+    }
+
+    body.is-modal-open {
+      overflow: hidden;
     }
 
     body::before {
@@ -62,7 +68,7 @@
         linear-gradient(rgba(0, 134, 230, 0.022) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0, 134, 230, 0.022) 1px, transparent 1px);
       background-size: 36px 36px;
-      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.86), transparent 95%);
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.84), transparent 95%);
     }
 
     a {
@@ -70,15 +76,23 @@
       text-decoration: none;
     }
 
-    button {
+    button,
+    input {
       font: inherit;
       color: inherit;
+    }
+
+    button {
       cursor: pointer;
       border: 0;
       background: none;
     }
 
-    h1, h2, h3, h4, p {
+    h1,
+    h2,
+    h3,
+    h4,
+    p {
       margin: 0;
     }
 
@@ -96,13 +110,13 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 18px;
       min-height: var(--nav-height);
-      padding: 16px 22px;
-      border-radius: 18px;
+      padding: 15px 20px;
+      border-radius: var(--radius-lg);
       background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(232, 244, 255, 0.72)),
-        rgba(255, 255, 255, 0.76);
+        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(232, 244, 255, 0.76)),
+        rgba(255, 255, 255, 0.78);
       backdrop-filter: blur(20px) saturate(135%);
       border: 1px solid rgba(204, 228, 255, 0.88);
       box-shadow: 0 16px 38px rgba(23, 52, 110, 0.06);
@@ -131,7 +145,7 @@
     .brand-copy {
       min-width: 0;
       display: grid;
-      gap: 6px;
+      gap: 5px;
     }
 
     .brand-copy strong {
@@ -146,8 +160,8 @@
 
     .brand-subtitle {
       max-width: 760px;
-      font-size: 0.88rem;
-      line-height: 1.6;
+      font-size: 0.86rem;
+      line-height: 1.55;
       color: var(--text-soft);
     }
 
@@ -163,8 +177,8 @@
       position: relative;
       padding: 8px 12px;
       border-radius: 10px;
-      color: rgba(86, 98, 128, 0.86);
-      font-size: 0.98rem;
+      color: rgba(86, 98, 128, 0.9);
+      font-size: 0.95rem;
       font-weight: 700;
       transition: color var(--anim), background var(--anim);
     }
@@ -174,28 +188,9 @@
       background: rgba(0, 134, 230, 0.07);
     }
 
-    .topnav a::after {
-      content: "";
-      position: absolute;
-      left: 12px;
-      right: 12px;
-      bottom: 4px;
-      height: 2px;
-      border-radius: 999px;
-      background: var(--navy-700);
-      opacity: 0;
-      transform: scaleX(0.45);
-      transition: opacity var(--anim), transform var(--anim);
-    }
-
-    .topnav a:hover::after {
-      opacity: 1;
-      transform: scaleX(1);
-    }
-
     .page {
       display: grid;
-      gap: 20px;
+      gap: 18px;
       margin-top: 18px;
     }
 
@@ -210,21 +205,20 @@
         var(--paper);
       border: 1px solid rgba(204, 228, 255, 0.88);
       box-shadow: 0 22px 60px rgba(23, 52, 110, 0.08);
-      padding: 30px;
+      padding: 28px;
     }
 
     .hero::before,
-    .hero::after,
     .section-card::before {
       content: "";
       position: absolute;
-      border-radius: 24px;
+      border-radius: 22px;
       transform: rotate(45deg);
       background:
-        radial-gradient(circle, rgba(0, 134, 230, 0.15) 0 12px, transparent 13px 26px, rgba(0, 172, 230, 0.10) 27px 36px, transparent 37px),
+        radial-gradient(circle, rgba(0, 134, 230, 0.14) 0 12px, transparent 13px 26px, rgba(0, 172, 230, 0.09) 27px 36px, transparent 37px),
         linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent);
       pointer-events: none;
-      opacity: 0.36;
+      opacity: 0.32;
     }
 
     .hero::before {
@@ -234,54 +228,41 @@
       top: -140px;
     }
 
-    .hero::after {
-      width: 320px;
-      height: 320px;
-      right: -40px;
-      bottom: -190px;
-      opacity: 0.24;
-    }
-
     .section-card::before {
       width: 220px;
       height: 220px;
       right: -120px;
       top: -100px;
-      opacity: 0.18;
+      opacity: 0.16;
     }
 
     .hero-grid,
-    .section-grid {
+    .section-inner {
       position: relative;
       z-index: 1;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-      align-items: start;
-    }
-
-    .hero-copy,
-    .section-stack {
-      display: grid;
-      gap: 14px;
+      gap: 22px;
     }
 
     .hero-copy {
-      max-width: 860px;
+      display: grid;
+      gap: 12px;
+      max-width: 920px;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 9px;
       width: fit-content;
-      padding: 8px 14px;
+      padding: 7px 13px;
       border-radius: 999px;
       background: rgba(0, 134, 230, 0.08);
       color: var(--navy-700);
+      font-size: 0.86rem;
       font-weight: 700;
       letter-spacing: 0.04em;
     }
@@ -296,366 +277,314 @@
     }
 
     .hero h1 {
-      margin-top: 4px;
-      font-size: clamp(2.05rem, 3vw, 3.02rem);
-      line-height: 1.1;
+      font-size: clamp(2rem, 3vw, 3rem);
+      line-height: 1.12;
       letter-spacing: -0.035em;
       color: var(--navy-900);
-      max-width: 760px;
+      max-width: 860px;
       text-wrap: balance;
     }
 
     .hero-subtitle {
-      max-width: 920px;
+      max-width: 940px;
       font-size: 1rem;
       line-height: 1.78;
       color: var(--text-soft);
       text-wrap: pretty;
     }
 
-    .hero-pills,
-    .chip-list {
-      display: flex;
-      gap: 9px;
-      flex-wrap: wrap;
+    .task-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
     }
 
-    .hero-pills span,
-    .chip,
-    .ghost-chip {
-      display: inline-flex;
-      align-items: center;
-      min-height: 34px;
-      padding: 0 12px;
-      border-radius: 999px;
-      font-size: 0.86rem;
-    }
-
-    .hero-pills span,
-    .chip {
-      background: linear-gradient(180deg, rgba(232, 244, 255, 0.98), rgba(204, 228, 255, 0.94));
-      color: var(--navy-700);
-      border: 1px solid rgba(128, 202, 255, 0.82);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.84);
-    }
-
-    .ghost-chip {
-      background: rgba(255, 255, 255, 0.92);
-      color: var(--text);
-      border: 1px solid rgba(204, 228, 255, 0.88);
-    }
-
-    .hero-panel,
-    .mini-card,
-    .arsenal-card,
-    .case-card,
-    .profile-card,
-    .profile-text,
-    .profile-detail {
+    .task-card,
+    .asset-card,
+    .modal-panel,
+    .diagnosis-result,
+    .tool-row,
+    .update-card {
       border-radius: var(--radius-lg);
-      background: rgba(255, 255, 255, 0.88);
+      background: rgba(255, 255, 255, 0.9);
       border: 1px solid rgba(204, 228, 255, 0.9);
       box-shadow: var(--shadow-md);
     }
 
-    .hero-panel {
-      padding: 20px;
+    .task-card {
+      min-height: 166px;
+      padding: 16px;
+      display: grid;
+      align-content: space-between;
+      gap: 14px;
+      text-align: left;
+      transition: transform var(--anim), border-color var(--anim), background var(--anim), box-shadow var(--anim);
     }
 
-    .hero-panel h2,
-    .section-head h2 {
-      font-size: clamp(1.72rem, 2.4vw, 2.6rem);
-      line-height: 1.18;
+    .task-card > span:first-child {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 8px 10px;
+      align-items: center;
+    }
+
+    .task-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(128, 202, 255, 0.78);
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 20px 42px rgba(23, 52, 110, 0.1);
+    }
+
+    .task-index {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 9px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--navy-800), var(--navy-700));
+      font-size: 0.84rem;
+      font-weight: 800;
+    }
+
+    .task-card h2 {
+      margin-top: 0;
       color: var(--navy-900);
+      font-size: 1.06rem;
+      line-height: 1.32;
     }
 
-    .hero-panel p,
-    .section-head p,
-    .mini-card p,
-    .arsenal-card p,
-    .sub-card p,
-    .profile-meta p,
-    .profile-detail p {
+    .task-card p {
+      grid-column: 1 / -1;
+      margin-top: 0;
       color: var(--text-soft);
-      line-height: 1.78;
+      font-size: 0.88rem;
+      line-height: 1.68;
+    }
+
+    .task-action,
+    .primary-btn,
+    .ghost-btn,
+    .tool-filter,
+    .modal-close,
+    .result-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: 0 13px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      transition: transform var(--anim), background var(--anim), border-color var(--anim), color var(--anim), opacity var(--anim);
+    }
+
+    .task-action,
+    .primary-btn,
+    .result-link {
+      color: #fff;
+      background: linear-gradient(135deg, var(--navy-800), var(--navy-700));
+      box-shadow: 0 10px 20px rgba(0, 85, 204, 0.14);
+      width: fit-content;
+    }
+
+    .ghost-btn,
+    .tool-filter,
+    .modal-close {
+      color: var(--navy-700);
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(128, 202, 255, 0.58);
     }
 
     .section-head {
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       justify-content: space-between;
       gap: 16px;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       position: relative;
       z-index: 1;
     }
 
-    .section-stack h2 {
-      position: relative;
-      padding-left: 16px;
+    .section-title {
+      display: grid;
+      gap: 8px;
+      max-width: 820px;
     }
 
-    .section-stack h2::before {
+    .section-title h2 {
+      position: relative;
+      padding-left: 16px;
+      font-size: clamp(1.48rem, 2vw, 2rem);
+      line-height: 1.22;
+      color: var(--navy-900);
+    }
+
+    .section-title h2::before {
       content: "";
       position: absolute;
       left: 0;
-      top: 0.16em;
-      bottom: 0.16em;
+      top: 0.15em;
+      bottom: 0.15em;
       width: 4px;
       border-radius: 999px;
       background: linear-gradient(180deg, var(--navy-700), var(--sky-500));
       box-shadow: 0 0 0 6px rgba(204, 228, 255, 0.9);
     }
 
-    #about {
-      padding: 24px;
+    .section-title p,
+    .asset-card p,
+    .update-card p,
+    .tool-row p,
+    .diagnosis-result p {
+      color: var(--text-soft);
+      line-height: 1.7;
+      font-size: 0.94rem;
     }
 
-    #about .section-head {
-      margin-bottom: 14px;
+    .section-card.is-highlight {
+      animation: sectionPulse 1600ms ease;
     }
 
-    #about .section-head h2 {
-      font-size: clamp(1.42rem, 2vw, 1.92rem);
-      line-height: 1.2;
-    }
+    @keyframes sectionPulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(0, 134, 230, 0.28), 0 22px 60px rgba(23, 52, 110, 0.08);
+      }
 
-    .section-head p {
-      max-width: 720px;
-      font-size: 0.96rem;
-    }
+      55% {
+        box-shadow: 0 0 0 10px rgba(0, 134, 230, 0.08), 0 22px 60px rgba(23, 52, 110, 0.08);
+      }
 
-    .mini-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      grid-column: 1 / -1;
-    }
-
-    .mini-card {
-      padding: 18px 20px;
-      display: grid;
-      gap: 8px;
-    }
-
-    .mini-card strong,
-    .sub-card h4,
-    .arsenal-card h3,
-    .profile-text h3,
-    .profile-detail strong {
-      color: var(--navy-900);
-    }
-
-    .mini-card strong {
-      font-size: 1rem;
-    }
-
-    .hero-side-panel {
-      padding: 22px;
-      display: grid;
-      gap: 14px;
-      align-content: start;
-    }
-
-    .hero-side-panel h3 {
-      font-size: 1.2rem;
-      color: var(--navy-900);
-    }
-
-    .list {
-      display: grid;
-      gap: 10px;
-    }
-
-    .list-item,
-    .bullet-item {
-      position: relative;
-      min-height: 42px;
-      padding: 11px 14px 11px 46px;
-      border-radius: 14px;
-      background: rgba(232, 244, 255, 0.74);
-      color: var(--text);
-      line-height: 1.72;
-    }
-
-    .list-item::before,
-    .bullet-item::before {
-      content: "➜";
-      position: absolute;
-      left: 16px;
-      top: 12px;
-      color: var(--navy-700);
-      font-weight: 700;
-    }
-
-    .arsenal-layout {
-      position: relative;
-      z-index: 1;
-      display: block;
+      100% {
+        box-shadow: 0 0 0 0 rgba(0, 134, 230, 0), 0 22px 60px rgba(23, 52, 110, 0.08);
+      }
     }
 
     .arsenal-tabs {
       display: flex;
       align-items: center;
       gap: 6px;
+      flex-wrap: wrap;
       justify-content: flex-end;
-      width: min(520px, 100%);
-      padding: 0;
-      border-radius: 0;
-      background: transparent;
-      border: 0;
-      box-shadow: none;
     }
 
     .arsenal-tab {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 40px;
-      text-align: center;
-      padding: 8px 14px;
-      border-radius: 12px;
-      color: rgba(86, 98, 128, 0.86);
-      background: transparent;
+      min-height: 38px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      color: rgba(86, 98, 128, 0.88);
       border: 1px solid transparent;
-      box-shadow: none;
+      font-weight: 700;
       transition: color var(--anim), background var(--anim), border-color var(--anim);
-    }
-
-    .arsenal-tab strong,
-    .arsenal-tab span {
-      display: block;
-    }
-
-    .arsenal-tab strong {
-      font-size: 0.92rem;
-      color: inherit;
-    }
-
-    .arsenal-tab span {
-      display: none;
-      margin-top: 8px;
-      color: var(--text-soft);
-      line-height: 1.66;
-      font-size: 0.9rem;
     }
 
     .arsenal-tab.is-active {
       color: var(--navy-700);
       background: rgba(232, 244, 255, 0.92);
-      border-color: rgba(128, 202, 255, 0.4);
-    }
-
-    .arsenal-tab.is-active strong {
-      color: var(--navy-700);
-    }
-
-    .arsenal-tab:not(.is-active):hover {
-      color: var(--navy-700);
-      background: rgba(232, 244, 255, 0.72);
+      border-color: rgba(128, 202, 255, 0.46);
     }
 
     .arsenal-pane {
       display: none;
-      gap: 18px;
+      gap: 14px;
     }
 
     .arsenal-pane.is-active {
       display: grid;
     }
 
-    .arsenal-card {
-      padding: 20px;
-      display: grid;
-      gap: 18px;
-      background: rgba(255, 255, 255, 0.8);
-      box-shadow: none;
-    }
-
-    .arsenal-topline {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      flex-wrap: wrap;
-      padding-bottom: 12px;
-      border-bottom: 1px solid rgba(204, 228, 255, 0.92);
-    }
-
-    .case-grid {
+    .asset-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .case-card {
-      display: grid;
-      align-content: start;
-      gap: 10px;
-      min-width: 0;
-      min-height: 154px;
-      border-radius: 14px;
-      padding: 16px;
-      background: rgba(255, 255, 255, 0.84);
-      border: 1px solid rgba(204, 228, 255, 0.92);
-      box-shadow: none;
-      transition: background var(--anim), border-color var(--anim), transform var(--anim);
-    }
-
-    a.case-card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(128, 202, 255, 0.72);
-      background: rgba(232, 244, 255, 0.46);
-    }
-
-    .case-card-head {
-      display: flex;
-      align-items: flex-start;
       gap: 12px;
     }
 
-    .case-card h4 {
-      color: var(--navy-900);
-      font-size: 1rem;
-      line-height: 1.38;
+    .asset-card {
+      display: grid;
+      gap: 12px;
+      min-height: 168px;
+      padding: 16px;
+      box-shadow: none;
+      transition: transform var(--anim), border-color var(--anim), background var(--anim);
     }
 
-    .case-card p {
+    a.asset-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(128, 202, 255, 0.78);
+      background: rgba(232, 244, 255, 0.46);
+    }
+
+    .asset-card.is-disabled {
+      border-style: dashed;
+      background: rgba(232, 244, 255, 0.4);
       color: var(--text-soft);
-      line-height: 1.68;
-      font-size: 0.88rem;
+    }
+
+    .asset-card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .asset-card h3 {
+      color: var(--navy-900);
+      font-size: 1.05rem;
+      line-height: 1.35;
+    }
+
+    .status {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 0 9px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      background: rgba(232, 244, 255, 0.96);
+      color: var(--navy-700);
+      border: 1px solid rgba(128, 202, 255, 0.58);
+    }
+
+    .status.is-live {
+      color: var(--success);
+      border-color: rgba(0, 179, 92, 0.2);
+      background: rgba(0, 179, 92, 0.08);
+    }
+
+    .status.is-build {
+      color: var(--warning);
+      border-color: rgba(243, 150, 0, 0.22);
+      background: rgba(243, 150, 0, 0.08);
     }
 
     .case-link {
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      width: fit-content;
       color: var(--navy-700);
       font-weight: 700;
       font-size: 0.86rem;
       margin-top: auto;
     }
 
-    .case-link.is-muted {
-      color: rgba(86, 98, 128, 0.72);
-    }
-
     .case-link::after {
-      content: "›";
-      font-size: 1.1rem;
+      content: ">";
+      font-size: 0.9rem;
       line-height: 1;
-    }
-
-    .placeholder-card {
-      border-style: dashed;
-      box-shadow: none;
-      background: rgba(232, 244, 255, 0.36);
     }
 
     .customer-wall {
       display: grid;
-      gap: 14px;
-      padding: 16px;
-      border-radius: 16px;
+      gap: 12px;
+      padding: 14px;
+      border-radius: var(--radius-lg);
       background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(245, 250, 255, 0.84)),
         rgba(255, 255, 255, 0.86);
@@ -676,22 +605,9 @@
       font-size: 0.96rem;
     }
 
-    .customer-logo-stage {
-      height: 150px;
-      overflow: hidden;
-      border-radius: 12px;
-      mask-image: linear-gradient(180deg, transparent 0, #000 10%, #000 90%, transparent 100%);
-    }
-
-    .customer-logo-pages {
+    .customer-logo-grid {
       display: grid;
-      gap: 12px;
-      animation: logoPageShift 13s ease-in-out infinite;
-    }
-
-    .customer-logo-page {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(8, minmax(0, 1fr));
       gap: 10px;
     }
 
@@ -699,292 +615,309 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 66px;
-      padding: 10px 12px;
+      min-height: 62px;
+      padding: 10px;
       border-radius: 12px;
       background: rgba(255, 255, 255, 0.74);
       border: 1px solid rgba(204, 228, 255, 0.64);
     }
 
     .customer-logo img {
-      width: min(100%, 150px);
-      height: 42px;
+      width: min(100%, 132px);
+      height: 38px;
       object-fit: contain;
       display: block;
       filter: saturate(0.9);
     }
 
-    @keyframes logoPageShift {
-      0%, 38% {
-        transform: translateY(0);
-      }
-
-      50%, 88% {
-        transform: translateY(calc(-50% - 6px));
-      }
-
-      100% {
-        transform: translateY(0);
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .customer-logo-pages {
-        animation: none;
-      }
-    }
-
-    .profile-grid {
+    .update-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
       position: relative;
       z-index: 1;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      align-items: start;
     }
 
-    .profile-card {
-      padding: 22px 18px 18px;
-      display: grid;
-      gap: 0;
-      background:
-        radial-gradient(circle at top left, rgba(232, 244, 255, 0.82), transparent 28%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(232, 244, 255, 0.8));
-    }
-
-    .profile-top {
-      display: grid;
-      grid-template-columns: 112px minmax(0, 1fr);
-      gap: 16px;
-      align-items: start;
-    }
-
-    .profile-main {
-      display: grid;
-      gap: 10px;
-      min-width: 0;
-    }
-
-    .portrait {
-      width: 116px;
-      aspect-ratio: 0.74;
-      border-radius: 18px;
-      border: 1px solid rgba(204, 228, 255, 0.92);
-      background: linear-gradient(180deg, rgba(232, 244, 255, 0.95), rgba(245, 250, 255, 0.98));
-      box-shadow: 0 14px 28px rgba(23, 52, 110, 0.08);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .portrait img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .portrait-lv img {
-      object-position: center 22%;
-    }
-
-    .portrait-june img {
-      object-position: center 18%;
-    }
-
-    .profile-meta {
-      display: grid;
-      gap: 4px;
-      min-width: 0;
-    }
-
-    .profile-meta h3 {
-      font-size: clamp(1.08rem, 1.3vw, 1.34rem);
-      font-family: "SF Pro Display", "PingFang SC", "Microsoft YaHei", sans-serif;
-      font-weight: 700;
-      line-height: 1.24;
-      letter-spacing: 0.01em;
-      color: var(--navy-900);
-    }
-
-    .profile-meta p {
-      color: var(--text-soft);
-      font-size: 0.84rem;
-      letter-spacing: 0.08em;
-    }
-
-    .profile-accent {
-      width: 72px;
-      height: 6px;
-      border-radius: 999px;
-      background: var(--accent);
-      margin-top: 4px;
-    }
-
-    .profile-text,
-    .profile-detail {
-      padding: 12px 14px;
-      display: grid;
-      gap: 10px;
-      background: rgba(255, 255, 255, 0.88);
-    }
-
-    .profile-channel {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) auto;
-      gap: 14px;
-      align-items: center;
-      padding: 14px 16px;
-      border-radius: 18px;
-      border: 1px solid rgba(128, 202, 255, 0.48);
-      background:
-        radial-gradient(circle at left top, rgba(0, 134, 230, 0.08), transparent 34%),
-        linear-gradient(135deg, rgba(232, 244, 255, 0.98), rgba(255, 255, 255, 0.99));
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.88);
-    }
-
-    .channel-copy {
+    .update-card {
+      padding: 16px;
       display: grid;
       gap: 8px;
-      min-width: 0;
+      box-shadow: none;
     }
 
-    .channel-kicker {
+    .update-card strong {
+      color: var(--navy-900);
+      font-size: 1rem;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal.is-open {
+      display: flex;
+    }
+
+    .modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(23, 52, 110, 0.38);
+      backdrop-filter: blur(14px);
+    }
+
+    .modal-panel {
+      position: relative;
+      z-index: 1;
+      width: min(1120px, 100%);
+      max-height: min(88vh, 860px);
+      overflow: auto;
+      padding: 20px;
+      background:
+        radial-gradient(circle at top left, rgba(232, 244, 255, 0.9), transparent 32%),
+        rgba(255, 255, 255, 0.98);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .modal-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(204, 228, 255, 0.88);
+    }
+
+    .modal-title {
+      display: grid;
+      gap: 7px;
+    }
+
+    .modal-title h2 {
+      color: var(--navy-900);
+      font-size: clamp(1.34rem, 2vw, 1.86rem);
+      line-height: 1.22;
+    }
+
+    .modal-title p {
+      color: var(--text-soft);
+      line-height: 1.65;
+      font-size: 0.94rem;
+    }
+
+    .modal-close {
+      flex: 0 0 auto;
+      width: 38px;
+      min-height: 38px;
+      padding: 0;
+      border-radius: 12px;
+      font-size: 1.3rem;
+      line-height: 1;
+    }
+
+    .modal-body {
+      display: grid;
+      gap: 16px;
+      padding-top: 16px;
+    }
+
+    .diagnosis-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
+      gap: 14px;
+      align-items: start;
+    }
+
+    .option-groups {
+      display: grid;
+      gap: 12px;
+    }
+
+    .option-group {
+      display: grid;
+      gap: 10px;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      background: rgba(245, 250, 255, 0.74);
+      border: 1px solid rgba(204, 228, 255, 0.84);
+    }
+
+    .option-group h3 {
+      color: var(--navy-900);
+      font-size: 0.98rem;
+    }
+
+    .option-list {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .choice {
+      position: relative;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      width: fit-content;
-      min-height: 28px;
-      padding: 0 10px;
+      min-height: 34px;
+      padding: 0 12px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid rgba(128, 202, 255, 0.54);
-      color: var(--navy-700);
-      font-size: 0.8rem;
-      font-weight: 700;
-    }
-
-    .channel-kicker::before {
-      content: "";
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--navy-700), var(--sky-500));
-      box-shadow: 0 0 0 5px rgba(204, 228, 255, 0.92);
-    }
-
-    .channel-copy strong {
-      font-size: 1rem;
-      line-height: 1.35;
-      color: var(--navy-900);
-    }
-
-    .channel-copy p {
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid rgba(204, 228, 255, 0.92);
       color: var(--text-soft);
-      line-height: 1.7;
-      font-size: 0.88rem;
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: color var(--anim), background var(--anim), border-color var(--anim);
     }
 
-    .channel-actions {
+    .choice input {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .choice:has(input:checked) {
+      color: var(--navy-700);
+      border-color: rgba(0, 134, 230, 0.45);
+      background: rgba(232, 244, 255, 0.92);
+    }
+
+    .diagnosis-actions,
+    .tool-actions {
       display: flex;
       align-items: center;
       gap: 10px;
       flex-wrap: wrap;
-      justify-content: flex-end;
     }
 
-    .channel-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 40px;
-      padding: 0 16px;
-      border-radius: 999px;
-      border: 1px solid transparent;
+    .diagnosis-result {
+      padding: 16px;
+      display: grid;
+      gap: 13px;
+      box-shadow: none;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(232, 244, 255, 0.74)),
+        rgba(255, 255, 255, 0.94);
+    }
+
+    .result-block {
+      display: grid;
+      gap: 5px;
+    }
+
+    .result-block strong {
+      color: var(--navy-900);
+      font-size: 0.92rem;
+    }
+
+    .result-block p {
       font-size: 0.88rem;
-      font-weight: 700;
-      transition: transform var(--anim), box-shadow var(--anim), border-color var(--anim), background var(--anim), color var(--anim);
-      white-space: nowrap;
     }
 
-    .channel-btn.primary {
-      color: #fff;
-      background: linear-gradient(135deg, var(--navy-800), var(--navy-700));
-      box-shadow: 0 10px 20px rgba(0, 85, 204, 0.14);
-    }
-
-    .channel-btn.secondary {
-      color: var(--navy-700);
-      background: rgba(255, 255, 255, 0.96);
-      border-color: rgba(128, 202, 255, 0.56);
-    }
-
-    .channel-btn:hover {
-      transform: translateY(-1px);
-    }
-
-    .channel-btn.secondary:hover {
-      border-color: rgba(128, 202, 255, 0.78);
-      background: rgba(255, 255, 255, 1);
-    }
-
-    .channel-tips {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      min-height: 22px;
-      color: var(--text-soft);
-      font-size: 0.8rem;
-    }
-
-    .channel-tips::before {
-      content: "微信内搜索";
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      height: 22px;
-      padding: 0 8px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.94);
-      border: 1px solid rgba(204, 228, 255, 0.92);
-      color: var(--navy-700);
-      font-size: 0.72rem;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
-    .profile-text ul,
-    .profile-detail ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    .tool-filters {
       display: grid;
       gap: 10px;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      background: rgba(245, 250, 255, 0.76);
+      border: 1px solid rgba(204, 228, 255, 0.84);
     }
 
-    .profile-text li,
-    .profile-detail li {
-      position: relative;
-      padding-left: 22px;
+    .filter-row {
+      display: grid;
+      grid-template-columns: 70px minmax(0, 1fr);
+      gap: 10px;
+      align-items: start;
+    }
+
+    .filter-row strong {
+      padding-top: 7px;
+      color: var(--navy-900);
+      font-size: 0.88rem;
+    }
+
+    .filter-options {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tool-filter.is-active {
+      color: #fff;
+      background: linear-gradient(135deg, var(--navy-800), var(--navy-700));
+      border-color: transparent;
+    }
+
+    .tool-table {
+      display: grid;
+      gap: 9px;
+    }
+
+    .tool-row {
+      display: grid;
+      grid-template-columns: minmax(160px, 1.1fr) 110px 120px 96px 92px 104px;
+      gap: 10px;
+      align-items: center;
+      padding: 12px;
+      box-shadow: none;
+    }
+
+    .tool-row.is-head {
+      min-height: 38px;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      font-weight: 800;
+      background: rgba(232, 244, 255, 0.74);
+    }
+
+    .tool-row strong {
+      color: var(--navy-900);
+      font-size: 0.92rem;
+    }
+
+    .tool-row p {
+      font-size: 0.82rem;
+    }
+
+    .tool-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 30px;
+      padding: 0 10px;
+      border-radius: 999px;
+      color: var(--navy-700);
+      background: rgba(232, 244, 255, 0.9);
+      border: 1px solid rgba(128, 202, 255, 0.52);
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .tool-action.is-disabled {
+      color: var(--text-muted);
+      background: rgba(240, 242, 245, 0.9);
+      border-color: rgba(184, 190, 204, 0.48);
+      cursor: default;
+    }
+
+    .empty-tools {
+      display: none;
+      padding: 18px;
+      border-radius: var(--radius-md);
       color: var(--text-soft);
-      line-height: 1.7;
-      font-size: 0.9rem;
+      background: rgba(245, 250, 255, 0.74);
+      border: 1px dashed rgba(128, 202, 255, 0.62);
+      text-align: center;
     }
 
-    .profile-text li::before,
-    .profile-detail li::before {
-      content: "➤";
-      position: absolute;
-      left: 0;
-      top: 0;
-      color: var(--navy-700);
-      font-weight: 700;
-    }
-
-    .profile-text em,
-    .profile-detail em {
-      font-style: normal;
-      color: var(--navy-700);
-      font-weight: 700;
+    .empty-tools.is-visible {
+      display: block;
     }
 
     .footer-note {
@@ -992,43 +925,31 @@
       justify-content: space-between;
       gap: 14px;
       flex-wrap: wrap;
-      padding: 18px 22px;
-      border-radius: 18px;
+      padding: 16px 20px;
+      border-radius: var(--radius-lg);
       border: 1px solid rgba(204, 228, 255, 0.9);
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.82);
       color: var(--text-soft);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       line-height: 1.7;
     }
 
     @media (max-width: 1180px) {
-      .hero-grid,
-      .profile-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .case-grid {
+      .task-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .customer-logo-page {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+      .asset-grid,
+      .update-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .customer-logo-stage {
-        height: 218px;
+      .customer-logo-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
       }
 
-      .portrait-wrap {
-        justify-items: start;
-      }
-
-      .profile-meta {
-        text-align: left;
-      }
-
-      .profile-accent {
-        margin-left: 0;
+      .diagnosis-grid {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -1040,20 +961,14 @@
         gap: 14px;
       }
 
-      .topnav {
+      .topnav,
+      .arsenal-tabs {
         justify-content: flex-start;
       }
 
       .section-head {
         align-items: flex-start;
         flex-direction: column;
-        gap: 12px;
-      }
-
-      .arsenal-tabs {
-        width: 100%;
-        max-width: none;
-        justify-content: flex-start;
       }
 
       .hero,
@@ -1061,35 +976,35 @@
         padding: 22px;
       }
 
-      .profile-top {
-        grid-template-columns: 96px minmax(0, 1fr);
-      }
-
-      .portrait {
-        width: 96px;
-      }
-
-      .profile-channel {
+      .tool-row,
+      .tool-row.is-head {
         grid-template-columns: 1fr;
+        gap: 6px;
       }
 
-      .channel-actions {
-        justify-content: flex-start;
+      .tool-row.is-head {
+        display: none;
+      }
+
+      .tool-row {
+        align-items: start;
+      }
+
+      .tool-row > *::before {
+        content: attr(data-label);
+        display: block;
+        color: var(--text-muted);
+        font-size: 0.72rem;
+        font-weight: 800;
+        margin-bottom: 2px;
       }
     }
 
     @media (max-width: 760px) {
-      .mini-grid,
-      .case-grid {
+      .asset-grid,
+      .update-grid,
+      .customer-logo-grid {
         grid-template-columns: 1fr;
-      }
-
-      .customer-logo-page {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .customer-logo-stage {
-        height: 294px;
       }
     }
 
@@ -1103,17 +1018,7 @@
       .hero,
       .section-card {
         padding: 16px;
-        border-radius: 20px;
-      }
-
-      .topbar {
-        gap: 12px;
-        min-height: auto;
-      }
-
-      .brand {
-        align-items: center;
-        gap: 10px;
+        border-radius: 18px;
       }
 
       .brand-mark img {
@@ -1131,12 +1036,12 @@
 
       .topnav {
         width: 100%;
-        gap: 6px;
+        gap: 5px;
       }
 
       .topnav a {
-        padding: 7px 9px;
-        font-size: 0.82rem;
+        padding: 7px 8px;
+        font-size: 0.8rem;
       }
 
       .page {
@@ -1144,385 +1049,560 @@
         margin-top: 12px;
       }
 
-      .hero::before,
-      .hero::after {
-        opacity: 0.14;
-      }
-
-      .hero-grid,
-      .hero-copy,
-      .section-stack {
-        gap: 10px;
-      }
-
-      .eyebrow {
-        padding: 6px 10px;
-        font-size: 0.78rem;
-        gap: 8px;
-      }
-
-      .eyebrow::before {
-        width: 7px;
-        height: 7px;
-        box-shadow: 0 0 0 5px rgba(0, 134, 230, 0.08);
+      .hero-grid {
+        gap: 16px;
       }
 
       .hero h1 {
-        margin-top: 4px;
         font-size: clamp(1.62rem, 6.4vw, 2.04rem);
         line-height: 1.16;
-        letter-spacing: -0.03em;
       }
 
       .hero-subtitle {
         font-size: 0.88rem;
         line-height: 1.68;
-        white-space: normal;
       }
 
-      .hero-pills,
-      .chip-list {
-        gap: 7px;
+      .task-grid {
+        grid-template-columns: 1fr;
       }
 
-      .hero-pills span,
-      .chip,
-      .ghost-chip {
-        min-height: 30px;
-        padding: 0 10px;
+      .task-card {
+        min-height: 0;
+        padding: 14px;
+        gap: 12px;
+      }
+
+      .task-index {
+        width: 26px;
+        height: 26px;
+        border-radius: 8px;
         font-size: 0.78rem;
       }
 
-      .hero-side-panel h3 {
+      .task-card h2 {
         font-size: 1rem;
       }
 
-      .arsenal-tab,
-      .arsenal-card,
-      .case-card,
-      .profile-card,
-      .profile-text,
-      .profile-detail,
-      .hero-panel,
-      .hero-side-panel,
-      .mini-card {
+      .task-card p {
+        font-size: 0.84rem;
+        line-height: 1.62;
+      }
+
+      .task-action {
+        min-height: 32px;
+        padding: 0 12px;
+        font-size: 0.8rem;
+      }
+
+      .modal {
+        padding: 10px;
+        align-items: stretch;
+      }
+
+      .modal-panel {
+        max-height: calc(100vh - 20px);
         padding: 14px;
+        border-radius: 18px;
       }
 
-      .arsenal-tabs {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 6px;
-        padding: 4px;
+      .modal-head {
+        gap: 10px;
       }
 
-      .arsenal-tab {
-        min-height: 38px;
-        padding: 8px 6px;
-        text-align: center;
-        gap: 6px;
-      }
-
-      .arsenal-tab strong {
-        font-size: 0.78rem;
-        line-height: 1.3;
-      }
-
-      .arsenal-tab::before {
-        width: 8px;
-        height: 8px;
-      }
-
-      .customer-wall {
-        padding: 12px;
-      }
-
-      .customer-wall-head {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 4px;
-      }
-
-      .customer-logo {
-        min-height: 62px;
-        padding: 9px 10px;
-      }
-
-      .customer-logo img {
-        width: min(100%, 132px);
-        height: 38px;
-      }
-
-      .profile-top {
+      .filter-row {
         grid-template-columns: 1fr;
-        gap: 12px;
+        gap: 6px;
       }
 
-      .portrait {
-        width: min(100%, 128px);
-      }
-
-      .profile-main {
-        gap: 12px;
-      }
-
-      .channel-actions {
-        width: 100%;
-      }
-
-      .channel-btn {
-        flex: 1 1 0;
+      .filter-row strong {
+        padding-top: 0;
       }
     }
-
-
   </style>
 </head>
 <body>
   <div class="shell">
     <header class="topbar">
       <div class="brand">
-        <a class="brand-mark" href="#hero" aria-label="帆软首页">
+        <a class="brand-mark" href="#hero" aria-label="FineAndYou 首页">
           <img src="./assets/fanruan-mark.svg" alt="帆软 Logo">
         </a>
         <div class="brand-copy">
-          <strong>FineAndYou｜总工办 × 财经小组·知识资产阵地</strong>
-          <p class="brand-subtitle">不仅是提供从“理念方法”到“落地交付”的场景武器库，更希望传递一种知识文化——透明、协作、持续演进。</p>
+          <strong>FineAndYou｜总工办·知识资产开源阵地</strong>
+          <p class="brand-subtitle">面向一线同学，把客户判断、场景方案、案例材料与交付工具沉淀成可复用的作战资产。</p>
         </div>
       </div>
       <nav class="topnav" aria-label="页面导航">
         <a href="#hero">首页</a>
-        <a href="#arsenal">核心导航</a>
+        <a href="#workbench">工作台</a>
+        <a href="#scene-assets">场景资产</a>
+        <a href="#updates">最近更新</a>
       </nav>
     </header>
 
     <main class="page">
       <section class="hero" id="hero">
-        <div class="hero-grid">
+        <div class="hero-grid" id="workbench">
           <div class="hero-copy">
-            <div>
-              <h1>让数据成为丈量战略的尺子。</h1>
-            </div>
-            <div class="hero-pills" aria-label="首页能力标签">
-              <span>理念方法</span>
-              <span>场景方法论</span>
-              <span>客户实战经验</span>
-              <span>落地交付资产</span>
-            </div>
+            <div class="eyebrow">一线任务入口</div>
+            <h1>财经与数据治理知识资产工作台</h1>
+            <p class="hero-subtitle">把场景方案、客户判断、案例材料和交付工具沉淀成一线可复用的作战资产。</p>
           </div>
 
-          <div class="mini-grid">
-            <article class="mini-card">
-              <strong>理念到交付</strong>
-              <p>把方法论、业务框架、交付样例和落地经验放在同一入口持续沉淀。</p>
-            </article>
-            <article class="mini-card">
-              <strong>面向关键场景</strong>
-              <p>围绕财经破圈与数据治理，组织更能打的内容矩阵与客户对话材料。</p>
-            </article>
-            <article class="mini-card">
-              <strong>持续开源迭代</strong>
-              <p>持续分享、迭代，形成真正高质量有价值的知识资产库。</p>
-            </article>
+          <div class="task-grid" aria-label="知识资产工作台任务入口">
+            <button class="task-card" type="button" data-open-modal="diagnosis-modal">
+              <span>
+                <span class="task-index">01</span>
+                <h2>判客户</h2>
+                <p>用需求诊断清单快速判断客户适合讲哪个方案。</p>
+              </span>
+              <span class="task-action">开始诊断</span>
+            </button>
+
+            <button class="task-card" type="button" data-scroll-target="scene-assets">
+              <span>
+                <span class="task-index">02</span>
+                <h2>讲方案</h2>
+                <p>按业务场景进入方案页，查看价值表达、方案框架与推荐话术。</p>
+              </span>
+              <span class="task-action">浏览场景</span>
+            </button>
+
+            <button class="task-card" type="button" data-open-modal="tools-modal">
+              <span>
+                <span class="task-index">03</span>
+                <h2>拿工具</h2>
+                <p>按场景和工具类型查找调研问卷、报价模板、交付模板等资产。</p>
+              </span>
+              <span class="task-action">打开工具台</span>
+            </button>
+
+            <a class="task-card" href="./CaseLibrary/">
+              <span>
+                <span class="task-index">04</span>
+                <h2>找案例</h2>
+                <p>进入案例库，按行业、客户类型和场景查找参考案例。</p>
+              </span>
+              <span class="task-action">查看案例</span>
+            </a>
           </div>
         </div>
       </section>
 
-      <section class="section-card" id="arsenal">
+      <section class="section-card" id="scene-assets">
         <div class="section-head">
-          <div class="section-stack">
-            <h2>核心导航区</h2>
+          <div class="section-title">
+            <h2>按场景浏览资产</h2>
+            <p>场景仍然是知识资产的主干。选择具体场景，进入对应专题页查看方案、案例、工具与交付内容。</p>
           </div>
-          <div class="arsenal-tabs" role="tablist" aria-label="核心模块切换">
-            <button class="arsenal-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="arsenal-finance" id="tab-finance" data-pane="finance">
-              <strong>财经破圈</strong>
-              <span>围绕财经场景构建品牌表达、方案材料与落地入口。</span>
-            </button>
-            <button class="arsenal-tab" type="button" role="tab" aria-selected="false" aria-controls="arsenal-governance" id="tab-governance" data-pane="governance">
-              <strong>数据治理</strong>
-              <span>承接理念方法、治理方法论与后续治理型资产沉淀。</span>
-            </button>
-            <button class="arsenal-tab" type="button" role="tab" aria-selected="false" aria-controls="arsenal-more" id="tab-more" data-pane="more">
-              <strong>更多内容请期待</strong>
-              <span>为未来专题、案例库与新场景留出统一扩展位。</span>
-            </button>
+          <div class="arsenal-tabs" role="tablist" aria-label="场景资产切换">
+            <button class="arsenal-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="arsenal-finance" id="tab-finance" data-pane="finance">财经破圈</button>
+            <button class="arsenal-tab" type="button" role="tab" aria-selected="false" aria-controls="arsenal-governance" id="tab-governance" data-pane="governance">数据治理</button>
+            <button class="arsenal-tab" type="button" role="tab" aria-selected="false" aria-controls="arsenal-more" id="tab-more" data-pane="more">更多内容</button>
           </div>
         </div>
 
-        <div class="arsenal-layout">
-          <div>
-            <div class="arsenal-pane is-active" id="arsenal-finance" role="tabpanel" aria-labelledby="tab-finance">
-              <article class="arsenal-card">
-                <div class="arsenal-topline">
-                  <div>
-                    <h3>财经破圈</h3>
-                    <p>从品牌总览到重点场景，用统一体验把财经能力讲清楚、讲完整、讲出差异化。</p>
-                  </div>
+        <div class="section-inner">
+          <div class="arsenal-pane is-active" id="arsenal-finance" role="tabpanel" aria-labelledby="tab-finance">
+            <div class="asset-grid">
+              <a class="asset-card" href="./FinanceBrandHouse/">
+                <div class="asset-card-head">
+                  <h3>财经品牌屋</h3>
+                  <span class="status is-live">已上线</span>
                 </div>
-                <div class="case-grid">
-                  <a class="case-card" href="./FinanceBrandHouse/">
-                    <h4>财经品牌屋</h4>
-                    <p>帆软财经品牌的价值主张、品牌定位、面向人群与能力支撑。</p>
-                    <span class="case-link is-muted">进入页面</span>
-                  </a>
-                  <a class="case-card" href="https://juneding619.github.io/FineAndYou/JFH/">
-                    <h4>数字化经分会</h4>
-                    <p>聚焦高层经营作战，覆盖场景说明、案例地图与工具资产。</p>
-                    <span class="case-link">进入页面</span>
-                  </a>
-                  <a class="case-card" href="../finance-report-prototype.html">
-                    <h4>财务管报</h4>
-                    <p>围绕财务管报自动化，覆盖场景说明、案例地图与工具资产。</p>
-                    <span class="case-link is-muted">进入页面</span>
-                  </a>
-                  <a class="case-card" href="./PenetratingSupervision/">
-                    <h4>穿透式监管</h4>
-                    <p>聚焦央国企，围绕国资穿透式监管政策要求的场景方案。</p>
-                    <span class="case-link is-muted">进入页面</span>
-                  </a>
-                  <a class="case-card" href="https://juneding619.github.io/FineAndYou/FinanceAnalysisPlatform/">
-                    <h4>财务主题分析</h4>
-                    <p>四位一体财务主题分析，丰富的场景框架、看板与分析工具。</p>
-                    <span class="case-link">进入页面</span>
-                  </a>
-                  <a class="case-card" href="https://juneding619.github.io/FineAndYou/FinanceAgentPlatform/">
-                    <h4>财经Agent平台</h4>
-                    <p>AI Agent助力财经从数据记录走向价值创造。</p>
-                    <span class="case-link">进入页面</span>
-                  </a>
+                <p>帆软财经品牌的价值主张、品牌定位、面向人群与能力支撑。</p>
+                <span class="case-link">进入页面</span>
+              </a>
+
+              <a class="asset-card" href="./JFH/">
+                <div class="asset-card-head">
+                  <h3>数字化经分会</h3>
+                  <span class="status is-live">已上线</span>
                 </div>
-                <section class="customer-wall" aria-label="财经破圈典型客户">
-                  <div class="customer-wall-head">
-                    <strong>典型客户</strong>
-                  </div>
-                  <div class="customer-logo-stage">
-                    <div class="customer-logo-pages">
-                      <div class="customer-logo-page">
-                        <div class="customer-logo">
-                          <img src="./assets/customer-logos/cnooc.svg" alt="中国海洋石油集团 Logo">
-                        </div>
-                        <div class="customer-logo">
-                          <img src="./assets/customer-logos/cetc.svg" alt="中国电子科技集团财务公司 Logo">
-                        </div>
-                        <div class="customer-logo">
-                          <img src="./assets/customer-logos/cccc.png" alt="中国交通建设集团 Logo">
-                        </div>
-                        <div class="customer-logo">
-                          <img src="./assets/customer-logos/shandong-energy.svg" alt="山东能源集团有限公司 Logo">
-                        </div>
-                        <div class="customer-logo">
-                          <img src="./assets/customer-logos/sph.jpg" alt="上海医药集团股份有限公司 Logo">
-                        </div>
-                        <div class="customer-logo">
-                          <img src="./assets/customer-logos/gzmtr.gif" alt="广州地铁集团有限公司 Logo">
-                        </div>
-                        <div class="customer-logo">
-                          <img src="./assets/customer-logos/seres.svg" alt="赛力斯集团股份有限公司 Logo">
-                        </div>
-                        <div class="customer-logo">
-                          <img src="./assets/customer-logos/sungrow.svg" alt="阳光电源股份有限公司 Logo">
-                        </div>
-                      </div>
-                      <div class="customer-logo-page">
-                        <div class="customer-logo">
-                          <img src="./assets/customer-logos/eastups.png" alt="易事特集团股份有限公司 Logo">
-                        </div>
-                        <div class="customer-logo">
-                          <img src="./assets/customer-logos/purcotton.png" alt="全棉时代科技有限公司 Logo">
-                        </div>
-                        <div class="customer-logo">
-                          <img src="./assets/customer-logos/karl-storz.svg" alt="卡尔史托斯 Logo">
-                        </div>
-                        <div class="customer-logo">
-                          <img src="./assets/customer-logos/cnooc.svg" alt="中国海洋石油集团 Logo">
-                        </div>
-                        <div class="customer-logo">
-                          <img src="./assets/customer-logos/seres.svg" alt="赛力斯集团股份有限公司 Logo">
-                        </div>
-                        <div class="customer-logo">
-                          <img src="./assets/customer-logos/sungrow.svg" alt="阳光电源股份有限公司 Logo">
-                        </div>
-                        <div class="customer-logo">
-                          <img src="./assets/customer-logos/sph.jpg" alt="上海医药集团股份有限公司 Logo">
-                        </div>
-                        <div class="customer-logo">
-                          <img src="./assets/customer-logos/sph.jpg" alt="上海医药集团股份有限公司 Logo">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </section>
+                <p>聚焦高层经营作战，覆盖场景说明、案例地图与工具资产。</p>
+                <span class="case-link">进入页面</span>
+              </a>
+
+              <article class="asset-card is-disabled" aria-label="财务管报建设中">
+                <div class="asset-card-head">
+                  <h3>财务管报</h3>
+                  <span class="status is-build">建设中</span>
+                </div>
+                <p>围绕财务管报自动化，覆盖场景说明、案例地图与工具资产。当前入口待补齐，避免跳转到无效页面。</p>
+                <span class="case-link">建设中</span>
               </article>
+
+              <a class="asset-card" href="./PenetratingSupervision/">
+                <div class="asset-card-head">
+                  <h3>穿透式监管</h3>
+                  <span class="status is-live">已上线</span>
+                </div>
+                <p>聚焦央国企，围绕国资穿透式监管政策要求的场景方案。</p>
+                <span class="case-link">进入页面</span>
+              </a>
+
+              <a class="asset-card" href="./FinanceAnalysisPlatform/">
+                <div class="asset-card-head">
+                  <h3>财务主题分析</h3>
+                  <span class="status is-live">已上线</span>
+                </div>
+                <p>四位一体财务主题分析，丰富的场景框架、看板与分析工具。</p>
+                <span class="case-link">进入页面</span>
+              </a>
+
+              <a class="asset-card" href="./FinanceAgentPlatform/">
+                <div class="asset-card-head">
+                  <h3>财经 Agent 平台</h3>
+                  <span class="status is-live">已上线</span>
+                </div>
+                <p>AI Agent 助力财经从数据记录走向价值创造。</p>
+                <span class="case-link">进入页面</span>
+              </a>
             </div>
 
-            <div class="arsenal-pane" id="arsenal-governance" role="tabpanel" aria-labelledby="tab-governance">
-              <article class="arsenal-card">
-                <div class="arsenal-topline">
-                  <div>
-                    <h3>数据治理</h3>
-                    <p>作为 COE 的第二增长内容面，先保留一级入口与二级挂载位，便于后续按同样风格继续扩建。</p>
-                  </div>
+            <section class="customer-wall" aria-label="财经破圈典型客户">
+              <div class="customer-wall-head">
+                <strong>典型客户</strong>
+                <span>用于一线同学快速建立客户参照感，后续统一沉淀到案例库。</span>
+              </div>
+              <div class="customer-logo-grid">
+                <div class="customer-logo"><img src="./assets/customer-logos/cnooc.svg" alt="中国海洋石油集团 Logo"></div>
+                <div class="customer-logo"><img src="./assets/customer-logos/cetc.svg" alt="中国电子科技集团财务公司 Logo"></div>
+                <div class="customer-logo"><img src="./assets/customer-logos/cccc.png" alt="中国交通建设集团 Logo"></div>
+                <div class="customer-logo"><img src="./assets/customer-logos/shandong-energy.svg" alt="山东能源集团有限公司 Logo"></div>
+                <div class="customer-logo"><img src="./assets/customer-logos/sph.jpg" alt="上海医药集团股份有限公司 Logo"></div>
+                <div class="customer-logo"><img src="./assets/customer-logos/gzmtr.gif" alt="广州地铁集团有限公司 Logo"></div>
+                <div class="customer-logo"><img src="./assets/customer-logos/seres.svg" alt="赛力斯集团股份有限公司 Logo"></div>
+                <div class="customer-logo"><img src="./assets/customer-logos/sungrow.svg" alt="阳光电源股份有限公司 Logo"></div>
+              </div>
+            </section>
+          </div>
+
+          <div class="arsenal-pane" id="arsenal-governance" role="tabpanel" aria-labelledby="tab-governance">
+            <div class="asset-grid">
+              <article class="asset-card is-disabled">
+                <div class="asset-card-head">
+                  <h3>数据治理方法论</h3>
+                  <span class="status">待补充</span>
                 </div>
-                <div class="case-grid">
-                  <article class="case-card placeholder-card">
-                    <h4>数据治理方法论</h4>
-                    <p>聚合指标口径、组织机制、治理流程与项目打法的统一表达方式。</p>
-                  </article>
-                  <a class="case-card" href="./DataGovernanceLeaderCamp/">
-                    <h4>领军者训练营</h4>
-                    <p>聚焦数据治理认知升级、战略定位、实施路径与价值闭环的两天训练营专题页。</p>
-                    <span class="case-link">进入页面</span>
-                  </a>
-                  <article class="case-card placeholder-card">
-                    <h4>预留二级模块</h4>
-                    <p>与上方模块保持同层级，方便后续继续补充治理专题或交付资产。</p>
-                  </article>
-                  <article class="case-card placeholder-card">
-                    <h4>更多治理资产</h4>
-                    <p>后续可继续加入数据标准、指标体系、治理运营与平台能力等内容。</p>
-                  </article>
+                <p>聚合指标口径、组织机制、治理流程与项目打法的统一表达方式。</p>
+                <span class="case-link">待补充</span>
+              </article>
+
+              <a class="asset-card" href="./DataGovernanceLeaderCamp/">
+                <div class="asset-card-head">
+                  <h3>领军者训练营</h3>
+                  <span class="status is-live">已上线</span>
                 </div>
+                <p>聚焦数据治理认知升级、战略定位、实施路径与价值闭环的训练营专题页。</p>
+                <span class="case-link">进入页面</span>
+              </a>
+
+              <article class="asset-card is-disabled">
+                <div class="asset-card-head">
+                  <h3>治理专题资产</h3>
+                  <span class="status">待补充</span>
+                </div>
+                <p>后续可继续加入数据标准、指标体系、治理运营与平台能力等内容。</p>
+                <span class="case-link">待补充</span>
               </article>
             </div>
+          </div>
 
-            <div class="arsenal-pane" id="arsenal-more" role="tabpanel" aria-labelledby="tab-more">
-              <article class="arsenal-card">
-                <div class="arsenal-topline">
-                  <div>
-                    <h3>更多内容请期待</h3>
-                    <p>首页已经预埋统一布局和视觉组件，新专题只需沿用当前卡片体系继续增加入口即可。</p>
-                  </div>
+          <div class="arsenal-pane" id="arsenal-more" role="tabpanel" aria-labelledby="tab-more">
+            <div class="asset-grid">
+              <a class="asset-card" href="./CaseLibrary/">
+                <div class="asset-card-head">
+                  <h3>案例专题</h3>
+                  <span class="status is-build">建设中</span>
                 </div>
-                <div class="case-grid">
-                  <article class="case-card placeholder-card">
-                    <h4>案例专题</h4>
-                    <p>可扩展行业案例、客户复盘、方法论拆解等内容集合。</p>
-                  </article>
-                  <article class="case-card placeholder-card">
-                    <h4>工具资产</h4>
-                    <p>可接入模板、讲稿、方案页、原型页与常用交付资产库。</p>
-                  </article>
-                  <article class="case-card placeholder-card">
-                    <h4>研究洞察</h4>
-                    <p>可沉淀行业观察、趋势判断与关键客户话题的长期内容位。</p>
-                  </article>
-                  <article class="case-card placeholder-card">
-                    <h4>活动运营</h4>
-                    <p>可承接活动回顾、直播专题、系列栏目和对外传播页面。</p>
-                  </article>
+                <p>可扩展行业案例、客户复盘、方法论拆解等内容集合。</p>
+                <span class="case-link">查看页面</span>
+              </a>
+
+              <article class="asset-card is-disabled">
+                <div class="asset-card-head">
+                  <h3>工具资产</h3>
+                  <span class="status">待补充</span>
                 </div>
+                <p>可接入模板、讲稿、方案页、原型页与常用交付资产库。</p>
+                <span class="case-link">打开首屏工具台</span>
+              </article>
+
+              <article class="asset-card is-disabled">
+                <div class="asset-card-head">
+                  <h3>研究洞察</h3>
+                  <span class="status">待补充</span>
+                </div>
+                <p>可沉淀行业观察、趋势判断与关键客户话题的长期内容位。</p>
+                <span class="case-link">待补充</span>
               </article>
             </div>
           </div>
         </div>
       </section>
 
+      <section class="section-card" id="updates">
+        <div class="section-head">
+          <div class="section-title">
+            <h2>最近更新</h2>
+            <p>首页优先展示已经可用的作战资产和明确建设中的内容，避免一线同学进入后遇到无反馈或 404。</p>
+          </div>
+        </div>
+        <div class="update-grid">
+          <article class="update-card">
+            <span class="status is-live">已上线</span>
+            <strong>数字化经分会专题页</strong>
+            <p>已沉淀场景总览、方案说明、案例地图、工具与推进计划。</p>
+          </article>
+          <article class="update-card">
+            <span class="status is-live">已上线</span>
+            <strong>首页任务入口</strong>
+            <p>支持客户诊断、场景浏览、工具检索与案例库入口。</p>
+          </article>
+          <article class="update-card">
+            <span class="status is-build">建设中</span>
+            <strong>案例库与财务管报</strong>
+            <p>保留明确入口与状态提示，待真实内容补齐后替换为正式页面。</p>
+          </article>
+        </div>
+      </section>
     </main>
+
+    <footer class="footer-note">
+      <span>FineAndYou｜总工办·知识资产开源阵地</span>
+      <span>内部同学使用，内容持续迭代。</span>
+    </footer>
   </div>
+
+  <section class="modal" id="diagnosis-modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="diagnosis-title">
+      <div class="modal-head">
+        <div class="modal-title">
+          <h2 id="diagnosis-title">客户需求诊断清单</h2>
+          <p>按客户条件和当前诉求快速判断优先推荐的财经场景，并给出下一步动作。</p>
+        </div>
+        <button class="modal-close" type="button" data-close-modal aria-label="关闭">×</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="diagnosis-grid">
+          <form class="option-groups" id="diagnosis-form">
+            <section class="option-group">
+              <h3>客户类型</h3>
+              <div class="option-list">
+                <label class="choice"><input type="checkbox" name="customer" value="private">民营企业</label>
+                <label class="choice"><input type="checkbox" name="customer" value="state">央国企/国资</label>
+                <label class="choice"><input type="checkbox" name="customer" value="group">集团型企业</label>
+                <label class="choice"><input type="checkbox" name="customer" value="growth">成长型企业</label>
+              </div>
+            </section>
+
+            <section class="option-group">
+              <h3>当前主要诉求</h3>
+              <div class="option-list">
+                <label class="choice"><input type="checkbox" name="need" value="boss">老板看经营</label>
+                <label class="choice"><input type="checkbox" name="need" value="analysis">财务分析提效</label>
+                <label class="choice"><input type="checkbox" name="need" value="report">管报自动化</label>
+                <label class="choice"><input type="checkbox" name="need" value="supervision">监管穿透/集团管控</label>
+                <label class="choice"><input type="checkbox" name="need" value="governance">数据治理/指标口径</label>
+                <label class="choice"><input type="checkbox" name="need" value="ai">AI 财经创新</label>
+              </div>
+            </section>
+
+            <section class="option-group">
+              <h3>当前触达角色</h3>
+              <div class="option-list">
+                <label class="choice"><input type="checkbox" name="role" value="ceo">1号位/高层</label>
+                <label class="choice"><input type="checkbox" name="role" value="cfo">CFO/财务负责人</label>
+                <label class="choice"><input type="checkbox" name="role" value="operation">战略运营/经营管理</label>
+                <label class="choice"><input type="checkbox" name="role" value="it">信息化/数字化部门</label>
+                <label class="choice"><input type="checkbox" name="role" value="business">业务部门负责人</label>
+              </div>
+            </section>
+
+            <section class="option-group">
+              <h3>数据与机制基础</h3>
+              <div class="option-list">
+                <label class="choice"><input type="checkbox" name="base" value="meeting">已有经营分析会机制</label>
+                <label class="choice"><input type="checkbox" name="base" value="finance-report">已有财务管报体系</label>
+                <label class="choice"><input type="checkbox" name="base" value="bi">已有 BI/报表基础</label>
+                <label class="choice"><input type="checkbox" name="base" value="chaos">数据口径混乱</label>
+                <label class="choice"><input type="checkbox" name="base" value="manual">主要靠手工填报</label>
+              </div>
+            </section>
+
+            <section class="option-group">
+              <h3>项目风险信号</h3>
+              <div class="option-list">
+                <label class="choice"><input type="checkbox" name="risk" value="budget">预算低但想全做</label>
+                <label class="choice"><input type="checkbox" name="risk" value="change">需求频繁变化</label>
+                <label class="choice"><input type="checkbox" name="risk" value="decision">无法触达决策人</label>
+                <label class="choice"><input type="checkbox" name="risk" value="quality">数据质量差且无人牵头</label>
+                <label class="choice"><input type="checkbox" name="risk" value="full">希望一期做完整闭环</label>
+              </div>
+            </section>
+
+            <div class="diagnosis-actions">
+              <button class="primary-btn" type="submit">生成诊断结果</button>
+              <button class="ghost-btn" type="reset" id="reset-diagnosis">重新诊断</button>
+              <button class="ghost-btn" type="button" data-close-modal>返回工作台</button>
+            </div>
+          </form>
+
+          <aside class="diagnosis-result" aria-live="polite">
+            <div class="result-block">
+              <strong>推荐方案</strong>
+              <p id="result-solution">请先勾选客户条件，系统会优先推荐对应场景。</p>
+            </div>
+            <div class="result-block">
+              <strong>推荐理由</strong>
+              <p id="result-reason">推荐会结合客户类型、核心诉求、触达角色和数据基础进行判断。</p>
+            </div>
+            <div class="result-block">
+              <strong>风险提醒</strong>
+              <p id="result-risk">如出现预算不足、无法触达决策人、数据无人牵头等信号，需要先收敛边界。</p>
+            </div>
+            <div class="result-block">
+              <strong>下一步动作</strong>
+              <p id="result-next">建议先完成客户访谈和场景定级，再进入具体方案页。</p>
+            </div>
+            <a class="result-link" id="result-link" href="./JFH/">进入数字化经分会</a>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="modal" id="tools-modal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="tools-title">
+      <div class="modal-head">
+        <div class="modal-title">
+          <h2 id="tools-title">场景工具台</h2>
+          <p>跨场景检索调研问卷、报价模板、方案材料、案例卡片、交付模板、FAQ 口径和训战资料。</p>
+        </div>
+        <button class="modal-close" type="button" data-close-modal aria-label="关闭">×</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="tool-filters" aria-label="工具筛选">
+          <div class="filter-row">
+            <strong>场景</strong>
+            <div class="filter-options" data-filter-group="scene">
+              <button class="tool-filter is-active" type="button" data-value="all">全部</button>
+              <button class="tool-filter" type="button" data-value="数字化经分会">数字化经分会</button>
+              <button class="tool-filter" type="button" data-value="财务主题分析">财务主题分析</button>
+              <button class="tool-filter" type="button" data-value="财务管报">财务管报</button>
+              <button class="tool-filter" type="button" data-value="穿透式监管">穿透式监管</button>
+              <button class="tool-filter" type="button" data-value="财经 Agent 平台">财经 Agent 平台</button>
+            </div>
+          </div>
+
+          <div class="filter-row">
+            <strong>类型</strong>
+            <div class="filter-options" data-filter-group="type">
+              <button class="tool-filter is-active" type="button" data-value="all">全部</button>
+              <button class="tool-filter" type="button" data-value="需求调研问卷">需求调研问卷</button>
+              <button class="tool-filter" type="button" data-value="报价模板">报价模板</button>
+              <button class="tool-filter" type="button" data-value="方案材料">方案材料</button>
+              <button class="tool-filter" type="button" data-value="案例卡片">案例卡片</button>
+              <button class="tool-filter" type="button" data-value="交付模板">交付模板</button>
+              <button class="tool-filter" type="button" data-value="FAQ 口径">FAQ 口径</button>
+              <button class="tool-filter" type="button" data-value="训战资料">训战资料</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tool-table" id="tool-table">
+          <div class="tool-row is-head">
+            <span>工具名称</span>
+            <span>所属场景</span>
+            <span>工具类型</span>
+            <span>适用阶段</span>
+            <span>状态</span>
+            <span>操作</span>
+          </div>
+          <article class="tool-row" data-scene="数字化经分会" data-type="需求调研问卷">
+            <strong data-label="工具名称">经分会客户诊断清单</strong>
+            <p data-label="所属场景">数字化经分会</p>
+            <p data-label="工具类型">需求调研问卷</p>
+            <p data-label="适用阶段">售前</p>
+            <span class="status is-live" data-label="状态">已准备</span>
+            <a class="tool-action" data-label="操作" href="./JFH/">进入场景页</a>
+          </article>
+          <article class="tool-row" data-scene="数字化经分会" data-type="案例卡片">
+            <strong data-label="工具名称">良信电器案例卡片</strong>
+            <p data-label="所属场景">数字化经分会</p>
+            <p data-label="工具类型">案例卡片</p>
+            <p data-label="适用阶段">方案</p>
+            <span class="status is-live" data-label="状态">已准备</span>
+            <a class="tool-action" data-label="操作" href="./JFH/">进入场景页</a>
+          </article>
+          <article class="tool-row" data-scene="财务主题分析" data-type="方案材料">
+            <strong data-label="工具名称">财务主题分析方案框架</strong>
+            <p data-label="所属场景">财务主题分析</p>
+            <p data-label="工具类型">方案材料</p>
+            <p data-label="适用阶段">方案</p>
+            <span class="status is-live" data-label="状态">已准备</span>
+            <a class="tool-action" data-label="操作" href="./FinanceAnalysisPlatform/">进入场景页</a>
+          </article>
+          <article class="tool-row" data-scene="穿透式监管" data-type="方案材料">
+            <strong data-label="工具名称">穿透式监管政策场景说明</strong>
+            <p data-label="所属场景">穿透式监管</p>
+            <p data-label="工具类型">方案材料</p>
+            <p data-label="适用阶段">方案</p>
+            <span class="status is-live" data-label="状态">已准备</span>
+            <a class="tool-action" data-label="操作" href="./PenetratingSupervision/">进入场景页</a>
+          </article>
+          <article class="tool-row" data-scene="财经 Agent 平台" data-type="训战资料">
+            <strong data-label="工具名称">财经 Agent 场景讲解材料</strong>
+            <p data-label="所属场景">财经 Agent 平台</p>
+            <p data-label="工具类型">训战资料</p>
+            <p data-label="适用阶段">方案</p>
+            <span class="status is-live" data-label="状态">已准备</span>
+            <a class="tool-action" data-label="操作" href="./FinanceAgentPlatform/">进入场景页</a>
+          </article>
+          <article class="tool-row" data-scene="财务管报" data-type="报价模板">
+            <strong data-label="工具名称">财务管报报价边界模板</strong>
+            <p data-label="所属场景">财务管报</p>
+            <p data-label="工具类型">报价模板</p>
+            <p data-label="适用阶段">报价</p>
+            <span class="status is-build" data-label="状态">建设中</span>
+            <span class="tool-action is-disabled" data-label="操作">暂无链接</span>
+          </article>
+          <article class="tool-row" data-scene="数字化经分会" data-type="FAQ 口径">
+            <strong data-label="工具名称">经分会常见问题口径</strong>
+            <p data-label="所属场景">数字化经分会</p>
+            <p data-label="工具类型">FAQ 口径</p>
+            <p data-label="适用阶段">售前</p>
+            <span class="status" data-label="状态">建议补充</span>
+            <span class="tool-action is-disabled" data-label="操作">待补充</span>
+          </article>
+          <article class="tool-row" data-scene="财务主题分析" data-type="交付模板">
+            <strong data-label="工具名称">主题分析交付复盘模板</strong>
+            <p data-label="所属场景">财务主题分析</p>
+            <p data-label="工具类型">交付模板</p>
+            <p data-label="适用阶段">交付</p>
+            <span class="status" data-label="状态">内部使用</span>
+            <span class="tool-action is-disabled" data-label="操作">内部沉淀中</span>
+          </article>
+        </div>
+        <div class="empty-tools" id="empty-tools">当前筛选条件下暂无工具，建议切换场景或工具类型。</div>
+        <div class="tool-actions">
+          <button class="ghost-btn" type="button" data-close-modal>返回工作台</button>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <script>
     const tabs = Array.from(document.querySelectorAll('.arsenal-tab'));
     const panes = Array.from(document.querySelectorAll('.arsenal-pane'));
+    const modals = Array.from(document.querySelectorAll('.modal'));
+    let lastFocusedElement = null;
 
     tabs.forEach((tab) => {
       tab.addEventListener('click', () => {
@@ -1540,39 +1620,161 @@
       });
     });
 
-    const copyButtons = Array.from(document.querySelectorAll('[data-copy-channel]'));
+    function openModal(id) {
+      const modal = document.getElementById(id);
+      if (!modal) return;
+      lastFocusedElement = document.activeElement;
+      modal.classList.add('is-open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('is-modal-open');
+      const closeButton = modal.querySelector('.modal-close');
+      closeButton?.focus();
+    }
 
-    copyButtons.forEach((button) => {
-      const defaultLabel = button.textContent;
+    function closeModal(modal) {
+      if (!modal) return;
+      modal.classList.remove('is-open');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('is-modal-open');
+      if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+        lastFocusedElement.focus();
+      }
+    }
 
-      button.addEventListener('click', async () => {
-        const value = button.dataset.copyChannel;
+    document.querySelectorAll('[data-open-modal]').forEach((trigger) => {
+      trigger.addEventListener('click', () => openModal(trigger.dataset.openModal));
+    });
 
-        try {
-          if (navigator.clipboard?.writeText) {
-            await navigator.clipboard.writeText(value);
-          } else {
-            const textarea = document.createElement('textarea');
-            textarea.value = value;
-            textarea.setAttribute('readonly', '');
-            textarea.style.position = 'absolute';
-            textarea.style.left = '-9999px';
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
-          }
+    document.querySelectorAll('[data-close-modal]').forEach((trigger) => {
+      trigger.addEventListener('click', () => closeModal(trigger.closest('.modal')));
+    });
 
-          button.textContent = '已复制，可去微信搜索';
-          window.setTimeout(() => {
-            button.textContent = defaultLabel;
-          }, 1800);
-        } catch (error) {
-          button.textContent = '复制失败，请手动搜索';
-          window.setTimeout(() => {
-            button.textContent = defaultLabel;
-          }, 1800);
-        }
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeModal(document.querySelector('.modal.is-open'));
+      }
+    });
+
+    document.querySelectorAll('[data-scroll-target]').forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const target = document.getElementById(trigger.dataset.scrollTarget);
+        if (!target) return;
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        target.classList.remove('is-highlight');
+        window.setTimeout(() => target.classList.add('is-highlight'), 120);
+      });
+    });
+
+    const solutionMap = {
+      jfh: {
+        name: '数字化经分会',
+        href: './JFH/',
+        reason: '客户关注老板看经营、高层经营会或经营管理机制，适合围绕经营分析会议提效、经营分析报告提质展开。',
+        next: '先判断是否服务企业 1 号位或高层，再进入经分会专题页准备价值主张、案例和工具。'
+      },
+      analysis: {
+        name: '财务主题分析',
+        href: './FinanceAnalysisPlatform/',
+        reason: '客户诉求集中在财务分析提效、专题分析和业务洞察，适合按主题分析框架进入。',
+        next: '进入财务主题分析页，选择收入、成本、利润、资金等主题组织方案表达。'
+      },
+      report: {
+        name: '财务管报',
+        href: '#scene-assets',
+        reason: '客户已有财务管报体系或明确要求管报自动化，适合先收敛报表范围和自动化边界。',
+        next: '当前专题页建设中，建议先使用工具台中的报价边界和需求清单做预判断。'
+      },
+      supervision: {
+        name: '穿透式监管',
+        href: './PenetratingSupervision/',
+        reason: '央国企、国资或集团管控诉求明显，适合从监管穿透、组织管控和数据上收口切入。',
+        next: '进入穿透式监管页，优先准备政策口径、集团管控场景和数据穿透路径。'
+      },
+      agent: {
+        name: '财经 Agent 平台',
+        href: './FinanceAgentPlatform/',
+        reason: '客户明确关注 AI 财经创新、数字员工或智能分析能力，适合用 Agent 平台建立新产品路径。',
+        next: '进入财经 Agent 平台页，明确 AI 场景、数据基础和可落地的数字员工边界。'
+      }
+    };
+
+    function getCheckedValues(form) {
+      return Array.from(form.querySelectorAll('input:checked')).map((input) => input.value);
+    }
+
+    function chooseSolution(values) {
+      if (values.includes('ai')) return solutionMap.agent;
+      if (values.includes('supervision') || values.includes('state')) return solutionMap.supervision;
+      if (values.includes('report') || values.includes('finance-report') || values.includes('manual')) return solutionMap.report;
+      if (values.includes('analysis') || values.includes('cfo')) return solutionMap.analysis;
+      return solutionMap.jfh;
+    }
+
+    const diagnosisForm = document.getElementById('diagnosis-form');
+    const resultSolution = document.getElementById('result-solution');
+    const resultReason = document.getElementById('result-reason');
+    const resultRisk = document.getElementById('result-risk');
+    const resultNext = document.getElementById('result-next');
+    const resultLink = document.getElementById('result-link');
+
+    diagnosisForm?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const values = getCheckedValues(diagnosisForm);
+      const solution = chooseSolution(values);
+      const riskSignals = values.filter((value) => ['budget', 'change', 'decision', 'quality', 'full', 'chaos'].includes(value));
+
+      resultSolution.textContent = solution.name;
+      resultReason.textContent = solution.reason;
+      resultRisk.textContent = riskSignals.length
+        ? '已出现风险信号，建议先控制一期范围、确认决策链路和数据牵头人，再承诺交付边界。'
+        : '暂未识别强风险信号，仍建议在售前阶段确认预算、决策人、数据负责人和变更边界。';
+      resultNext.textContent = solution.next;
+      resultLink.textContent = `进入${solution.name}`;
+      resultLink.setAttribute('href', solution.href);
+    });
+
+    document.getElementById('reset-diagnosis')?.addEventListener('click', () => {
+      window.setTimeout(() => {
+        resultSolution.textContent = '请先勾选客户条件，系统会优先推荐对应场景。';
+        resultReason.textContent = '推荐会结合客户类型、核心诉求、触达角色和数据基础进行判断。';
+        resultRisk.textContent = '如出现预算不足、无法触达决策人、数据无人牵头等信号，需要先收敛边界。';
+        resultNext.textContent = '建议先完成客户访谈和场景定级，再进入具体方案页。';
+        resultLink.textContent = '进入数字化经分会';
+        resultLink.setAttribute('href', './JFH/');
+      }, 0);
+    });
+
+    const filters = {
+      scene: 'all',
+      type: 'all'
+    };
+
+    const toolRows = Array.from(document.querySelectorAll('.tool-row:not(.is-head)'));
+    const emptyTools = document.getElementById('empty-tools');
+
+    function applyToolFilters() {
+      let visibleCount = 0;
+      toolRows.forEach((row) => {
+        const sceneMatch = filters.scene === 'all' || row.dataset.scene === filters.scene;
+        const typeMatch = filters.type === 'all' || row.dataset.type === filters.type;
+        const visible = sceneMatch && typeMatch;
+        row.style.display = visible ? '' : 'none';
+        if (visible) visibleCount += 1;
+      });
+      emptyTools?.classList.toggle('is-visible', visibleCount === 0);
+    }
+
+    document.querySelectorAll('[data-filter-group]').forEach((group) => {
+      group.addEventListener('click', (event) => {
+        const button = event.target.closest('.tool-filter');
+        if (!button) return;
+
+        const filterName = group.dataset.filterGroup;
+        filters[filterName] = button.dataset.value;
+        group.querySelectorAll('.tool-filter').forEach((item) => {
+          item.classList.toggle('is-active', item === button);
+        });
+        applyToolFilters();
       });
     });
   </script>
