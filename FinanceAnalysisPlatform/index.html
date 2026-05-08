@@ -1,0 +1,1978 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>财务主题分析场景平台</title>
+  <meta name="description" content="财务主题分析场景平台，覆盖战略财务、司库财务、共享财务和业务财务四大分析域。">
+  <style>
+    :root {
+      --fr-blue-900: #17346e;
+      --fr-blue-800: #0055cc;
+      --fr-blue-700: #0086e6;
+      --fr-blue-500: #3d93ff;
+      --fr-cyan: #00ace6;
+      --fr-mint: #35db9b;
+      --fr-teal: #3fc4a9;
+      --fr-indigo: #5c6cff;
+      --fr-violet: #7a73fa;
+      --fr-amber: #f7b65c;
+      --fr-orange: #f39600;
+      --fr-page: #edefff;
+      --fr-page-soft: #f3fcff;
+      --fr-surface: rgba(255, 255, 255, 0.82);
+      --fr-surface-strong: rgba(255, 255, 255, 0.96);
+      --fr-line: rgba(184, 190, 204, 0.62);
+      --fr-text: #0f0f0f;
+      --fr-text-title: #17346e;
+      --fr-text-body: #566280;
+      --fr-success: #1f9d62;
+      --fr-shadow-sm: 0 10px 26px rgba(0, 85, 204, 0.08);
+      --fr-shadow-md: 0 18px 48px rgba(0, 85, 204, 0.12);
+      --fr-shadow-lg: 0 28px 72px rgba(0, 85, 204, 0.14);
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --container: 1320px;
+      --ease: 220ms cubic-bezier(.2, .8, .2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--fr-text);
+      font-family: "Microsoft YaHei", "PingFang SC", "SF Pro Display", Arial, sans-serif;
+      background:
+        radial-gradient(circle at 8% 8%, rgba(0, 134, 230, 0.16), transparent 24%),
+        radial-gradient(circle at 92% 4%, rgba(0, 172, 230, 0.13), transparent 20%),
+        radial-gradient(circle at 46% 92%, rgba(92, 108, 255, 0.1), transparent 28%),
+        linear-gradient(180deg, #f8fcff 0%, var(--fr-page-soft) 44%, var(--fr-page) 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(0, 134, 230, 0.026) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 134, 230, 0.026) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.86), transparent 95%);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      top: 110px;
+      right: -150px;
+      z-index: -1;
+      width: 480px;
+      height: 480px;
+      border-radius: 34px;
+      transform: rotate(45deg);
+      pointer-events: none;
+      opacity: 0.36;
+      background:
+        radial-gradient(circle, rgba(0, 134, 230, 0.2) 0 13px, transparent 14px 28px, rgba(0, 172, 230, 0.14) 29px 40px, transparent 41px),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent);
+    }
+
+    button {
+      border: 0;
+      color: inherit;
+      font: inherit;
+      background: none;
+      cursor: pointer;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    .shell {
+      width: min(calc(100% - 32px), var(--container));
+      margin: 0 auto;
+      padding: 18px 0 34px;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 14px;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 18px;
+      min-height: 68px;
+      padding: 16px 22px;
+      border: 1px solid rgba(204, 228, 255, 0.88);
+      border-radius: 18px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(232, 244, 255, 0.72)),
+        rgba(255, 255, 255, 0.76);
+      box-shadow: 0 16px 38px rgba(23, 52, 110, 0.06);
+      backdrop-filter: blur(20px) saturate(135%);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      gap: 12px;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-mark img {
+      display: block;
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+
+    .brand-copy {
+      display: grid;
+      gap: 4px;
+      min-width: 0;
+    }
+
+    .brand-title {
+      color: var(--fr-text-title);
+      font-size: clamp(1.08rem, 1.5vw, 1.36rem);
+      font-weight: 900;
+      line-height: 1.24;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-subtitle {
+      color: var(--fr-text-body);
+      font-size: 0.86rem;
+      line-height: 1.5;
+    }
+
+    .tabs-wrap {
+      position: sticky;
+      top: 96px;
+      z-index: 18;
+      margin-top: 20px;
+      padding: 12px;
+      border: 1px solid rgba(218, 222, 230, 0.72);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 18px 36px rgba(0, 85, 204, 0.05);
+      backdrop-filter: blur(14px);
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(0, 134, 230, 0.28) transparent;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 10px;
+      min-width: max-content;
+    }
+
+    .tab-btn {
+      display: grid;
+      flex: 1 0 166px;
+      gap: 3px;
+      align-content: center;
+      justify-items: center;
+      min-height: 64px;
+      padding: 12px 14px;
+      border: 1px solid transparent;
+      border-radius: 16px;
+      color: var(--fr-text-body);
+      white-space: nowrap;
+      transition: transform var(--ease), box-shadow var(--ease), border-color var(--ease), background var(--ease), color var(--ease);
+    }
+
+    .tab-btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(0, 85, 204, 0.1);
+      background: rgba(255, 255, 255, 0.76);
+    }
+
+    .tab-btn strong {
+      color: inherit;
+      font-size: 0.94rem;
+      line-height: 1.35;
+    }
+
+    .tab-btn span {
+      color: inherit;
+      font-size: 0.76rem;
+      line-height: 1.3;
+    }
+
+    .tab-btn.is-active {
+      color: #fff;
+      border-color: rgba(0, 134, 230, 0.28);
+      background: linear-gradient(180deg, rgba(0, 134, 230, 0.98), rgba(0, 85, 204, 0.98));
+      box-shadow: 0 18px 30px rgba(0, 134, 230, 0.2);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      margin-top: 18px;
+      padding: 24px 28px;
+      border: 1px solid rgba(218, 222, 230, 0.76);
+      border-radius: 24px;
+      background:
+        radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.95), transparent 34%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(243, 250, 255, 0.9));
+      box-shadow: var(--fr-shadow-md);
+    }
+
+    .hero::before,
+    .section-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 100% 0, rgba(0, 172, 230, 0.1), transparent 26%),
+        radial-gradient(circle at 0 100%, rgba(0, 134, 230, 0.08), transparent 20%);
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 10px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      min-height: 34px;
+      padding: 0 14px;
+      border: 1px solid rgba(0, 134, 230, 0.14);
+      border-radius: 999px;
+      color: var(--fr-blue-700);
+      background: rgba(232, 244, 255, 0.88);
+      font-size: 0.84rem;
+      font-weight: 900;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--fr-blue-700), var(--fr-cyan));
+      box-shadow: 0 0 0 6px rgba(0, 134, 230, 0.1);
+    }
+
+    .hero h1 {
+      color: var(--fr-text-title);
+      font-size: clamp(1.18rem, 2.1vw, 1.86rem);
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .hero h1 span {
+      color: var(--fr-blue-700);
+    }
+
+    .hero-desc {
+      max-width: 1080px;
+      color: var(--fr-text-body);
+      font-size: 0.96rem;
+      line-height: 1.68;
+    }
+
+    .architecture-card,
+    .section-card {
+      position: relative;
+      overflow: hidden;
+      margin-top: 20px;
+      padding: 28px;
+      border: 1px solid rgba(218, 222, 230, 0.76);
+      border-radius: 24px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(243, 250, 255, 0.92));
+      box-shadow: var(--fr-shadow-md);
+    }
+
+    .section-card.is-hidden,
+    .architecture-card.is-hidden {
+      display: none;
+    }
+
+    .section-head {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 22px;
+    }
+
+    .section-title {
+      position: relative;
+      padding-left: 16px;
+      color: var(--fr-text-title);
+      font-size: clamp(1.12rem, 1.45vw, 1.42rem);
+      line-height: 1.2;
+    }
+
+    .section-title::before {
+      content: "";
+      position: absolute;
+      top: 0.16em;
+      bottom: 0.16em;
+      left: 0;
+      width: 4px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--fr-blue-700), var(--fr-cyan));
+      box-shadow: 0 0 0 6px rgba(204, 228, 255, 0.9);
+    }
+
+    .section-desc {
+      margin-top: 10px;
+      max-width: 680px;
+      color: var(--fr-text-body);
+      font-size: 0.94rem;
+      line-height: 1.72;
+    }
+
+    .map-layout {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(260px, 0.9fr) minmax(320px, 1.1fr) minmax(260px, 0.9fr);
+      grid-template-areas:
+        "strategy core treasury"
+        "shared core business";
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .map-core,
+    .domain-panel {
+      border: 1px solid rgba(204, 228, 255, 0.86);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.88);
+      box-shadow: 0 8px 22px rgba(23, 52, 110, 0.045);
+    }
+
+    .map-core {
+      grid-area: core;
+      display: grid;
+      align-content: center;
+      gap: 18px;
+      min-height: 480px;
+      padding: 24px;
+      text-align: center;
+      border-color: rgba(0, 134, 230, 0.22);
+      background:
+        radial-gradient(circle at 50% 0, rgba(0, 134, 230, 0.13), transparent 40%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(243, 250, 255, 0.9));
+    }
+
+    .core-icon {
+      display: grid;
+      place-items: center;
+      width: 78px;
+      height: 78px;
+      margin: 0 auto;
+      border-radius: 24px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--fr-blue-700), var(--fr-blue-800));
+      box-shadow: 0 20px 34px rgba(0, 85, 204, 0.16);
+    }
+
+    .core-icon svg,
+    .title-icon svg,
+    .domain-icon svg,
+    .icon-btn svg,
+    .btn svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2.3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .map-core h2 {
+      color: var(--fr-text-title);
+      font-size: clamp(1.36rem, 2vw, 1.92rem);
+      line-height: 1.22;
+    }
+
+    .map-core p {
+      color: var(--fr-text-body);
+      font-size: 0.96rem;
+      line-height: 1.7;
+    }
+
+    .flow-steps {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .flow-steps span {
+      display: grid;
+      place-items: center;
+      min-height: 56px;
+      padding: 8px;
+      border: 1px solid rgba(0, 134, 230, 0.1);
+      border-radius: 12px;
+      color: var(--fr-blue-700);
+      background: rgba(232, 244, 255, 0.68);
+      font-size: 0.72rem;
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
+    .domain-panel {
+      display: grid;
+      align-content: start;
+      gap: 14px;
+      min-height: 232px;
+      padding: 20px;
+      --domain-color: var(--fr-blue-700);
+    }
+
+    .domain-panel[data-domain="strategy"] {
+      grid-area: strategy;
+      --domain-color: var(--fr-blue-700);
+    }
+
+    .domain-panel[data-domain="treasury"] {
+      grid-area: treasury;
+      --domain-color: var(--fr-teal);
+    }
+
+    .domain-panel[data-domain="shared"] {
+      grid-area: shared;
+      --domain-color: var(--fr-indigo);
+    }
+
+    .domain-panel[data-domain="business"] {
+      grid-area: business;
+      --domain-color: var(--fr-orange);
+    }
+
+    .domain-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      color: var(--fr-text-title);
+      font-size: 1rem;
+      line-height: 1.3;
+    }
+
+    .domain-title-main {
+      display: inline-flex;
+      align-items: center;
+      min-width: 0;
+      gap: 10px;
+    }
+
+    .domain-icon,
+    .title-icon {
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      color: #fff;
+      background: linear-gradient(135deg, var(--domain-color), color-mix(in srgb, var(--domain-color) 62%, var(--fr-cyan)));
+      box-shadow: 0 10px 20px rgba(0, 134, 230, 0.12);
+    }
+
+    .domain-badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 0 9px;
+      border-radius: 999px;
+      color: var(--domain-color);
+      background: color-mix(in srgb, var(--domain-color) 10%, white);
+      font-size: 0.72rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .domain-desc {
+      color: var(--fr-text-body);
+      font-size: 0.86rem;
+      line-height: 1.6;
+    }
+
+    .domain-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .domain-chips span {
+      min-height: 28px;
+      padding: 5px 9px;
+      border: 1px solid rgba(0, 134, 230, 0.1);
+      border-radius: 8px;
+      color: var(--domain-color);
+      background: color-mix(in srgb, var(--domain-color) 8%, white);
+      font-size: 0.74rem;
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
+    .agent-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .agent-card {
+      position: relative;
+      display: grid;
+      grid-template-rows: 1fr auto;
+      min-height: 336px;
+      overflow: hidden;
+      border: 1px solid rgba(218, 222, 230, 0.9);
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: 0 12px 30px rgba(23, 52, 110, 0.08);
+      transition: transform var(--ease), box-shadow var(--ease), border-color var(--ease);
+    }
+
+    .agent-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(0, 134, 230, 0.2);
+      box-shadow: 0 18px 38px rgba(23, 52, 110, 0.11);
+    }
+
+    .card-main {
+      display: grid;
+      gap: 14px;
+      align-content: start;
+      padding: 24px 24px 20px;
+    }
+
+    .card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .agent-title {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      gap: 12px;
+      color: var(--fr-text-title);
+      font-size: clamp(0.96rem, 1.15vw, 1.08rem);
+      line-height: 1.3;
+    }
+
+    .agent-title-text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .category-tag,
+    .status {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 28px;
+      padding: 0 10px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .category-tag {
+      color: var(--fr-blue-700);
+      border: 1px solid rgba(0, 134, 230, 0.14);
+      background: rgba(232, 244, 255, 0.88);
+    }
+
+    .status {
+      color: var(--fr-blue-700);
+      background: rgba(0, 134, 230, 0.12);
+      border-radius: 8px;
+    }
+
+    .pain {
+      color: var(--fr-text-body);
+      font-size: 0.88rem;
+      font-weight: 400;
+      line-height: 1.72;
+    }
+
+    .pain mark {
+      padding: 0 2px;
+      color: var(--fr-blue-800);
+      background: transparent;
+    }
+
+    .pain .ai {
+      color: var(--fr-orange);
+    }
+
+    .agent-meta {
+      display: grid;
+      gap: 9px;
+      margin-top: 2px;
+    }
+
+    .meta-row {
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr);
+      gap: 12px;
+      align-items: baseline;
+      color: var(--fr-text-body);
+      font-size: 0.88rem;
+      line-height: 1.55;
+    }
+
+    .meta-value {
+      color: #2f3b52;
+      text-align: right;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .card-actions {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+      min-height: 48px;
+      padding: 8px 24px;
+      border-top: 1px solid rgba(218, 222, 230, 0.78);
+      background: rgba(255, 255, 255, 0.76);
+    }
+
+    .action-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      max-width: 100%;
+      min-width: 0;
+    }
+
+    .link-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 32px;
+      padding: 0 12px;
+      border: 1px solid rgba(0, 134, 230, 0.16);
+      border-radius: 10px;
+      color: var(--fr-blue-700);
+      background: rgba(232, 244, 255, 0.72);
+      font-size: 0.72rem;
+      font-weight: 700;
+      line-height: 1.25;
+      white-space: nowrap;
+      box-shadow: none;
+      transition: color var(--ease), background var(--ease), transform var(--ease), box-shadow var(--ease), border-color var(--ease);
+    }
+
+    .link-action:hover {
+      color: var(--fr-blue-800);
+      background: rgba(232, 244, 255, 0.96);
+      border-color: rgba(0, 134, 230, 0.28);
+      box-shadow: 0 8px 18px rgba(0, 134, 230, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .link-action.demo,
+    .link-action.case {
+      color: #667792;
+      border-color: rgba(102, 119, 146, 0.18);
+      background: rgba(244, 247, 251, 0.92);
+      cursor: default;
+    }
+
+    .link-action.demo:hover,
+    .link-action.case:hover {
+      color: #667792;
+      border-color: rgba(102, 119, 146, 0.18);
+      background: rgba(244, 247, 251, 0.92);
+      box-shadow: none;
+      transform: none;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 0 16px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 900;
+      transition: transform var(--ease), box-shadow var(--ease), border-color var(--ease), background var(--ease);
+    }
+
+    .btn-secondary {
+      color: var(--fr-blue-700);
+      border: 1px solid rgba(0, 134, 230, 0.18);
+      background: rgba(255, 255, 255, 0.84);
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      background: rgba(10, 31, 62, 0.34);
+      backdrop-filter: blur(12px);
+    }
+
+    .modal.is-open {
+      display: flex;
+    }
+
+    .modal-panel {
+      position: relative;
+      width: min(920px, 100%);
+      max-height: min(780px, calc(100vh - 44px));
+      overflow: auto;
+      border: 1px solid rgba(218, 222, 230, 0.76);
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 0 0, rgba(255, 255, 255, 0.98), transparent 34%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(243, 250, 255, 0.96));
+      box-shadow: 0 30px 90px rgba(0, 31, 84, 0.26);
+      animation: modal-in 180ms ease;
+    }
+
+    @keyframes modal-in {
+      from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .modal-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 16px;
+      padding: 26px 28px 18px;
+      border-bottom: 1px solid rgba(0, 134, 230, 0.1);
+    }
+
+    .modal-title-wrap {
+      display: grid;
+      gap: 12px;
+    }
+
+    .modal-title-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .modal h2 {
+      color: var(--fr-text-title);
+      font-size: clamp(1.52rem, 2.6vw, 2.26rem);
+      line-height: 1.2;
+    }
+
+    .modal-summary {
+      max-width: 760px;
+      color: var(--fr-text-body);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    .icon-btn {
+      display: grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(0, 134, 230, 0.14);
+      border-radius: 14px;
+      color: var(--fr-text-title);
+      background: rgba(255, 255, 255, 0.76);
+      transition: color var(--ease), background var(--ease), transform var(--ease);
+    }
+
+    .icon-btn:hover {
+      color: var(--fr-blue-700);
+      background: rgba(232, 244, 255, 0.92);
+      transform: translateY(-1px);
+    }
+
+    .modal-body {
+      display: grid;
+      gap: 18px;
+      padding: 22px 28px 28px;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .detail-card {
+      min-height: 142px;
+      padding: 18px;
+      border: 1px solid rgba(0, 134, 230, 0.1);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.78);
+    }
+
+    .detail-card strong {
+      display: block;
+      color: var(--fr-text-title);
+      font-size: 0.98rem;
+      line-height: 1.45;
+    }
+
+    .detail-card p,
+    .detail-card li {
+      color: var(--fr-text-body);
+      font-size: 0.92rem;
+      line-height: 1.68;
+    }
+
+    .detail-card p {
+      margin-top: 10px;
+    }
+
+    .detail-card ul {
+      display: grid;
+      gap: 8px;
+      margin: 12px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .detail-card li {
+      position: relative;
+      padding-left: 16px;
+    }
+
+    .detail-card li::before {
+      content: "";
+      position: absolute;
+      top: 0.72em;
+      left: 0;
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--fr-blue-700), var(--fr-cyan));
+      transform: translateY(-50%);
+    }
+
+    .modal-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-top: 2px;
+    }
+
+    @media (max-width: 1120px) {
+      .map-layout {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+          "core core"
+          "strategy treasury"
+          "shared business";
+      }
+
+      .map-core {
+        min-height: auto;
+      }
+
+      .agent-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 900px) {
+      .section-head {
+        display: grid;
+      }
+
+      .tabs {
+        justify-content: flex-start;
+        min-width: 0;
+      }
+
+      .map-layout,
+      .agent-grid,
+      .detail-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .map-layout {
+        grid-template-areas:
+          "core"
+          "strategy"
+          "treasury"
+          "shared"
+          "business";
+      }
+
+      .flow-steps {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .shell {
+        width: min(calc(100% - 18px), var(--container));
+        padding-top: 10px;
+      }
+
+      .hero,
+      .architecture-card,
+      .section-card {
+        padding: 20px;
+      }
+
+      .brand-title {
+        font-size: 1rem;
+      }
+
+      .brand-subtitle {
+        font-size: 0.76rem;
+      }
+
+      .flow-steps {
+        grid-template-columns: 1fr;
+      }
+
+      .agent-card {
+        min-height: auto;
+      }
+
+      .card-main {
+        gap: 12px;
+        padding: 18px 18px 16px;
+      }
+
+      .card-actions {
+        min-height: 54px;
+        padding: 10px 18px;
+      }
+
+      .action-tags {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+        width: 100%;
+      }
+
+      .agent-title {
+        font-size: 0.92rem;
+      }
+
+      .title-icon,
+      .domain-icon {
+        width: 36px;
+        height: 36px;
+      }
+
+      .pain,
+      .domain-desc {
+        font-size: 0.82rem;
+        line-height: 1.54;
+      }
+
+      .meta-row {
+        grid-template-columns: 66px minmax(0, 1fr);
+        font-size: 0.82rem;
+        line-height: 1.45;
+      }
+
+      .link-action {
+        min-height: 30px;
+        font-size: 0.7rem;
+        min-width: 0;
+        padding: 0 6px;
+        width: 100%;
+      }
+
+      .modal {
+        padding: 10px;
+      }
+
+      .modal-header,
+      .modal-body {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="财务主题分析场景平台首页">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="../assets/fanruan-mark.svg" alt="帆软 Logo">
+        </span>
+        <span class="brand-copy">
+          <strong class="brand-title">财务主题分析场景平台</strong>
+          <span class="brand-subtitle">Powered by：行销总部 · 总工办 × 财经小组</span>
+        </span>
+      </a>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-grid">
+          <h1 id="heroTitle">以<span>财务分析决策中枢</span>串联战略、司库、共享与业务财务</h1>
+          <p class="hero-desc" id="heroDesc">围绕四类财务场景建立统一主题地图，让数据、指标、分析、预警和行动建议形成可复用的经营管理能力。</p>
+        </div>
+      </section>
+
+      <nav class="tabs-wrap" aria-label="财务主题切换">
+        <div class="tabs">
+          <button class="tab-btn view-tab is-active" type="button" data-topic="map"><strong>场景总览</strong><span>整体框架</span></button>
+          <button class="tab-btn view-tab" type="button" data-topic="strategy"><strong>战略财务</strong><span>定方向</span></button>
+          <button class="tab-btn view-tab" type="button" data-topic="treasury"><strong>司库财务</strong><span>管资源</span></button>
+          <button class="tab-btn view-tab" type="button" data-topic="shared"><strong>共享财务</strong><span>提效能</span></button>
+          <button class="tab-btn view-tab" type="button" data-topic="business"><strong>业务财务</strong><span>嵌业务</span></button>
+        </div>
+      </nav>
+
+      <section class="architecture-card" id="sceneMap" aria-label="财务主题分析场景地图">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">四位一体场景地图</h2>
+            <p class="section-desc">中心承接统一数据、指标口径与智能分析能力，四个财务域分别面向决策、资源、运营和经营过程，形成从发现问题到推动改进的闭环。</p>
+          </div>
+        </div>
+        <div class="map-layout" id="mapLayout"></div>
+      </section>
+
+      <section class="section-card is-hidden" id="scenarioSection">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title" id="sectionTitle">战略财务主题分析</h2>
+            <p class="section-desc" id="sectionDesc">围绕战略目标、预算、绩效和经营结果，建立面向管理层的分析与决策支撑。</p>
+          </div>
+        </div>
+        <div class="agent-grid" id="agentGrid"></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="scenarioModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-panel">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <div class="modal-title-row">
+            <span class="category-tag" id="modalCategory"></span>
+            <span class="status">主题分析</span>
+          </div>
+          <h2 id="modalTitle"></h2>
+          <p class="modal-summary" id="modalSummary"></p>
+        </div>
+        <button class="icon-btn" type="button" id="closeModal" aria-label="关闭详情弹窗">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="detail-grid" id="modalDetails"></div>
+        <div class="modal-actions">
+          <button class="btn btn-secondary" type="button" id="closeModalBottom">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+            返回场景矩阵
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const icons = {
+      map: '<svg viewBox="0 0 24 24"><path d="M9 18 3 21V6l6-3 6 3 6-3v15l-6 3-6-3Z"/><path d="M9 3v15"/><path d="M15 6v15"/></svg>',
+      analysis: '<svg viewBox="0 0 24 24"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 16v-5"/><path d="M12 16V8"/><path d="M16 16v-3"/></svg>',
+      target: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v3"/><path d="M22 12h-3"/><path d="M12 22v-3"/><path d="M2 12h3"/></svg>',
+      profit: '<svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M17 6H9.5a3.5 3.5 0 0 0 0 7H14a3.5 3.5 0 0 1 0 7H6"/><path d="m18 10 3-3-3-3"/></svg>',
+      risk: '<svg viewBox="0 0 24 24"><path d="M12 3 5 6v6c0 4 3 7 7 9 4-2 7-5 7-9V6l-7-3Z"/><path d="M12 8v5"/><path d="M12 16h.01"/></svg>',
+      treasury: '<svg viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M6 7V5h12v2"/><path d="M7 11h10"/><path d="M7 15h10"/><path d="M5 19h14"/><path d="M8 7v12"/><path d="M16 7v12"/></svg>',
+      wallet: '<svg viewBox="0 0 24 24"><path d="M4 7h14a2 2 0 0 1 2 2v9H4z"/><path d="M4 7V5h13"/><path d="M16 13h4"/></svg>',
+      bill: '<svg viewBox="0 0 24 24"><path d="M7 3h10l3 3v15H7z"/><path d="M16 3v4h4"/><path d="M10 12h6"/><path d="M10 16h4"/></svg>',
+      shared: '<svg viewBox="0 0 24 24"><path d="M12 3v5"/><path d="M5 21h14"/><path d="M6 17h12"/><path d="M8 17V8h8v9"/><path d="M10 11h4"/><path d="M10 14h4"/></svg>',
+      qa: '<svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-8 8H7l-4 3v-7a8 8 0 1 1 18-4Z"/><path d="M10 9a2 2 0 1 1 3 1.7c-.6.4-1 .8-1 1.8"/><path d="M12 16h.01"/></svg>',
+      people: '<svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+      business: '<svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-3"/><path d="M9 9h.01"/><path d="M9 13h.01"/><path d="M9 17h.01"/></svg>',
+      inventory: '<svg viewBox="0 0 24 24"><path d="m21 8-9-5-9 5 9 5 9-5Z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>'
+    };
+
+    const domains = {
+      strategy: {
+        name: "战略财务",
+        badge: "定方向",
+        icon: "target",
+        accent: "#0086e6",
+        title: "战略财务主题分析",
+        desc: "围绕战略目标、预算、绩效和经营结果，建立面向管理层的分析与决策支撑。",
+        chips: ["预算绩效", "利润归因", "对标评价", "资本效率"],
+        value: "把战略目标拆成可监控、可解释、可追踪的财务指标和管理动作。",
+        scenarios: [
+          {
+            id: "strategy-business-report",
+            title: "经营分析报告",
+            icon: "analysis",
+            pain: '经营会前临时拼数、写结论、找异常？<br><span class="ai">AI</span> 自动生成指标解读、问题定位和管理建议。',
+            role: "管理层 / 经营分析 / 财经 BP",
+            value: "让管理者看得清、看得快、看得准",
+            summary: "围绕收入、毛利、费用、现金流和预算达成等指标自动分析趋势，解释偏差来源，并生成面向经营会议的结构化报告。",
+            details: {
+              scene: ["月度经营会报告", "预算执行复盘", "区域和产品线经营诊断"],
+              workflow: ["拉取多维经营指标", "识别同比、环比、预算达成和异常波动", "生成结论、证据链和追问建议"],
+              outputs: ["经营分析报告", "指标异常榜单", "管理动作建议"]
+            }
+          },
+          {
+            id: "strategy-budget",
+            title: "预算达成分析",
+            icon: "target",
+            pain: '预算偏差到月底才集中暴露？<br>自动跟踪目标、节奏和责任差异，提前识别达成风险。',
+            role: "CFO / 预算管理 / 业务负责人",
+            value: "将预算控制从事后复盘前移到过程管理",
+            summary: "围绕年度、季度和月度预算目标，按组织、产品、区域、项目等维度分析达成进度、偏差来源和后续补救路径。",
+            details: {
+              scene: ["年度预算滚动监控", "月度预算偏差复盘", "重点费用和收入预算预警"],
+              workflow: ["读取预算版本与实际发生", "计算达成率、节奏差和责任差异", "输出偏差解释和纠偏建议"],
+              outputs: ["预算达成看板", "偏差责任清单", "补救动作建议"]
+            }
+          },
+          {
+            id: "strategy-profit",
+            title: "利润归因分析",
+            icon: "profit",
+            pain: '利润变化来自价格、销量、结构、成本还是费用？<br>自动拆解影响因子和贡献金额。',
+            role: "CFO / 财经 BP / 产品经营负责人",
+            value: "把利润变化拆成可行动的经营杠杆",
+            summary: "基于经营维度和财务口径，按价格、销量、产品结构、成本、费用、汇率等因素拆解利润变化。",
+            details: {
+              scene: ["月度利润桥分析", "产品线毛利变化复盘", "预算偏差归因"],
+              workflow: ["定义归因口径与影响因素", "自动计算各因素贡献额和贡献率", "生成利润桥图说明和经营建议"],
+              outputs: ["利润归因矩阵", "贡献因素排序", "改善动作建议"]
+            }
+          },
+          {
+            id: "strategy-capability",
+            title: "财务能力评价",
+            icon: "analysis",
+            pain: '盈利、偿债、运营、发展能力分散在不同报表？<br>统一评价模型输出综合体检。',
+            role: "集团财经 / 投资管理 / 管理层",
+            value: "形成组织和业务单元的财务健康画像",
+            summary: "从盈利能力、偿债能力、运营能力、发展能力等维度构建评价模型，支持集团多层级穿透比较。",
+            details: {
+              scene: ["子公司财务体检", "业务单元综合评价", "年度经营质量评价"],
+              workflow: ["接入财报与经营指标", "计算能力评分和排名变化", "识别短板指标并生成改善建议"],
+              outputs: ["财务能力评分卡", "排名与趋势变化", "短板改善清单"]
+            }
+          },
+          {
+            id: "strategy-benchmark",
+            title: "对标分析",
+            icon: "analysis",
+            pain: '行业对标、历史对标、内部对标耗时长？<br>自动生成差距识别和追赶路径。',
+            role: "战略 / 财经 BP / 经营分析师",
+            value: "让差距被看见，并转成明确改进方向",
+            summary: "整合内外部对标数据，围绕规模、效率、盈利、费用和周转等指标进行多对象比较。",
+            details: {
+              scene: ["行业竞品对标", "区域经营对标", "标杆组织经验复盘"],
+              workflow: ["统一对标口径和对象", "识别优势短板和变化趋势", "生成追赶路径和专题分析报告"],
+              outputs: ["对标分析报告", "差距清单", "标杆经验摘要"]
+            }
+          },
+          {
+            id: "strategy-performance",
+            title: "绩效目标跟踪",
+            icon: "target",
+            pain: '目标、指标、责任和动作割裂？<br>自动追踪绩效完成和异常责任链。',
+            role: "绩效管理 / 管理层 / 责任部门",
+            value: "把考核指标变成持续跟踪的管理闭环",
+            summary: "围绕关键经营绩效目标，持续跟踪完成进度、目标缺口、责任部门和改进动作状态。",
+            details: {
+              scene: ["月度绩效达成跟踪", "重点任务目标监控", "经营责任制分析"],
+              workflow: ["接入目标与实际结果", "识别缺口和责任归因", "同步行动项并跟踪闭环"],
+              outputs: ["绩效目标看板", "缺口预警清单", "责任动作台账"]
+            }
+          },
+          {
+            id: "strategy-loss",
+            title: "亏损治理",
+            icon: "risk",
+            pain: '亏损组织、项目、客户长期说不清原因？<br>穿透亏损构成并定位止损动作。',
+            role: "集团财经 / 业务负责人 / 风险管理",
+            value: "从发现亏损走向治理亏损",
+            summary: "聚焦亏损企业、项目、产品和客户，拆解收入、成本、费用、资产占用和回款风险，形成治理清单。",
+            details: {
+              scene: ["亏损子公司治理", "低毛利项目复盘", "亏损客户退出评估"],
+              workflow: ["识别亏损对象和持续时间", "拆解亏损驱动因素", "输出止损、提价、降本或退出建议"],
+              outputs: ["亏损治理台账", "亏损原因树", "整改跟踪报告"]
+            }
+          },
+          {
+            id: "strategy-capital-efficiency",
+            title: "资本效率分析",
+            icon: "profit",
+            pain: '投资、资产和收益之间缺少统一评价？<br>自动评估资本投入回报和资产效率。',
+            role: "投资管理 / 财务管理层 / 资产管理",
+            value: "提升资本配置透明度和投入产出质量",
+            summary: "围绕 ROIC、ROE、资产周转、项目投资回报等指标，分析资本投入、资产占用和收益产出关系。",
+            details: {
+              scene: ["投资项目投后评价", "资产效率提升分析", "资本配置复盘"],
+              workflow: ["接入投资、资产和收益数据", "计算资本回报和周转效率", "识别低效资产和配置优化机会"],
+              outputs: ["资本效率报告", "低效资产清单", "配置优化建议"]
+            }
+          }
+        ]
+      },
+      treasury: {
+        name: "司库财务",
+        badge: "管资源",
+        icon: "treasury",
+        accent: "#3fc4a9",
+        title: "司库财务主题分析",
+        desc: "以资金安全、资源配置和债务风险为主线，支撑集团司库穿透监测与主动预警。",
+        chips: ["资金集中", "债务风险", "票据管理", "应收回款"],
+        value: "把资金、债务、票据和应收从分散台账升级为可预测、可预警、可调度的司库能力。",
+        scenarios: [
+          {
+            id: "treasury-cash",
+            title: "资金分析",
+            icon: "wallet",
+            pain: '资金余额、收支、集中度分散在多账户？<br>统一看清资金存量、流向和可调度空间。',
+            role: "司库 / 资金管理 / 财务管理层",
+            value: "提升资金可视化与调度效率",
+            summary: "围绕资金余额、收支流向、资金集中度、受限资金和资金缺口进行日常监控与预测分析。",
+            details: {
+              scene: ["集团资金日报", "账户余额穿透", "资金集中度分析"],
+              workflow: ["接入银行账户和资金系统", "识别余额变化与异常流向", "输出资金调拨和风险提示"],
+              outputs: ["资金分析看板", "资金缺口预警", "调拨建议清单"]
+            }
+          },
+          {
+            id: "treasury-debt",
+            title: "债务分析",
+            icon: "risk",
+            pain: '融资余额、期限结构、偿债压力难以及时统筹？<br>自动识别债务到期和成本风险。',
+            role: "司库 / 融资管理 / CFO",
+            value: "提前管理偿债压力和融资成本",
+            summary: "分析债务规模、币种、期限、利率、担保和到期分布，识别集中到期、成本上升和偿债能力风险。",
+            details: {
+              scene: ["债务到期预警", "融资结构复盘", "偿债能力监控"],
+              workflow: ["汇总贷款、债券和融资台账", "计算期限结构和利息成本", "生成到期排程与再融资建议"],
+              outputs: ["债务分析报告", "到期风险清单", "融资成本趋势"]
+            }
+          },
+          {
+            id: "treasury-bill",
+            title: "票据分析",
+            icon: "bill",
+            pain: '票据开立、背书、贴现和到期状态不透明？<br>自动追踪票据生命周期和风险敞口。',
+            role: "票据管理 / 资金会计 / 司库",
+            value: "降低票据逾期、重复质押和流动性风险",
+            summary: "围绕应收票据、应付票据、贴现、背书、质押和到期情况，建立票据全生命周期分析。",
+            details: {
+              scene: ["票据到期提醒", "贴现收益测算", "票据风险巡检"],
+              workflow: ["读取票据台账和银行回单", "识别到期、状态和交易异常", "生成贴现或持有建议"],
+              outputs: ["票据池看板", "到期预警", "贴现收益分析"]
+            }
+          },
+          {
+            id: "treasury-ar",
+            title: "应收分析",
+            icon: "analysis",
+            pain: '应收账龄、客户风险、回款承诺难闭环？<br>自动识别逾期风险和催收优先级。',
+            role: "司库 / 应收会计 / 销售运营",
+            value: "提高回款预测准确性和催收效率",
+            summary: "结合客户、合同、开票、回款和账龄数据，分析应收结构、逾期风险和回款预测。",
+            details: {
+              scene: ["应收账龄分析", "重点客户回款跟踪", "逾期催收排序"],
+              workflow: ["接入应收、合同和收款记录", "计算账龄、逾期概率和客户风险", "输出催收策略和责任人提醒"],
+              outputs: ["应收风险看板", "催收优先级清单", "回款预测表"]
+            }
+          },
+          {
+            id: "treasury-account",
+            title: "账户监测",
+            icon: "treasury",
+            pain: '银行账户多、状态多、交易异常难发现？<br>自动监测账户活跃度和异常流水。',
+            role: "司库 / 资金会计 / 内控",
+            value: "提升账户安全和资金合规水平",
+            summary: "对账户开立、余额、交易、冻结、休眠和权限进行持续监测，发现异常交易和账户管理风险。",
+            details: {
+              scene: ["账户余额监控", "异常交易识别", "休眠账户清理"],
+              workflow: ["汇集账户主数据和流水", "匹配账户规则与交易阈值", "触发异常提醒和复核任务"],
+              outputs: ["账户监测看板", "异常流水清单", "账户治理建议"]
+            }
+          },
+          {
+            id: "treasury-forecast",
+            title: "资金预测",
+            icon: "analysis",
+            pain: '短期资金缺口靠人工估算？<br>滚动预测未来现金流和调度需求。',
+            role: "资金计划 / 司库 / 业务财务",
+            value: "提前识别现金缺口并优化资金安排",
+            summary: "基于订单、应收应付、薪酬、税费、投资和融资计划，滚动预测未来现金流。",
+            details: {
+              scene: ["13 周现金流预测", "月度资金计划", "重大付款缺口预警"],
+              workflow: ["汇总经营和融资现金流计划", "建立收支节奏预测", "输出缺口、冗余和调度建议"],
+              outputs: ["现金流预测表", "资金缺口预警", "调度计划建议"]
+            }
+          },
+          {
+            id: "treasury-cost",
+            title: "融资成本分析",
+            icon: "profit",
+            pain: '不同融资工具成本难横向比较？<br>自动拆解综合资金成本和优化空间。',
+            role: "融资管理 / 司库 / CFO",
+            value: "降低综合融资成本并优化融资组合",
+            summary: "分析贷款、票据、债券、保理等融资方式的利率、费用、期限和资金占用，形成融资组合优化建议。",
+            details: {
+              scene: ["融资成本月报", "融资方案比选", "利率变动影响测算"],
+              workflow: ["接入融资合同和计息数据", "计算综合成本和敏感性影响", "生成低成本替代方案"],
+              outputs: ["融资成本报告", "方案比选表", "利率敏感性测算"]
+            }
+          },
+          {
+            id: "treasury-risk",
+            title: "债权债务风险预警",
+            icon: "risk",
+            pain: '债权回收、债务到期、担保风险分散预警？<br>统一形成司库风险雷达。',
+            role: "司库 / 风险管理 / 管理层",
+            value: "构建资金安全的主动预警防线",
+            summary: "综合债权、债务、担保、授信、账户和现金流数据，识别流动性、信用和合规风险。",
+            details: {
+              scene: ["流动性风险巡检", "担保风险监控", "债权债务异常预警"],
+              workflow: ["配置风险指标和阈值", "每日扫描风险信号", "生成分级告警和处置建议"],
+              outputs: ["司库风险雷达", "风险事项清单", "处置跟踪台账"]
+            }
+          }
+        ]
+      },
+      shared: {
+        name: "共享财务",
+        badge: "提效能",
+        icon: "shared",
+        accent: "#5c6cff",
+        title: "共享财务主题分析",
+        desc: "围绕效率、质量、人员和关账过程，推动财务共享中心从处理中心走向运营与价值中心。",
+        chips: ["运营效率", "质量监控", "员工绩效", "关账协同"],
+        value: "把共享中心的单据、任务和人员数据沉淀为可运营、可质检、可复盘的管理抓手。",
+        scenarios: [
+          {
+            id: "shared-efficiency",
+            title: "运营效率",
+            icon: "analysis",
+            pain: '单据处理量、积压量、平均时长难以实时掌握？<br>自动识别流程堵点和产能缺口。',
+            role: "共享中心负责人 / 流程运营 / 财务经理",
+            value: "提升共享中心吞吐效率和服务响应",
+            summary: "围绕单据量、处理时长、积压、退回、SLA 和流程节点效率，分析共享运营状态。",
+            details: {
+              scene: ["共享运营日报", "流程瓶颈分析", "SLA 达成监控"],
+              workflow: ["接入流程和单据任务数据", "计算节点时长和积压趋势", "输出瓶颈定位与排班建议"],
+              outputs: ["运营效率看板", "流程瓶颈清单", "产能优化建议"]
+            }
+          },
+          {
+            id: "shared-quality",
+            title: "质检分析",
+            icon: "qa",
+            pain: '抽检覆盖低、错因归类慢、问题难沉淀？<br>自动识别高风险单据和质量问题模式。',
+            role: "质检主管 / 共享运营 / 内控",
+            value: "提升质检覆盖率和问题治理效率",
+            summary: "对报销、付款、应收、应付、总账等业务进行规则质检和抽检分析，沉淀错因和责任改进。",
+            details: {
+              scene: ["单据质检", "错因分析", "高风险流程抽检"],
+              workflow: ["配置质检规则和样本策略", "识别异常单据和错误类型", "生成整改建议和复检任务"],
+              outputs: ["质检分析报告", "错误类型分布", "整改闭环台账"]
+            }
+          },
+          {
+            id: "shared-weekly",
+            title: "员工周报",
+            icon: "people",
+            pain: '员工工作量和问题事项靠人工汇总？<br>自动生成个人与团队周报。',
+            role: "共享员工 / 小组长 / 共享中心负责人",
+            value: "让员工贡献、问题和改善事项可视化",
+            summary: "自动汇总员工处理量、及时率、退单、质检问题、协作事项和待改进任务，生成周报。",
+            details: {
+              scene: ["个人工作周报", "小组运营复盘", "问题事项跟踪"],
+              workflow: ["汇总任务、质检和协作数据", "生成个人表现摘要", "提炼风险事项和下周重点"],
+              outputs: ["员工周报", "团队周报", "待改进事项清单"]
+            }
+          },
+          {
+            id: "shared-performance",
+            title: "员工绩效",
+            icon: "people",
+            pain: '工作量、质量、效率和复杂度难统一评价？<br>建立共享员工绩效画像。',
+            role: "共享中心负责人 / HRBP / 小组长",
+            value: "让绩效评价更客观、更可解释",
+            summary: "综合处理量、处理时效、质检结果、退单率、复杂单占比和服务评价，形成员工绩效分析。",
+            details: {
+              scene: ["月度绩效评价", "团队产能比较", "员工能力画像"],
+              workflow: ["定义绩效指标和权重", "汇总个人任务与质量数据", "输出排名、短板和辅导建议"],
+              outputs: ["员工绩效看板", "能力画像", "辅导建议"]
+            }
+          },
+          {
+            id: "shared-return",
+            title: "退单分析",
+            icon: "qa",
+            pain: '退单原因反复出现却难以根治？<br>自动定位退单规则、部门和高频错因。',
+            role: "流程运营 / 共享财务 / 业务部门",
+            value: "减少无效返工和业务沟通成本",
+            summary: "分析报销、付款、合同、开票等流程的退单率、退单原因、责任部门和高频员工。",
+            details: {
+              scene: ["退单率月报", "高频错因治理", "业务部门培训清单"],
+              workflow: ["抽取退单记录和原因文本", "归类错因并定位责任环节", "生成制度优化和培训建议"],
+              outputs: ["退单分析报告", "错因热力图", "培训与制度优化清单"]
+            }
+          },
+          {
+            id: "shared-close",
+            title: "月结进度",
+            icon: "target",
+            pain: '关账任务靠群消息催办？<br>自动跟踪月结节点、责任人和延期风险。',
+            role: "总账会计 / 财务共享 / 财务经理",
+            value: "提升关账透明度和准时率",
+            summary: "围绕月结任务、凭证处理、对账、调账、报表和复核节点，建立关账进度管理。",
+            details: {
+              scene: ["月结任务看板", "关账延期预警", "节点责任跟踪"],
+              workflow: ["读取关账任务和状态", "识别延期节点与依赖关系", "自动提醒责任人并生成复盘"],
+              outputs: ["月结进度看板", "延期风险清单", "关账复盘报告"]
+            }
+          },
+          {
+            id: "shared-accounting-exception",
+            title: "核算异常",
+            icon: "risk",
+            pain: '凭证异常、科目错用、往来差异常到月末才发现？<br>自动扫描核算质量风险。',
+            role: "总账 / 共享会计 / 内控",
+            value: "提升核算准确性并降低关账返工",
+            summary: "对凭证、科目、成本中心、往来、税码和辅助核算进行异常识别，提前发现核算质量问题。",
+            details: {
+              scene: ["凭证质量检查", "科目错用识别", "往来差异预警"],
+              workflow: ["接入凭证和主数据", "匹配核算规则与历史模式", "输出异常明细和调整建议"],
+              outputs: ["核算异常清单", "规则命中说明", "调整建议"]
+            }
+          },
+          {
+            id: "shared-travel",
+            title: "商旅运营分析",
+            icon: "analysis",
+            pain: '商旅成本、合规、供应商和员工体验缺少统一复盘？<br>自动分析商旅运营质量。',
+            role: "商旅运营 / 费控 / 共享财务",
+            value: "优化商旅成本和员工服务体验",
+            summary: "分析机票、酒店、用车、补贴、超标、退改签和供应商服务质量，支撑商旅运营优化。",
+            details: {
+              scene: ["商旅费用结构分析", "超标行为复盘", "供应商服务评价"],
+              workflow: ["汇总商旅订单和报销数据", "识别费用趋势和合规异常", "输出供应商和政策优化建议"],
+              outputs: ["商旅运营报告", "超标清单", "供应商优化建议"]
+            }
+          }
+        ]
+      },
+      business: {
+        name: "业务财务",
+        badge: "嵌业务",
+        icon: "business",
+        accent: "#f39600",
+        title: "业务财务主题分析",
+        desc: "把财务能力嵌入销售、生产、项目、客户和供应链过程，支撑一线经营决策。",
+        chips: ["收入毛利", "成本费用", "库存周转", "客户项目"],
+        value: "让财务分析从报表结果走进业务过程，帮助业务团队及时看见经营问题。",
+        scenarios: [
+          {
+            id: "business-revenue",
+            title: "收入分析",
+            icon: "analysis",
+            pain: '收入变化来自区域、客户、产品还是价格？<br>自动拆解增长来源和异常波动。',
+            role: "销售管理 / 财经 BP / 管理层",
+            value: "明确收入增长的真实驱动因素",
+            summary: "围绕收入规模、订单、发货、开票、客户和产品结构，分析收入趋势、达成和波动原因。",
+            details: {
+              scene: ["月度收入复盘", "区域收入诊断", "产品收入结构分析"],
+              workflow: ["接入订单、发货、开票和财务收入", "拆解维度贡献和异常变化", "生成收入机会与风险提示"],
+              outputs: ["收入分析报告", "增长贡献矩阵", "异常客户清单"]
+            }
+          },
+          {
+            id: "business-margin",
+            title: "毛利分析",
+            icon: "profit",
+            pain: '毛利下降原因混杂在价格、成本、折扣和结构里？<br>自动定位毛利损失点。',
+            role: "产品经营 / 销售管理 / 财经 BP",
+            value: "提升产品、客户和渠道盈利质量",
+            summary: "按产品、客户、渠道、区域和订单拆解毛利率变化，识别低毛利订单和改善空间。",
+            details: {
+              scene: ["低毛利订单识别", "产品毛利变化复盘", "客户盈利质量分析"],
+              workflow: ["汇总收入、成本和折扣数据", "拆解价格、成本和结构影响", "输出提价、控折扣和降本建议"],
+              outputs: ["毛利分析看板", "低毛利清单", "改善动作建议"]
+            }
+          },
+          {
+            id: "business-cost",
+            title: "成本分析",
+            icon: "analysis",
+            pain: '材料、人工、制造费用变动难以归因到业务动作？<br>自动拆解成本差异。',
+            role: "成本会计 / 生产管理 / 财经 BP",
+            value: "把成本差异转化为生产和采购改善动作",
+            summary: "围绕标准成本、实际成本、材料价量差、作业差异和制造费用，定位成本波动来源。",
+            details: {
+              scene: ["标准与实际成本差异分析", "材料价量差复盘", "制造费用异常分析"],
+              workflow: ["接入 BOM、订单、采购和生产数据", "计算成本差异和责任归属", "生成降本机会和异常说明"],
+              outputs: ["成本差异报告", "价量差矩阵", "降本机会清单"]
+            }
+          },
+          {
+            id: "business-expense",
+            title: "费用分析",
+            icon: "target",
+            pain: '费用投入是否有效难判断？<br>自动对比预算、同期和业务产出。',
+            role: "费用管理 / 职能负责人 / 财经 BP",
+            value: "提升费用投入效率和预算纪律",
+            summary: "分析销售费用、管理费用、研发费用和专项费用的预算执行、结构变化和产出效率。",
+            details: {
+              scene: ["费用预算执行分析", "营销费用 ROI 复盘", "职能费用结构分析"],
+              workflow: ["接入费用、预算和业务产出数据", "识别超支和低效投入", "生成费用控制与投放优化建议"],
+              outputs: ["费用分析看板", "超支事项清单", "投入效率报告"]
+            }
+          },
+          {
+            id: "business-inventory",
+            title: "库存周转",
+            icon: "inventory",
+            pain: '库存积压、缺货和呆滞难同时平衡？<br>自动识别库存健康风险。',
+            role: "供应链 / 生产计划 / 财经 BP",
+            value: "降低资金占用并提升供应链响应",
+            summary: "围绕库存金额、周转天数、库龄、呆滞、缺货和产销节奏，分析库存健康度。",
+            details: {
+              scene: ["库存周转分析", "呆滞库存治理", "产销库存协同"],
+              workflow: ["汇总库存、销售和生产计划", "计算周转、库龄和积压风险", "输出清理和补货建议"],
+              outputs: ["库存健康看板", "呆滞库存清单", "补货与清理建议"]
+            }
+          },
+          {
+            id: "business-customer-profit",
+            title: "客户盈利",
+            icon: "profit",
+            pain: '大客户收入高但利润不一定好？<br>自动核算客户全链路盈利贡献。',
+            role: "销售负责人 / 客户经营 / 财经 BP",
+            value: "支撑客户分层经营和资源配置",
+            summary: "综合收入、毛利、返利、费用、应收、服务成本和资金占用，评估客户真实盈利。",
+            details: {
+              scene: ["重点客户盈利复盘", "客户分层经营", "低盈利客户治理"],
+              workflow: ["归集客户全链路收入成本费用", "计算客户贡献和资金占用", "生成分层策略和改善建议"],
+              outputs: ["客户盈利画像", "客户分层清单", "资源配置建议"]
+            }
+          },
+          {
+            id: "business-project",
+            title: "项目经营",
+            icon: "business",
+            pain: '项目收入、成本、回款、风险散在不同系统？<br>自动生成项目经营画像。',
+            role: "项目经理 / 财经 BP / 交付管理",
+            value: "提升项目利润、现金流和履约风险可控性",
+            summary: "围绕项目预算、收入确认、成本投入、回款、进度和风险事项，分析项目经营状态。",
+            details: {
+              scene: ["项目利润复盘", "项目现金流跟踪", "交付风险预警"],
+              workflow: ["接入项目、合同、成本和回款数据", "计算项目偏差和风险等级", "输出项目纠偏建议"],
+              outputs: ["项目经营看板", "风险预警清单", "项目纠偏建议"]
+            }
+          },
+          {
+            id: "business-sop",
+            title: "产销协同分析",
+            icon: "inventory",
+            pain: '销售预测、生产计划和库存结果不匹配？<br>自动识别产销偏差和供应风险。',
+            role: "销售运营 / 供应链 / 财经 BP",
+            value: "提升产销计划质量和经营预测准确性",
+            summary: "连接销售预测、订单、生产计划、库存和交付数据，分析产销匹配、缺口和风险。",
+            details: {
+              scene: ["销售预测偏差分析", "生产计划兑现分析", "交付缺口预警"],
+              workflow: ["汇总预测、订单、产能和库存", "识别供需缺口和偏差原因", "输出排产、补货和销售节奏建议"],
+              outputs: ["产销协同看板", "供需缺口清单", "计划调整建议"]
+            }
+          }
+        ]
+      }
+    };
+
+    const mapLayout = document.querySelector("#mapLayout");
+    const heroTitle = document.querySelector("#heroTitle");
+    const heroDesc = document.querySelector("#heroDesc");
+    const sceneMap = document.querySelector("#sceneMap");
+    const scenarioSection = document.querySelector("#scenarioSection");
+    const sectionTitle = document.querySelector("#sectionTitle");
+    const sectionDesc = document.querySelector("#sectionDesc");
+    const agentGrid = document.querySelector("#agentGrid");
+    const modal = document.querySelector("#scenarioModal");
+    const modalCategory = document.querySelector("#modalCategory");
+    const modalTitle = document.querySelector("#modalTitle");
+    const modalSummary = document.querySelector("#modalSummary");
+    const modalDetails = document.querySelector("#modalDetails");
+    const closeButtons = [document.querySelector("#closeModal"), document.querySelector("#closeModalBottom")];
+    let currentTopic = "map";
+
+    function domainPanel(key, domain) {
+      return `
+        <article class="domain-panel" data-domain="${key}" style="--domain-color:${domain.accent}">
+          <h3 class="domain-title">
+            <span class="domain-title-main">
+              <span class="domain-icon" aria-hidden="true">${icons[domain.icon]}</span>
+              <span>${domain.name}</span>
+            </span>
+            <span class="domain-badge">${domain.badge}</span>
+          </h3>
+          <p class="domain-desc">${domain.value}</p>
+          <div class="domain-chips">${domain.chips.map((chip) => `<span>${chip}</span>`).join("")}</div>
+        </article>
+      `;
+    }
+
+    function renderMap() {
+      mapLayout.innerHTML = `
+        ${domainPanel("strategy", domains.strategy)}
+        ${domainPanel("treasury", domains.treasury)}
+        <article class="map-core">
+          <span class="core-icon" aria-hidden="true">${icons.map}</span>
+          <h2>财务分析决策中枢</h2>
+          <p>统一连接财务、业务、资金、流程与外部数据，把四类财务主题沉淀为可复用的分析模型、指标口径和管理动作。</p>
+          <div class="flow-steps">
+            <span>数据接入</span>
+            <span>指标口径</span>
+            <span>异常识别</span>
+            <span>归因解释</span>
+            <span>行动建议</span>
+          </div>
+        </article>
+        ${domainPanel("shared", domains.shared)}
+        ${domainPanel("business", domains.business)}
+      `;
+    }
+
+    function cardMarkup(scenario, domain) {
+      return `
+        <article class="agent-card" style="--domain-color:${domain.accent}">
+          <div class="card-main">
+            <div class="card-head">
+              <h3 class="agent-title">
+                <span class="title-icon" aria-hidden="true">${icons[scenario.icon]}</span>
+                <span class="agent-title-text">${scenario.title}</span>
+              </h3>
+              <span class="status">共创中</span>
+            </div>
+            <p class="pain">${scenario.pain}</p>
+            <div class="agent-meta">
+              <div class="meta-row"><span class="meta-label">场景分类</span><span class="meta-value">${domain.name}</span></div>
+              <div class="meta-row"><span class="meta-label">适用角色</span><span class="meta-value">${scenario.role}</span></div>
+              <div class="meta-row"><span class="meta-label">核心价值</span><span class="meta-value">${scenario.value}</span></div>
+            </div>
+          </div>
+          <div class="card-actions">
+            <div class="action-tags">
+              <button class="link-action" type="button" data-detail="${scenario.id}">场景详情</button>
+              <span class="link-action demo" aria-disabled="true">Demo演示</span>
+              <span class="link-action case" aria-disabled="true">客户案例</span>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function detailCard(title, items) {
+      return `
+        <div class="detail-card">
+          <strong>${title}</strong>
+          <ul>${items.map((item) => `<li>${item}</li>`).join("")}</ul>
+        </div>
+      `;
+    }
+
+    function setTopic(topic) {
+      currentTopic = topic;
+      document.querySelectorAll(".view-tab").forEach((button) => {
+        button.classList.toggle("is-active", button.dataset.topic === topic);
+      });
+
+      if (topic === "map") {
+        heroTitle.innerHTML = '以<span>财务分析决策中枢</span>串联战略、司库、共享与业务财务';
+        heroDesc.textContent = "围绕四类财务场景建立统一主题地图，让数据、指标、分析、预警和行动建议形成可复用的经营管理能力。";
+        sceneMap.classList.remove("is-hidden");
+        scenarioSection.classList.add("is-hidden");
+        return;
+      }
+
+      const domain = domains[topic];
+      heroTitle.innerHTML = `${domain.name}：让<span>主题分析</span>从报表复盘走向行动闭环`;
+      heroDesc.textContent = domain.desc;
+      sectionTitle.textContent = domain.title;
+      sectionDesc.textContent = domain.desc;
+      sceneMap.classList.add("is-hidden");
+      scenarioSection.classList.remove("is-hidden");
+      agentGrid.innerHTML = domain.scenarios.map((scenario) => cardMarkup(scenario, domain)).join("");
+    }
+
+    function findScenario(id) {
+      for (const [domainKey, domain] of Object.entries(domains)) {
+        const scenario = domain.scenarios.find((item) => item.id === id);
+        if (scenario) return { domainKey, domain, scenario };
+      }
+      return null;
+    }
+
+    const modalKnowledge = {
+      "strategy-business-report": {
+        metrics: ["收入、毛利、费用、利润、现金流", "预算达成率、同比、环比", "异常指标数量与影响金额"],
+        sources: ["总账与管理报表", "预算系统", "销售、回款、费用与组织维度数据"]
+      },
+      "strategy-budget": {
+        metrics: ["预算达成率、预算偏差额", "收入与费用节奏差", "责任部门缺口金额"],
+        sources: ["预算版本与调整记录", "财务实际发生数据", "组织、科目、项目和责任中心主数据"]
+      },
+      "strategy-profit": {
+        metrics: ["利润额、利润率、毛利率", "价格、销量、结构、成本、费用贡献额", "预算差异与同期差异"],
+        sources: ["收入成本明细", "销售订单与产品结构数据", "费用、汇率和预算数据"]
+      },
+      "strategy-capability": {
+        metrics: ["盈利能力、偿债能力、运营能力、发展能力评分", "资产负债率、周转率、ROE、ROA", "组织排名与趋势变化"],
+        sources: ["财务报表", "资产负债与现金流数据", "组织与业务单元主数据"]
+      },
+      "strategy-benchmark": {
+        metrics: ["对标排名、差距值、追赶目标", "收入规模、利润率、费用率、周转效率", "标杆差距变化趋势"],
+        sources: ["内部经营与财务指标", "行业公开数据与竞品信息", "历史对标报告和标杆库"]
+      },
+      "strategy-performance": {
+        metrics: ["绩效目标完成率", "目标缺口、延期事项、责任动作完成率", "重点指标红黄绿状态"],
+        sources: ["绩效目标库", "经营与财务实际数据", "任务督办与责任人数据"]
+      },
+      "strategy-loss": {
+        metrics: ["亏损金额、亏损率、持续亏损月份", "低毛利项目占比、费用侵蚀金额", "整改事项闭环率"],
+        sources: ["利润表与管理报表", "项目、客户、产品经营数据", "整改台账与责任部门数据"]
+      },
+      "strategy-capital-efficiency": {
+        metrics: ["ROIC、ROE、资产周转率", "投资回收期、资本占用金额", "低效资产金额与占比"],
+        sources: ["投资项目台账", "资产台账和折旧数据", "收益、现金流和资本占用数据"]
+      },
+      "treasury-cash": {
+        metrics: ["资金余额、可用资金、受限资金", "资金集中度、账户余额变化", "收支净额和资金缺口"],
+        sources: ["银行账户流水", "资金系统", "收付款计划和账户主数据"]
+      },
+      "treasury-debt": {
+        metrics: ["融资余额、债务期限结构", "综合融资成本、到期债务金额", "资产负债率和偿债覆盖倍数"],
+        sources: ["融资合同与债务台账", "贷款、债券和授信数据", "利息计提与还款计划"]
+      },
+      "treasury-bill": {
+        metrics: ["票据余额、到期票据金额", "贴现利率、贴现收益", "背书、质押、逾期票据数量"],
+        sources: ["票据台账", "银行票据池数据", "合同、收付款和贴现记录"]
+      },
+      "treasury-ar": {
+        metrics: ["应收余额、账龄结构、逾期金额", "回款预测准确率、催收完成率", "重点客户风险等级"],
+        sources: ["应收账款明细", "合同、开票与收款数据", "客户信用和销售承诺记录"]
+      },
+      "treasury-account": {
+        metrics: ["账户数量、活跃账户占比", "异常流水数量和金额", "休眠、冻结、受限账户数量"],
+        sources: ["银行账户主数据", "账户流水", "网银权限和账户状态记录"]
+      },
+      "treasury-forecast": {
+        metrics: ["现金流入、现金流出、净现金流", "预测缺口金额、资金覆盖天数", "预测准确率"],
+        sources: ["销售回款计划", "采购付款计划", "薪酬、税费、投资和融资计划"]
+      },
+      "treasury-cost": {
+        metrics: ["综合融资成本率", "融资工具成本差异", "利率敏感性影响金额"],
+        sources: ["融资合同", "计息与费用数据", "市场利率和授信额度数据"]
+      },
+      "treasury-risk": {
+        metrics: ["风险告警数量、风险金额", "债务到期集中度、担保余额", "预警处置完成率"],
+        sources: ["债权债务台账", "担保与授信数据", "账户、现金流和风险规则库"]
+      },
+      "shared-efficiency": {
+        metrics: ["单据处理量、平均处理时长", "积压量、SLA 达成率", "人均产能和流程瓶颈节点"],
+        sources: ["共享流程平台", "单据任务数据", "员工、组织和流程节点数据"]
+      },
+      "shared-quality": {
+        metrics: ["质检通过率、错误率", "高频错因数量、复检通过率", "风险单据命中率"],
+        sources: ["质检规则库", "报销、付款、应收应付和总账单据", "抽检记录和整改台账"]
+      },
+      "shared-weekly": {
+        metrics: ["个人处理量、及时率、退单率", "质检问题数量、待办完成率", "本周异常和下周重点事项"],
+        sources: ["员工任务记录", "流程处理日志", "质检、退单和协作事项数据"]
+      },
+      "shared-performance": {
+        metrics: ["处理量、处理时效、复杂单占比", "质检得分、退单率、服务评价", "团队排名和能力短板"],
+        sources: ["共享任务数据", "质检与退单记录", "员工主数据和服务评价"]
+      },
+      "shared-return": {
+        metrics: ["退单率、退单次数、退单金额", "高频错因占比", "责任部门和高频提交人分布"],
+        sources: ["流程退单记录", "单据附件与原因文本", "部门、员工和制度规则数据"]
+      },
+      "shared-close": {
+        metrics: ["月结任务完成率", "延期节点数量、关账耗时", "凭证、对账、复核完成状态"],
+        sources: ["月结任务清单", "总账和子模块关账状态", "对账、调账和报表提交记录"]
+      },
+      "shared-accounting-exception": {
+        metrics: ["异常凭证数量、异常金额", "科目错用率、往来差异金额", "规则命中率和调整完成率"],
+        sources: ["总账凭证", "科目、税码和辅助核算主数据", "往来、成本中心和规则库数据"]
+      },
+      "shared-travel": {
+        metrics: ["商旅费用金额、超标率", "退改签成本、供应商服务评分", "人均商旅成本和政策命中率"],
+        sources: ["商旅订单", "报销单据", "供应商、员工和差旅制度数据"]
+      },
+      "business-revenue": {
+        metrics: ["收入额、收入增长率、预算达成率", "客户、产品、区域贡献额", "订单、发货、开票转化率"],
+        sources: ["销售订单", "发货与开票数据", "财务收入和客户产品主数据"]
+      },
+      "business-margin": {
+        metrics: ["毛利率、毛利额、低毛利订单占比", "价格、成本、折扣、结构影响金额", "客户和产品盈利贡献"],
+        sources: ["收入成本明细", "订单、折扣和价格数据", "产品、客户和渠道主数据"]
+      },
+      "business-cost": {
+        metrics: ["标准成本、实际成本、成本差异", "材料价差、量差、作业差异", "制造费用偏差和降本机会金额"],
+        sources: ["BOM、工艺路线和标准成本", "采购、生产订单和领料数据", "成本中心和制造费用数据"]
+      },
+      "business-expense": {
+        metrics: ["费用金额、费用率、预算执行率", "超支金额、费用结构变化", "投入产出比和低效费用占比"],
+        sources: ["费用报销与付款数据", "预算系统", "销售、营销、研发和职能产出数据"]
+      },
+      "business-inventory": {
+        metrics: ["库存金额、库存周转天数", "库龄结构、呆滞库存金额", "缺货风险和补货建议量"],
+        sources: ["库存台账", "销售订单和需求预测", "生产计划、采购和物料主数据"]
+      },
+      "business-customer-profit": {
+        metrics: ["客户收入、客户毛利、客户贡献利润", "返利、费用、服务成本和资金占用", "客户分层和盈利等级"],
+        sources: ["客户销售与收入数据", "成本、费用、返利和服务记录", "应收、回款和客户主数据"]
+      },
+      "business-project": {
+        metrics: ["项目收入、项目成本、项目毛利", "回款进度、预算偏差、履约风险等级", "项目现金流和延期事项"],
+        sources: ["项目台账", "合同、收入确认和成本投入数据", "回款、进度和交付风险记录"]
+      },
+      "business-sop": {
+        metrics: ["预测准确率、供需缺口", "订单满足率、生产计划兑现率", "库存覆盖天数和交付风险数量"],
+        sources: ["销售预测和订单", "生产计划与产能数据", "库存、采购和交付记录"]
+      }
+    };
+
+    function plainText(html) {
+      const template = document.createElement("template");
+      template.innerHTML = html;
+      return template.content.textContent.replace(/\s+/g, " ").trim();
+    }
+
+    function splitRole(role) {
+      return role.split("/").map((item) => item.trim()).filter(Boolean);
+    }
+
+    function openModal(id) {
+      const result = findScenario(id);
+      if (!result) return;
+      const { domain, scenario } = result;
+      const knowledge = modalKnowledge[scenario.id] || {
+        metrics: domain.chips,
+        sources: ["财务系统", "业务系统", "管理台账和指标口径库"]
+      };
+      modalCategory.textContent = domain.name;
+      modalTitle.textContent = scenario.title;
+      modalSummary.textContent = scenario.summary;
+      modalDetails.innerHTML = `
+        ${detailCard("关键用户", splitRole(scenario.role))}
+        ${detailCard("业务痛点", [plainText(scenario.pain)])}
+        ${detailCard("分析场景", scenario.details.scene)}
+        ${detailCard("核心指标", knowledge.metrics)}
+        ${detailCard("数据来源", knowledge.sources)}
+        ${detailCard("预期收益", [scenario.value])}
+      `;
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      document.querySelector("#closeModal").focus();
+    }
+
+    function closeModal() {
+      modal.classList.remove("is-open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    renderMap();
+    setTopic("map");
+
+    document.querySelectorAll(".view-tab").forEach((button) => {
+      button.addEventListener("click", () => setTopic(button.dataset.topic));
+    });
+
+    agentGrid.addEventListener("click", (event) => {
+      const trigger = event.target.closest("[data-detail]");
+      if (trigger) openModal(trigger.dataset.detail);
+    });
+
+    closeButtons.forEach((button) => button.addEventListener("click", closeModal));
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) closeModal();
+    });
+
+    window.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && modal.classList.contains("is-open")) closeModal();
+    });
+  </script>
+</body>
+</html>
