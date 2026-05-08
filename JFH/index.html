@@ -1413,17 +1413,37 @@
       font-size: 0.92rem;
     }
 
-    .case-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--navy-700);
-      font-weight: 700;
-      font-size: 0.9rem;
+    .case-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: auto;
     }
 
-    .case-link::after {
+    .case-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 0 12px;
+      border-radius: 10px;
+      background: rgba(0, 134, 230, 0.07);
+      border: 1px solid rgba(0, 134, 230, 0.1);
+      color: var(--navy-700);
+      font-weight: 800;
+      font-size: 0.88rem;
+      transition: transform var(--anim), background var(--anim), border-color var(--anim);
+    }
+
+    .case-action:hover {
+      transform: translateY(-1px);
+      background: rgba(0, 134, 230, 0.11);
+      border-color: rgba(0, 134, 230, 0.22);
+    }
+
+    .case-action.detail::after {
       content: "›";
+      margin-left: 8px;
       font-size: 1.1rem;
       line-height: 1;
     }
@@ -2051,7 +2071,10 @@
                       </div>
                       <span class="case-tags">A 股上市 | 黄浦区国资委参股 | 零售行业 | FineReport + 协同能力</span>
                       <p>适合用于讲零售经营场景下的高层经营分析、品牌经营复盘与多板块视角的管理应用。</p>
-                      <a class="case-link" href="#">查看详情</a>
+                      <div class="case-actions">
+                        <a class="case-action" href="#">案例卡片</a>
+                        <a class="case-action detail" href="#">查看详情</a>
+                      </div>
                     </article>
 
                     <article class="case-card">
@@ -2060,7 +2083,10 @@
                       </div>
                       <span class="case-tags">A 股上市品牌 | 零售行业 | FineReport + 飞书 + FineBI</span>
                       <p>适合讲高层经营分析与协同办公结合的落地方式，也是对话零售客户时的代表性案例。</p>
-                      <a class="case-link" href="#">查看详情</a>
+                      <div class="case-actions">
+                        <a class="case-action" href="#">案例卡片</a>
+                        <a class="case-action detail" href="#">查看详情</a>
+                      </div>
                     </article>
 
                     <article class="case-card">
@@ -2069,7 +2095,10 @@
                       </div>
                       <span class="case-tags">A 股上市 | 制造行业 | 高层经营分析诉求典型</span>
                       <p>适合用于讲制造企业高层如何关注跨业务协同、经营执行与经营问题根因定位。</p>
-                      <a class="case-link" href="#">查看详情</a>
+                      <div class="case-actions">
+                        <a class="case-action" href="#">案例卡片</a>
+                        <a class="case-action detail" href="#">查看详情</a>
+                      </div>
                     </article>
 
                     <article class="case-card">
@@ -2078,7 +2107,10 @@
                       </div>
                       <span class="case-tags">全球饲料龙头 | 制造 / 农牧 | FineReport</span>
                       <p>适合用于讲大集团经营管理视角下的报表标准化与经营分析支撑。</p>
-                      <a class="case-link" href="#">查看详情</a>
+                      <div class="case-actions">
+                        <a class="case-action" href="#">案例卡片</a>
+                        <a class="case-action detail" href="#">查看详情</a>
+                      </div>
                     </article>
 
                     <article class="case-card">
@@ -2087,7 +2119,10 @@
                       </div>
                       <span class="case-tags">A 股上市 | 精细化工 | FineBI</span>
                       <p>适合讲业财融合、海外业务经营洞察，以及高层对经营结果与业务动因的联动分析。</p>
-                      <a class="case-link" href="#">查看详情</a>
+                      <div class="case-actions">
+                        <a class="case-action" href="#">案例卡片</a>
+                        <a class="case-action detail" href="#">查看详情</a>
+                      </div>
                     </article>
 
                     <article class="case-card">
@@ -2096,7 +2131,10 @@
                       </div>
                       <span class="case-tags">A 股上市 | 智能制造 | FineBI</span>
                       <p>适合讲制造业头部企业在经营分析与高层看数场景下的数字化表达。</p>
-                      <a class="case-link" href="#">查看详情</a>
+                      <div class="case-actions">
+                        <a class="case-action" href="#">案例卡片</a>
+                        <a class="case-action detail" href="#">查看详情</a>
+                      </div>
                     </article>
                   </div>
                 </div>
@@ -2116,7 +2154,10 @@
                       </div>
                       <span class="case-tags">中央企业 | 世界 500 强 | 整车制造</span>
                       <p>适合用于讲大型集团在经营管理、穿透看数和高层决策支撑场景下的价值空间。</p>
-                      <a class="case-link" href="#">查看详情</a>
+                      <div class="case-actions">
+                        <a class="case-action" href="#">案例卡片</a>
+                        <a class="case-action detail" href="#">查看详情</a>
+                      </div>
                     </article>
 
                     <article class="case-card">
@@ -2125,7 +2166,10 @@
                       </div>
                       <span class="case-tags">央企二级 | A 股上市 | FineReport</span>
                       <p>适合对话工程类和大型国资企业，讲经营分析如何服务集团经营管理与分层穿透。</p>
-                      <a class="case-link" href="#">查看详情</a>
+                      <div class="case-actions">
+                        <a class="case-action" href="#">案例卡片</a>
+                        <a class="case-action detail" href="#">查看详情</a>
+                      </div>
                     </article>
 
                     <article class="case-card">
@@ -2134,7 +2178,10 @@
                       </div>
                       <span class="case-tags">广州市属一级 | 公共基础设施 | 穿透式管理</span>
                       <p>适合讲国资企业如何通过数字化经营分析会实现分层管理、经营监控与高层看数。</p>
-                      <a class="case-link" href="#">查看详情</a>
+                      <div class="case-actions">
+                        <a class="case-action" href="#">案例卡片</a>
+                        <a class="case-action detail" href="#">查看详情</a>
+                      </div>
                     </article>
 
                     <article class="case-card">
@@ -2143,7 +2190,10 @@
                       </div>
                       <span class="case-tags">央企二级 | 中核集团子公司 | 核建领域</span>
                       <p>适合用于讲大型工程类集团在战略执行与经营复盘中的高层管理诉求。</p>
-                      <a class="case-link" href="#">查看详情</a>
+                      <div class="case-actions">
+                        <a class="case-action" href="#">案例卡片</a>
+                        <a class="case-action detail" href="#">查看详情</a>
+                      </div>
                     </article>
 
                     <article class="case-card">
@@ -2152,7 +2202,10 @@
                       </div>
                       <span class="case-tags">央企二级 | 数字科技公司 | FineReport</span>
                       <p>适合讲数字科技与经营分析场景结合的表达方式，也有助于内部对话技术管理角色。</p>
-                      <a class="case-link" href="#">查看详情</a>
+                      <div class="case-actions">
+                        <a class="case-action" href="#">案例卡片</a>
+                        <a class="case-action detail" href="#">查看详情</a>
+                      </div>
                     </article>
 
                     <article class="case-card">
@@ -2161,7 +2214,10 @@
                       </div>
                       <span class="case-tags">央企二级 | 高端新能源品牌 | 汽车行业</span>
                       <p>适合围绕新能源汽车经营管理、品牌经营与集团业务协同来进行对标讲解。</p>
-                      <a class="case-link" href="#">查看详情</a>
+                      <div class="case-actions">
+                        <a class="case-action" href="#">案例卡片</a>
+                        <a class="case-action detail" href="#">查看详情</a>
+                      </div>
                     </article>
                   </div>
                 </div>
