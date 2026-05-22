@@ -702,6 +702,14 @@
       background: rgba(255, 255, 255, 0.9);
     }
 
+    .case-region-pane {
+      display: none;
+    }
+
+    .case-region-pane.is-active {
+      display: block;
+    }
+
     .case-map-table {
       width: 100%;
       min-width: 1180px;
@@ -737,6 +745,15 @@
       min-width: 190px;
     }
 
+    .case-map-subline {
+      display: block;
+      margin-top: 4px;
+      color: var(--navy-700);
+      font-size: 0.78rem;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
     .case-map-table .case-name.is-pending {
       color: var(--navy-700);
     }
@@ -749,6 +766,16 @@
     .case-map-table .scenario-note {
       min-width: 250px;
       color: rgba(23, 52, 110, 0.78);
+    }
+
+    .case-map-empty {
+      padding: 18px;
+      border-radius: var(--radius-md);
+      color: var(--text-soft);
+      background: rgba(245, 250, 255, 0.78);
+      border: 1px dashed rgba(128, 202, 255, 0.68);
+      font-weight: 700;
+      text-align: center;
     }
 
     .case-map-tag {
@@ -1469,18 +1496,19 @@
             <div class="case-map-title-row">
               <h2>案例地图</h2>
               <div class="case-region-tabs" role="tablist" aria-label="案例地图区域切换">
-                <button class="case-region-tab is-active" type="button" role="tab" aria-selected="true">全国总览</button>
-                <button class="case-region-tab" type="button" role="tab" aria-selected="false">上海区域</button>
-                <button class="case-region-tab" type="button" role="tab" aria-selected="false">华南区域</button>
-                <button class="case-region-tab" type="button" role="tab" aria-selected="false">苏皖区域</button>
-                <button class="case-region-tab" type="button" role="tab" aria-selected="false">其他区域</button>
+                <button class="case-region-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="case-region-national" data-region="national">全国总览</button>
+                <button class="case-region-tab" type="button" role="tab" aria-selected="false" aria-controls="case-region-shanghai" data-region="shanghai">上海区域</button>
+                <button class="case-region-tab" type="button" role="tab" aria-selected="false" aria-controls="case-region-south" data-region="south">华南区域</button>
+                <button class="case-region-tab" type="button" role="tab" aria-selected="false" aria-controls="case-region-suwan" data-region="suwan">苏皖区域</button>
+                <button class="case-region-tab" type="button" role="tab" aria-selected="false" aria-controls="case-region-other" data-region="other">其他区域</button>
               </div>
             </div>
             <p>按客户分类、属性、合作条线与落地场景沉淀案例线索。</p>
           </div>
         </div>
 
-        <div class="case-map-wrap" role="region" aria-label="案例地图表格" tabindex="0">
+        <div class="case-region-pane is-active" id="case-region-national" role="tabpanel">
+        <div class="case-map-wrap" role="region" aria-label="全国总览案例地图表格" tabindex="0">
           <table class="case-map-table">
             <thead>
               <tr>
@@ -1643,6 +1671,277 @@
               </tr>
             </tbody>
           </table>
+        </div>
+        </div>
+
+        <div class="case-region-pane" id="case-region-shanghai" role="tabpanel">
+          <div class="case-map-wrap" role="region" aria-label="上海区域案例地图表格" tabindex="0">
+            <table class="case-map-table">
+              <thead>
+                <tr>
+                  <th>客户分类</th>
+                  <th>细分属性</th>
+                  <th>案例链接</th>
+                  <th>场景合作条线</th>
+                  <th>细分标签</th>
+                  <th>财务管报</th>
+                  <th>数字化经分会</th>
+                  <th>财务主题场景</th>
+                  <th>穿透式监管</th>
+                  <th>数据治理</th>
+                  <th>数字人才</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="center">国资</td>
+                  <td class="center">医药制造</td>
+                  <td class="case-name">上药信谊<span class="case-map-subline">上药信谊预算管理平台</span></td>
+                  <td class="center">预算管理</td>
+                  <td class="center"><span class="case-map-tag">上海医药系</span></td>
+                  <td></td>
+                  <td></td>
+                  <td class="scenario-note">财报数据 / 业财分析 / 预算编制</td>
+                  <td></td>
+                  <td class="scenario-note">财务数仓</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="center">国资</td>
+                  <td class="center">医药集团</td>
+                  <td class="case-name">上药集团<span class="case-map-subline">运营管理平台一期项目</span></td>
+                  <td class="center">运营管理</td>
+                  <td class="center"><span class="case-map-tag">地方国企</span></td>
+                  <td></td>
+                  <td></td>
+                  <td class="scenario-note">财报数据 / 业财分析 / 预算编制</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="center">国资</td>
+                  <td class="center">医药流通</td>
+                  <td class="case-name">上药控股<span class="case-map-subline">FineBI 经营分析案例</span></td>
+                  <td class="center">经营分析</td>
+                  <td class="center"><span class="case-map-tag">医药供应链</span></td>
+                  <td></td>
+                  <td></td>
+                  <td class="scenario-note">财报数据 / 业财分析 / 自助分析 / 预算编制</td>
+                  <td></td>
+                  <td class="scenario-note">财务数仓</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="center">民营</td>
+                  <td class="center">低压电器</td>
+                  <td class="case-name">良信电器<span class="case-map-subline">集团经营分析会</span></td>
+                  <td class="center">集团经营分析</td>
+                  <td class="center"><span class="case-map-tag">上市制造</span></td>
+                  <td class="scenario-note">管报搭建</td>
+                  <td class="center"><span class="case-map-mark">√</span></td>
+                  <td class="scenario-note">财报数据 / 业财分析</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="center">国资</td>
+                  <td class="center">化工制造</td>
+                  <td class="case-name">华谊集团<span class="case-map-subline">3F 财务标准化分析看板</span></td>
+                  <td class="center">财务标准化</td>
+                  <td class="center"><span class="case-map-tag">上海国资</span></td>
+                  <td></td>
+                  <td></td>
+                  <td class="scenario-note">财报数据 / 业财分析 / 自助分析</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="center">民营</td>
+                  <td class="center">新能源</td>
+                  <td class="case-name is-pending">远景能源<span class="case-map-subline">回收计划中</span></td>
+                  <td class="center">预算管理</td>
+                  <td class="center"><span class="case-map-tag">绿色能源</span></td>
+                  <td></td>
+                  <td></td>
+                  <td class="scenario-note">业财分析 / 预算编制</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="center">民营</td>
+                  <td class="center">海洋科技</td>
+                  <td class="case-name">上海海兰劳雷<span class="case-map-subline">项目案例材料</span></td>
+                  <td class="center">经营与共享</td>
+                  <td class="center"><span class="case-map-tag">航海电子</span></td>
+                  <td class="scenario-note">管报搭建</td>
+                  <td></td>
+                  <td class="scenario-note">业财分析 / 资金分析</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="center">合资</td>
+                  <td class="center">汽车热管理</td>
+                  <td class="case-name">空调国际<span class="case-map-subline">对账案例</span></td>
+                  <td class="center">财务对账</td>
+                  <td class="center"><span class="case-map-tag">制造腰部</span></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td class="scenario-note">财务对账</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="center">民营</td>
+                  <td class="center">新能源汽车</td>
+                  <td class="case-name">臻驱科技<span class="case-map-subline">预算编制平台项目</span></td>
+                  <td class="center">预算管理</td>
+                  <td class="center"><span class="case-map-tag">电驱系统</span></td>
+                  <td></td>
+                  <td></td>
+                  <td class="scenario-note">预算编制</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="center">民营</td>
+                  <td class="center">半导体</td>
+                  <td class="case-name is-pending">天数智芯<span class="case-map-subline">回收计划中</span></td>
+                  <td class="center">费用与资金分析</td>
+                  <td class="center"><span class="case-map-tag">AI 芯片</span></td>
+                  <td></td>
+                  <td></td>
+                  <td class="scenario-note">费用分析 / 资金分析</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="center">外资</td>
+                  <td class="center">医疗器械</td>
+                  <td class="case-name">卡尔史托斯<span class="case-map-subline">数仓架构及模型优化项目</span></td>
+                  <td class="center">数仓与经营分析</td>
+                  <td class="center"><span class="case-map-tag">德资医疗</span></td>
+                  <td></td>
+                  <td></td>
+                  <td class="scenario-note">财报数据 / 业财分析 / 预算编制 / 费用分析</td>
+                  <td></td>
+                  <td class="scenario-note">财务数仓</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="center">外资</td>
+                  <td class="center">医药</td>
+                  <td class="case-name">日健中外<span class="case-map-subline">滚动预算项目</span></td>
+                  <td class="center">预算管理</td>
+                  <td class="center"><span class="case-map-tag">外资药企</span></td>
+                  <td></td>
+                  <td></td>
+                  <td class="scenario-note">预算编制</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="center">外资</td>
+                  <td class="center">医药</td>
+                  <td class="case-name is-pending">晖致医药<span class="case-map-subline">回收计划中</span></td>
+                  <td class="center">待补充</td>
+                  <td class="center"><span class="case-map-tag">跨国药企</span></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="center">国资</td>
+                  <td class="center">中央企业</td>
+                  <td class="case-name">中远海运<span class="case-map-subline">财务双集中智能化统计分析项目</span></td>
+                  <td class="center">财务共享</td>
+                  <td class="center"><span class="case-map-tag">央企航运</span></td>
+                  <td class="scenario-note">管报搭建</td>
+                  <td></td>
+                  <td class="scenario-note">财报数据 / 业财分析 / 费用分析 / 资金分析</td>
+                  <td></td>
+                  <td class="scenario-note">财务数仓</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="center">国资</td>
+                  <td class="center">中央企业</td>
+                  <td class="case-name">中交建·华东财务共享中心<span class="case-map-subline">以简道云为中心的全家桶建设案例</span></td>
+                  <td class="center">财务共享</td>
+                  <td class="center"><span class="case-map-tag">央企共享</span></td>
+                  <td></td>
+                  <td></td>
+                  <td class="scenario-note">财报数据 / 费用分析 / 资金分析</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="center">民营</td>
+                  <td class="center">食品供应链</td>
+                  <td class="case-name">佳农食品<span class="case-map-subline">一期财务报表替换案例</span></td>
+                  <td class="center">财务报表</td>
+                  <td class="center"><span class="case-map-tag">生鲜供应链</span></td>
+                  <td class="scenario-note">管报搭建</td>
+                  <td></td>
+                  <td class="scenario-note">财报数据 / 业财分析</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="center">外资</td>
+                  <td class="center">粮油食品</td>
+                  <td class="case-name is-pending">金龙鱼<span class="case-map-subline">待制定回收计划</span></td>
+                  <td class="center">自助分析</td>
+                  <td class="center"><span class="case-map-tag">上市食品</span></td>
+                  <td></td>
+                  <td></td>
+                  <td class="scenario-note">自助分析</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td class="center">外资</td>
+                  <td class="center">连锁餐饮</td>
+                  <td class="case-name is-pending">百胜集团<span class="case-map-subline">待制定回收计划</span></td>
+                  <td class="center">待补充</td>
+                  <td class="center"><span class="case-map-tag">餐饮零售</span></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="case-region-pane" id="case-region-south" role="tabpanel">
+          <div class="case-map-empty">华南区域案例地图整理中，后续将按同一字段补充。</div>
+        </div>
+
+        <div class="case-region-pane" id="case-region-suwan" role="tabpanel">
+          <div class="case-map-empty">苏皖区域案例地图整理中，后续将按同一字段补充。</div>
+        </div>
+
+        <div class="case-region-pane" id="case-region-other" role="tabpanel">
+          <div class="case-map-empty">其他区域案例地图整理中，后续将按同一字段补充。</div>
         </div>
 
         <section class="customer-wall" aria-label="案例地图典型客户">
@@ -1896,6 +2195,7 @@
     const tabs = Array.from(document.querySelectorAll('.arsenal-tab'));
     const panes = Array.from(document.querySelectorAll('.arsenal-pane'));
     const caseRegionTabs = Array.from(document.querySelectorAll('.case-region-tab'));
+    const caseRegionPanes = Array.from(document.querySelectorAll('.case-region-pane'));
     const modals = Array.from(document.querySelectorAll('.modal'));
     let lastFocusedElement = null;
 
@@ -1917,10 +2217,16 @@
 
     caseRegionTabs.forEach((tab) => {
       tab.addEventListener('click', () => {
+        const { region } = tab.dataset;
+
         caseRegionTabs.forEach((item) => {
           const active = item === tab;
           item.classList.toggle('is-active', active);
           item.setAttribute('aria-selected', String(active));
+        });
+
+        caseRegionPanes.forEach((panel) => {
+          panel.classList.toggle('is-active', panel.id === `case-region-${region}`);
         });
       });
     });
