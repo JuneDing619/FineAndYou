@@ -645,6 +645,68 @@
       filter: saturate(0.9);
     }
 
+    .case-map-wrap {
+      overflow-x: auto;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(204, 228, 255, 0.92);
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .case-map-table {
+      width: 100%;
+      min-width: 1180px;
+      border-collapse: collapse;
+      color: var(--text);
+      font-size: 0.84rem;
+      line-height: 1.55;
+    }
+
+    .case-map-table th,
+    .case-map-table td {
+      border: 1px solid rgba(204, 228, 255, 0.86);
+      padding: 10px 12px;
+      vertical-align: middle;
+      background: rgba(255, 255, 255, 0.86);
+    }
+
+    .case-map-table th {
+      background: rgba(232, 244, 255, 0.96);
+      color: var(--navy-900);
+      font-weight: 800;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .case-map-table td {
+      color: rgba(23, 52, 110, 0.82);
+    }
+
+    .case-map-table .case-name {
+      color: var(--navy-900);
+      font-weight: 800;
+      min-width: 190px;
+    }
+
+    .case-map-table .case-name.is-pending {
+      color: var(--navy-700);
+    }
+
+    .case-map-table .center {
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .case-map-table .scenario-note {
+      min-width: 250px;
+      color: rgba(23, 52, 110, 0.78);
+    }
+
+    .case-map-mark {
+      color: var(--navy-700);
+      font-size: 1rem;
+      font-weight: 900;
+    }
+
     .modal {
       position: fixed;
       inset: 0;
@@ -945,6 +1007,10 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
+      .case-map-table {
+        min-width: 1100px;
+      }
+
       .customer-logo-grid {
         grid-template-columns: repeat(4, minmax(0, 1fr));
       }
@@ -972,6 +1038,11 @@
       .hero,
       .section-card {
         padding: 22px;
+      }
+
+      .case-map-table th,
+      .case-map-table td {
+        padding: 9px 10px;
       }
 
       .diagnosis-grid,
@@ -1139,6 +1210,7 @@
         <a href="#hero">首页</a>
         <a href="#workbench">工作台</a>
         <a href="#scene-assets">场景资产</a>
+        <a href="#case-map">案例地图</a>
       </nav>
     </header>
 
@@ -1307,6 +1379,180 @@
               </article>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section class="section-card" id="case-map">
+        <div class="section-head">
+          <div class="section-title">
+            <h2>案例地图</h2>
+            <p>按客户分类、属性、合作条线与落地场景沉淀案例线索。</p>
+          </div>
+        </div>
+
+        <div class="case-map-wrap" role="region" aria-label="案例地图表格" tabindex="0">
+          <table class="case-map-table">
+            <thead>
+              <tr>
+                <th>客户分类</th>
+                <th>细分属性</th>
+                <th>案例链接</th>
+                <th>场景合作条线</th>
+                <th>细分标签</th>
+                <th>财务管报</th>
+                <th>数字化经分会</th>
+                <th>财务主题场景</th>
+                <th>穿透式监管</th>
+                <th>数据治理</th>
+                <th>数字人才</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="center">国资</td>
+                <td class="center">中央企业</td>
+                <td class="case-name">中国海洋石油集团</td>
+                <td class="center">财务共享</td>
+                <td class="center">央企总部</td>
+                <td></td>
+                <td></td>
+                <td class="scenario-note">应收应付/财务共享/资产等</td>
+                <td></td>
+                <td></td>
+                <td class="center"><span class="case-map-mark">√</span></td>
+              </tr>
+              <tr>
+                <td class="center">国资</td>
+                <td class="center">中央企业</td>
+                <td class="case-name">中国电子科技集团财务公司</td>
+                <td class="center">财务公司</td>
+                <td class="center">央企二级</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="center"><span class="case-map-mark">√</span></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="center">国资</td>
+                <td class="center">中央企业</td>
+                <td class="case-name is-pending">中国交通建设集团（待定）</td>
+                <td class="center">华东财务共享</td>
+                <td class="center">央企二级</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="center">国资</td>
+                <td class="center">地方国企</td>
+                <td class="case-name">山东能源集团有限公司</td>
+                <td class="center">财务共享</td>
+                <td class="center">省属一级</td>
+                <td></td>
+                <td></td>
+                <td class="scenario-note">国资监管/财务共享/损益/费用/资产/税务等</td>
+                <td></td>
+                <td class="center"><span class="case-map-mark">√</span></td>
+                <td class="center"><span class="case-map-mark">√</span></td>
+              </tr>
+              <tr>
+                <td class="center">国资</td>
+                <td class="center">地方国企</td>
+                <td class="case-name">上海医药集团股份有限公司</td>
+                <td class="center">运营管理</td>
+                <td class="center">省属二级</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="center">国资</td>
+                <td class="center">地方国企</td>
+                <td class="case-name">广州地铁集团有限公司</td>
+                <td class="center">战略部</td>
+                <td class="center">市属一级</td>
+                <td></td>
+                <td class="center"><span class="case-map-mark">√</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="center"><span class="case-map-mark">√</span></td>
+              </tr>
+              <tr>
+                <td class="center">民营</td>
+                <td class="center">制造</td>
+                <td class="case-name">赛力斯集团股份有限公司</td>
+                <td class="center">财务管理</td>
+                <td class="center">&gt;1,000亿</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="center">民营</td>
+                <td class="center">制造</td>
+                <td class="case-name">阳光电源股份有限公司</td>
+                <td class="center">财务管理</td>
+                <td class="center">100～1,000亿</td>
+                <td class="center"><span class="case-map-mark">√</span></td>
+                <td></td>
+                <td class="scenario-note">损益/费用</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="center">民营</td>
+                <td class="center">制造</td>
+                <td class="case-name is-pending">易事特集团股份有限公司（待定）</td>
+                <td></td>
+                <td class="center">10～100亿</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="center">民营</td>
+                <td class="center">零售</td>
+                <td class="case-name">全棉时代科技有限公司</td>
+                <td class="center">战略规划、财务管理</td>
+                <td class="center">10～100亿</td>
+                <td></td>
+                <td class="center"><span class="case-map-mark">√</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td class="center">外资</td>
+                <td class="center">医药</td>
+                <td class="case-name">卡尔史托斯（KARL STORZ）</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </section>
 
