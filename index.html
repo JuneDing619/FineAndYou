@@ -495,6 +495,19 @@
       max-width: 560px;
     }
 
+    #case-map .section-title {
+      width: 100%;
+      max-width: none;
+    }
+
+    .case-map-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
     .case-region-tab {
       display: inline-flex;
       align-items: center;
@@ -1225,6 +1238,32 @@
         font-size: 0.8rem;
       }
 
+      .case-map-title-row {
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: 10px;
+      }
+
+      #case-map .section-title h2 {
+        flex: 0 0 auto;
+        font-size: clamp(1.36rem, 5.2vw, 1.58rem);
+      }
+
+      #case-map .case-region-tabs {
+        flex: 1 1 auto;
+        min-width: 0;
+        max-width: none;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        gap: 4px;
+      }
+
+      #case-map .case-region-tab {
+        min-height: 30px;
+        padding: 5px 6px;
+        font-size: 0.72rem;
+      }
+
       .modal {
         padding: 10px;
         align-items: stretch;
@@ -1427,15 +1466,17 @@
       <section class="section-card" id="case-map">
         <div class="section-head">
           <div class="section-title">
-            <h2>案例地图</h2>
+            <div class="case-map-title-row">
+              <h2>案例地图</h2>
+              <div class="case-region-tabs" role="tablist" aria-label="案例地图区域切换">
+                <button class="case-region-tab is-active" type="button" role="tab" aria-selected="true">全国总览</button>
+                <button class="case-region-tab" type="button" role="tab" aria-selected="false">上海区域</button>
+                <button class="case-region-tab" type="button" role="tab" aria-selected="false">华南区域</button>
+                <button class="case-region-tab" type="button" role="tab" aria-selected="false">苏皖区域</button>
+                <button class="case-region-tab" type="button" role="tab" aria-selected="false">其他区域</button>
+              </div>
+            </div>
             <p>按客户分类、属性、合作条线与落地场景沉淀案例线索。</p>
-          </div>
-          <div class="case-region-tabs" role="tablist" aria-label="案例地图区域切换">
-            <button class="case-region-tab is-active" type="button" role="tab" aria-selected="true">全国总览</button>
-            <button class="case-region-tab" type="button" role="tab" aria-selected="false">上海区域</button>
-            <button class="case-region-tab" type="button" role="tab" aria-selected="false">华南区域</button>
-            <button class="case-region-tab" type="button" role="tab" aria-selected="false">苏皖区域</button>
-            <button class="case-region-tab" type="button" role="tab" aria-selected="false">其他区域</button>
           </div>
         </div>
 
