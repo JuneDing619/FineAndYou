@@ -486,6 +486,7 @@
       border-color: rgba(128, 202, 255, 0.46);
     }
 
+    .scene-tabs,
     .case-region-tabs {
       display: flex;
       align-items: center;
@@ -495,11 +496,13 @@
       max-width: 560px;
     }
 
+    #scene-assets .section-title,
     #case-map .section-title {
       width: 100%;
       max-width: none;
     }
 
+    .scene-title-row,
     .case-map-title-row {
       display: flex;
       align-items: center;
@@ -508,6 +511,7 @@
       flex-wrap: wrap;
     }
 
+    .scene-tab,
     .case-region-tab {
       display: inline-flex;
       align-items: center;
@@ -523,6 +527,7 @@
       transition: color var(--anim), background var(--anim), border-color var(--anim), box-shadow var(--anim);
     }
 
+    .scene-tab.is-active,
     .case-region-tab.is-active {
       color: var(--navy-700);
       background:
@@ -1123,6 +1128,7 @@
 
       .topnav,
       .arsenal-tabs,
+      .scene-tabs,
       .case-region-tabs {
         justify-content: flex-start;
       }
@@ -1265,17 +1271,20 @@
         font-size: 0.8rem;
       }
 
+      .scene-title-row,
       .case-map-title-row {
         flex-wrap: nowrap;
         align-items: center;
         gap: 10px;
       }
 
+      #scene-assets .section-title h2,
       #case-map .section-title h2 {
         flex: 0 0 auto;
         font-size: clamp(1.36rem, 5.2vw, 1.58rem);
       }
 
+      #scene-assets .scene-tabs,
       #case-map .case-region-tabs {
         flex: 1 1 auto;
         min-width: 0;
@@ -1285,6 +1294,7 @@
         gap: 4px;
       }
 
+      #scene-assets .scene-tab,
       #case-map .case-region-tab {
         min-height: 30px;
         padding: 5px 6px;
@@ -1388,17 +1398,23 @@
       <section class="section-card" id="scene-assets">
         <div class="section-head">
           <div class="section-title">
-            <h2>场景总览</h2>
+            <div class="scene-title-row">
+              <h2>场景总览</h2>
+              <div class="scene-tabs" role="tablist" aria-label="场景总览切换">
+                <button class="scene-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="scene-map" data-scene-pane="map">场景地图</button>
+                <button class="scene-tab" type="button" role="tab" aria-selected="false" aria-controls="scene-modules" data-scene-pane="modules">模块入口</button>
+                <button class="scene-tab" type="button" role="tab" aria-selected="false" aria-controls="scene-more" data-scene-pane="more">更多内容</button>
+              </div>
+            </div>
             <p>场景仍然是知识资产的主干。选择具体场景，进入对应专题页查看方案、案例、工具与交付内容。</p>
-          </div>
-          <div class="arsenal-tabs" role="tablist" aria-label="场景资产切换">
-            <button class="arsenal-tab is-active" type="button" role="tab" aria-selected="true" aria-controls="arsenal-finance" id="tab-finance" data-pane="finance">财经破圈</button>
-            <button class="arsenal-tab" type="button" role="tab" aria-selected="false" aria-controls="arsenal-more" id="tab-more" data-pane="more">更多内容</button>
           </div>
         </div>
 
         <div class="section-inner">
-          <div class="arsenal-pane is-active" id="arsenal-finance" role="tabpanel" aria-labelledby="tab-finance">
+          <div class="arsenal-pane is-active" id="scene-map" role="tabpanel">
+          </div>
+
+          <div class="arsenal-pane" id="scene-modules" role="tabpanel">
             <div class="asset-grid">
               <article class="asset-card is-disabled" aria-label="财经品牌屋入口暂不跳转">
                 <div class="asset-card-head">
@@ -1457,7 +1473,7 @@
 
           </div>
 
-          <div class="arsenal-pane" id="arsenal-more" role="tabpanel" aria-labelledby="tab-more">
+          <div class="arsenal-pane" id="scene-more" role="tabpanel">
             <div class="asset-grid">
               <a class="asset-card" href="./CaseLibrary/">
                 <div class="asset-card-head">
@@ -2192,7 +2208,7 @@
   </section>
 
   <script>
-    const tabs = Array.from(document.querySelectorAll('.arsenal-tab'));
+    const tabs = Array.from(document.querySelectorAll('.scene-tab'));
     const panes = Array.from(document.querySelectorAll('.arsenal-pane'));
     const caseRegionTabs = Array.from(document.querySelectorAll('.case-region-tab'));
     const caseRegionPanes = Array.from(document.querySelectorAll('.case-region-pane'));
@@ -2201,7 +2217,7 @@
 
     tabs.forEach((tab) => {
       tab.addEventListener('click', () => {
-        const { pane } = tab.dataset;
+        const { scenePane } = tab.dataset;
 
         tabs.forEach((item) => {
           const active = item === tab;
@@ -2210,7 +2226,7 @@
         });
 
         panes.forEach((panel) => {
-          panel.classList.toggle('is-active', panel.id === `arsenal-${pane}`);
+          panel.classList.toggle('is-active', panel.id === `scene-${scenePane}`);
         });
       });
     });
