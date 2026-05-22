@@ -486,6 +486,39 @@
       border-color: rgba(128, 202, 255, 0.46);
     }
 
+    .case-region-tabs {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+      flex-wrap: wrap;
+      max-width: 560px;
+    }
+
+    .case-region-tab {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      color: rgba(86, 98, 128, 0.86);
+      font-size: 0.82rem;
+      font-weight: 800;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(204, 228, 255, 0.74);
+      transition: color var(--anim), background var(--anim), border-color var(--anim), box-shadow var(--anim);
+    }
+
+    .case-region-tab.is-active {
+      color: var(--navy-700);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(232, 244, 255, 0.9)),
+        rgba(232, 244, 255, 0.86);
+      border-color: rgba(128, 202, 255, 0.62);
+      box-shadow: 0 8px 18px rgba(0, 134, 230, 0.1);
+    }
+
     .arsenal-pane {
       display: none;
       gap: 14px;
@@ -1049,7 +1082,8 @@
       }
 
       .topnav,
-      .arsenal-tabs {
+      .arsenal-tabs,
+      .case-region-tabs {
         justify-content: flex-start;
       }
 
@@ -1395,6 +1429,13 @@
           <div class="section-title">
             <h2>案例地图</h2>
             <p>按客户分类、属性、合作条线与落地场景沉淀案例线索。</p>
+          </div>
+          <div class="case-region-tabs" role="tablist" aria-label="案例地图区域切换">
+            <button class="case-region-tab is-active" type="button" role="tab" aria-selected="true">全国总览</button>
+            <button class="case-region-tab" type="button" role="tab" aria-selected="false">上海区域</button>
+            <button class="case-region-tab" type="button" role="tab" aria-selected="false">华南区域</button>
+            <button class="case-region-tab" type="button" role="tab" aria-selected="false">苏皖区域</button>
+            <button class="case-region-tab" type="button" role="tab" aria-selected="false">其他区域</button>
           </div>
         </div>
 
@@ -1813,6 +1854,7 @@
   <script>
     const tabs = Array.from(document.querySelectorAll('.arsenal-tab'));
     const panes = Array.from(document.querySelectorAll('.arsenal-pane'));
+    const caseRegionTabs = Array.from(document.querySelectorAll('.case-region-tab'));
     const modals = Array.from(document.querySelectorAll('.modal'));
     let lastFocusedElement = null;
 
@@ -1828,6 +1870,16 @@
 
         panes.forEach((panel) => {
           panel.classList.toggle('is-active', panel.id === `arsenal-${pane}`);
+        });
+      });
+    });
+
+    caseRegionTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        caseRegionTabs.forEach((item) => {
+          const active = item === tab;
+          item.classList.toggle('is-active', active);
+          item.setAttribute('aria-selected', String(active));
         });
       });
     });
