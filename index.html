@@ -808,6 +808,184 @@
       font-weight: 900;
     }
 
+    .scenario-map {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 190px;
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .scenario-main {
+      display: grid;
+      gap: 14px;
+    }
+
+    .scenario-layer {
+      padding: 16px;
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(245, 250, 255, 0.84)),
+        rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(204, 228, 255, 0.88);
+      box-shadow: 0 14px 32px rgba(23, 52, 110, 0.05);
+    }
+
+    .scenario-layer.is-app {
+      border-color: rgba(121, 102, 255, 0.36);
+      background:
+        linear-gradient(135deg, rgba(250, 247, 255, 0.96), rgba(240, 246, 255, 0.84)),
+        rgba(255, 255, 255, 0.88);
+    }
+
+    .scenario-layer.is-theme {
+      border-color: rgba(0, 134, 230, 0.36);
+    }
+
+    .scenario-layer.is-base {
+      border-color: rgba(151, 164, 184, 0.4);
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.86)),
+        rgba(255, 255, 255, 0.88);
+    }
+
+    .scenario-layer.is-governance {
+      border-color: rgba(0, 179, 92, 0.34);
+      background:
+        linear-gradient(135deg, rgba(246, 255, 250, 0.96), rgba(240, 250, 245, 0.86)),
+        rgba(255, 255, 255, 0.88);
+    }
+
+    .scenario-layer.is-source {
+      border-color: rgba(86, 98, 128, 0.26);
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .scenario-layer-title {
+      margin-bottom: 14px;
+      color: var(--navy-900);
+      font-size: clamp(1.02rem, 1.5vw, 1.22rem);
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .scenario-cluster-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      align-items: center;
+    }
+
+    .scenario-cluster-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      gap: 10px;
+      align-items: center;
+    }
+
+    .scenario-cluster {
+      min-height: 96px;
+      padding: 14px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(128, 202, 255, 0.42);
+    }
+
+    .scenario-cluster-title {
+      margin-bottom: 12px;
+      color: rgba(23, 52, 110, 0.86);
+      font-size: 0.9rem;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .scenario-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .scenario-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 32px;
+      padding: 6px 12px;
+      border-radius: 10px;
+      color: rgba(23, 52, 110, 0.88);
+      font-size: 0.82rem;
+      font-weight: 800;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(204, 228, 255, 0.72);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82);
+    }
+
+    .scenario-flow-arrow {
+      color: var(--navy-700);
+      font-size: 1.5rem;
+      font-weight: 900;
+      opacity: 0.68;
+    }
+
+    .scenario-source-text {
+      color: rgba(23, 52, 110, 0.78);
+      font-size: 0.94rem;
+      font-weight: 800;
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    .scenario-service {
+      display: grid;
+      align-content: start;
+      gap: 14px;
+      padding: 16px 12px;
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(180deg, rgba(255, 253, 246, 0.96), rgba(255, 248, 232, 0.82)),
+        rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(243, 150, 0, 0.24);
+    }
+
+    .scenario-service-title {
+      color: var(--navy-900);
+      font-size: 1.1rem;
+      font-weight: 900;
+      text-align: center;
+    }
+
+    .scenario-service-card {
+      display: grid;
+      gap: 10px;
+      padding: 12px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(243, 150, 0, 0.22);
+    }
+
+    .scenario-service-card strong {
+      color: rgba(23, 52, 110, 0.88);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .scenario-service-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .scenario-service-pill {
+      display: inline-flex;
+      justify-content: center;
+      padding: 6px 8px;
+      border-radius: 10px;
+      color: rgba(23, 52, 110, 0.82);
+      font-size: 0.78rem;
+      font-weight: 800;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(243, 150, 0, 0.2);
+    }
+
     .modal {
       position: fixed;
       inset: 0;
@@ -1116,6 +1294,18 @@
         grid-template-columns: repeat(4, minmax(0, 1fr));
       }
 
+      .scenario-map {
+        grid-template-columns: 1fr;
+      }
+
+      .scenario-service {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .scenario-service-title {
+        grid-column: 1 / -1;
+      }
+
     }
 
     @media (max-width: 920px) {
@@ -1149,7 +1339,18 @@
       }
 
       .diagnosis-grid,
-      .option-groups {
+      .option-groups,
+      .scenario-cluster-grid,
+      .scenario-cluster-row {
+        grid-template-columns: 1fr;
+      }
+
+      .scenario-flow-arrow {
+        transform: rotate(90deg);
+        text-align: center;
+      }
+
+      .scenario-service {
         grid-template-columns: 1fr;
       }
 
@@ -1412,6 +1613,126 @@
 
         <div class="section-inner">
           <div class="arsenal-pane is-active" id="scene-map" role="tabpanel">
+            <div class="scenario-map" aria-label="财经场景地图">
+              <div class="scenario-main">
+                <section class="scenario-layer is-app">
+                  <h3 class="scenario-layer-title">应用场景层（明确业务场景和闭环管理）</h3>
+                  <div class="scenario-cluster-grid">
+                    <div class="scenario-cluster">
+                      <div class="scenario-cluster-title">经营决策</div>
+                      <div class="scenario-pill-row">
+                        <span class="scenario-pill">高管早参</span>
+                        <span class="scenario-pill">经营分析 × 一报一会</span>
+                        <span class="scenario-pill">预警雷达</span>
+                      </div>
+                    </div>
+                    <div class="scenario-cluster">
+                      <div class="scenario-cluster-title">监管治理</div>
+                      <div class="scenario-pill-row">
+                        <span class="scenario-pill">规则配置</span>
+                        <span class="scenario-pill">模型识别</span>
+                        <span class="scenario-pill">线索输出</span>
+                        <span class="scenario-pill">整改闭环</span>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="scenario-layer is-theme">
+                  <h3 class="scenario-layer-title">主题模块层（可复用、可独立交付的专业能力单元）</h3>
+                  <div class="scenario-cluster-row">
+                    <div class="scenario-cluster">
+                      <div class="scenario-cluster-title">财经主题分析</div>
+                      <div class="scenario-pill-row">
+                        <span class="scenario-pill">损益分析</span>
+                        <span class="scenario-pill">费用分析</span>
+                        <span class="scenario-pill">资金分析</span>
+                        <span class="scenario-pill">共享运营</span>
+                        <span class="scenario-pill">财报分析</span>
+                      </div>
+                    </div>
+                    <span class="scenario-flow-arrow" aria-hidden="true">↔</span>
+                    <div class="scenario-cluster">
+                      <div class="scenario-cluster-title">管理会计构件</div>
+                      <div class="scenario-pill-row">
+                        <span class="scenario-pill">多维损益</span>
+                        <span class="scenario-pill">成本还原</span>
+                        <span class="scenario-pill">费用分摊</span>
+                        <span class="scenario-pill">存货未实现</span>
+                        <span class="scenario-pill">特殊业务</span>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="scenario-layer is-base">
+                  <h3 class="scenario-layer-title">能力底座层</h3>
+                  <div class="scenario-cluster-grid">
+                    <div class="scenario-cluster">
+                      <div class="scenario-cluster-title">AI Agent 平台</div>
+                      <div class="scenario-pill-row">
+                        <span class="scenario-pill">Agent 应用</span>
+                        <span class="scenario-pill">Agent 搭建</span>
+                        <span class="scenario-pill">智能问数</span>
+                      </div>
+                    </div>
+                    <div class="scenario-cluster">
+                      <div class="scenario-cluster-title">业务规则模型</div>
+                      <div class="scenario-pill-row">
+                        <span class="scenario-pill">计算规则</span>
+                        <span class="scenario-pill">业务模型</span>
+                        <span class="scenario-pill">预警中心</span>
+                        <span class="scenario-pill">指标归因</span>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="scenario-layer is-governance">
+                  <h3 class="scenario-layer-title">数据集成与治理层</h3>
+                  <div class="scenario-pill-row">
+                    <span class="scenario-pill">主数据治理</span>
+                    <span class="scenario-pill">指标口径管理</span>
+                    <span class="scenario-pill">数据质量校验</span>
+                    <span class="scenario-pill">权限与安全</span>
+                    <span class="scenario-pill">数据血缘追踪</span>
+                  </div>
+                </section>
+
+                <section class="scenario-layer is-source">
+                  <h3 class="scenario-layer-title">数据来源层（内外部数据）</h3>
+                  <p class="scenario-source-text">ERP · 财务 · 税务 · 资金 · HR · CRM · MES · 供应链 · 外部数据</p>
+                </section>
+              </div>
+
+              <aside class="scenario-service" aria-label="服务保障">
+                <h3 class="scenario-service-title">服务保障</h3>
+                <section class="scenario-service-card">
+                  <strong>数据治理</strong>
+                  <div class="scenario-service-list">
+                    <span class="scenario-service-pill">口径梳理</span>
+                    <span class="scenario-service-pill">质量巡检</span>
+                    <span class="scenario-service-pill">权限规范</span>
+                  </div>
+                </section>
+                <section class="scenario-service-card">
+                  <strong>指标咨询</strong>
+                  <div class="scenario-service-list">
+                    <span class="scenario-service-pill">指标拆解</span>
+                    <span class="scenario-service-pill">归因分析</span>
+                    <span class="scenario-service-pill">经营复盘</span>
+                  </div>
+                </section>
+                <section class="scenario-service-card">
+                  <strong>数字人才</strong>
+                  <div class="scenario-service-list">
+                    <span class="scenario-service-pill">角色训战</span>
+                    <span class="scenario-service-pill">场景共创</span>
+                    <span class="scenario-service-pill">运营机制</span>
+                  </div>
+                </section>
+              </aside>
+            </div>
           </div>
 
           <div class="arsenal-pane" id="scene-modules" role="tabpanel">
