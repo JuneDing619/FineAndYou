@@ -934,14 +934,13 @@
     .scenario-service {
       display: grid;
       align-content: start;
-      gap: 12px;
+      gap: 16px;
       padding: 14px 12px;
       border-radius: var(--radius-lg);
       background:
         linear-gradient(180deg, rgba(245, 250, 255, 0.98), rgba(255, 250, 240, 0.82)),
         rgba(255, 255, 255, 0.86);
       border: 1px solid rgba(128, 202, 255, 0.42);
-      box-shadow: inset 4px 0 0 rgba(0, 134, 230, 0.72);
     }
 
     .scenario-service-title {
@@ -953,8 +952,9 @@
 
     .scenario-service-card {
       display: grid;
-      gap: 8px;
-      padding: 10px 10px 11px;
+      justify-items: center;
+      gap: 10px;
+      padding: 12px 10px;
       border-radius: var(--radius-md);
       background: rgba(255, 255, 255, 0.78);
       border: 1px solid rgba(204, 228, 255, 0.72);
@@ -968,12 +968,15 @@
 
     .scenario-service-list {
       display: grid;
-      gap: 7px;
+      gap: 8px;
+      justify-items: center;
+      width: 100%;
     }
 
     .scenario-service-pill {
       display: inline-flex;
       justify-content: center;
+      width: min(100%, 104px);
       padding: 5px 8px;
       border-radius: 9px;
       color: rgba(23, 52, 110, 0.82);
@@ -1527,7 +1530,7 @@
       }
 
       .scenario-service {
-        gap: 5px;
+        gap: 7px;
         padding: 7px 6px;
       }
 
@@ -1536,8 +1539,8 @@
       }
 
       .scenario-service-card {
-        gap: 4px;
-        padding: 6px 4px;
+        gap: 5px;
+        padding: 7px 4px;
       }
 
       .scenario-service-card strong {
@@ -1545,7 +1548,7 @@
       }
 
       .scenario-service-list {
-        gap: 3px;
+        gap: 4px;
       }
 
       .scenario-service-pill {
