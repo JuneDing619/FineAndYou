@@ -869,25 +869,7 @@
     }
 
     .scenario-step-row {
-      display: grid;
-      grid-template-columns: 52px minmax(0, 1fr);
-      gap: 12px;
-      align-items: stretch;
-    }
-
-    .scenario-step-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 42px;
-      height: 42px;
-      margin-top: 8px;
-      border-radius: 10px;
-      color: #fff;
-      background: linear-gradient(135deg, var(--navy-800), var(--navy-700));
-      box-shadow: 0 10px 20px rgba(0, 134, 230, 0.14);
-      font-size: 0.82rem;
-      font-weight: 900;
+      display: block;
     }
 
     .scenario-cluster-grid {
@@ -1691,25 +1673,22 @@
               <div class="scenario-main">
                 <section class="scenario-layer is-app">
                   <h3 class="scenario-layer-title">应用场景层</h3>
-                  <div class="scenario-step-row">
-                    <span class="scenario-step-badge">01</span>
-                    <div class="scenario-cluster-grid">
-                      <div class="scenario-cluster">
-                        <div class="scenario-cluster-title">经营决策</div>
-                        <div class="scenario-pill-row">
-                          <span class="scenario-pill">高管早参</span>
-                          <span class="scenario-pill">一报一会</span>
-                          <span class="scenario-pill">预警雷达</span>
-                        </div>
+                  <div class="scenario-cluster-grid">
+                    <div class="scenario-cluster">
+                      <div class="scenario-cluster-title">经营决策</div>
+                      <div class="scenario-pill-row">
+                        <span class="scenario-pill">高管早参</span>
+                        <span class="scenario-pill">一报一会</span>
+                        <span class="scenario-pill">预警雷达</span>
                       </div>
-                      <div class="scenario-cluster">
-                        <div class="scenario-cluster-title">监管治理</div>
-                        <div class="scenario-pill-row">
-                          <span class="scenario-pill">规则配置</span>
-                          <span class="scenario-pill">模型识别</span>
-                          <span class="scenario-pill">线索输出</span>
-                          <span class="scenario-pill">整改闭环</span>
-                        </div>
+                    </div>
+                    <div class="scenario-cluster">
+                      <div class="scenario-cluster-title">监管治理</div>
+                      <div class="scenario-pill-row">
+                        <span class="scenario-pill">规则配置</span>
+                        <span class="scenario-pill">模型识别</span>
+                        <span class="scenario-pill">线索输出</span>
+                        <span class="scenario-pill">整改闭环</span>
                       </div>
                     </div>
                   </div>
@@ -1717,29 +1696,26 @@
 
                 <section class="scenario-layer is-theme">
                   <h3 class="scenario-layer-title">主题模块层</h3>
-                  <div class="scenario-step-row">
-                    <span class="scenario-step-badge">02</span>
-                    <div class="scenario-cluster-row">
-                      <div class="scenario-cluster">
-                        <div class="scenario-cluster-title">财经主题分析</div>
-                        <div class="scenario-pill-row">
-                          <span class="scenario-pill">损益分析</span>
-                          <span class="scenario-pill">费用分析</span>
-                          <span class="scenario-pill">资金分析</span>
-                          <span class="scenario-pill">共享运营</span>
-                          <span class="scenario-pill">财报分析</span>
-                        </div>
+                  <div class="scenario-cluster-row">
+                    <div class="scenario-cluster">
+                      <div class="scenario-cluster-title">财经主题分析</div>
+                      <div class="scenario-pill-row">
+                        <span class="scenario-pill">损益分析</span>
+                        <span class="scenario-pill">费用分析</span>
+                        <span class="scenario-pill">资金分析</span>
+                        <span class="scenario-pill">共享运营</span>
+                        <span class="scenario-pill">财报分析</span>
                       </div>
-                      <span class="scenario-flow-arrow" aria-hidden="true">↔</span>
-                      <div class="scenario-cluster">
-                        <div class="scenario-cluster-title">管理会计构件</div>
-                        <div class="scenario-pill-row">
-                          <span class="scenario-pill">多维损益</span>
-                          <span class="scenario-pill">成本还原</span>
-                          <span class="scenario-pill">费用分摊</span>
-                          <span class="scenario-pill">存货未实现</span>
-                          <span class="scenario-pill">特殊业务</span>
-                        </div>
+                    </div>
+                    <span class="scenario-flow-arrow" aria-hidden="true">↔</span>
+                    <div class="scenario-cluster">
+                      <div class="scenario-cluster-title">管理会计构件</div>
+                      <div class="scenario-pill-row">
+                        <span class="scenario-pill">多维损益</span>
+                        <span class="scenario-pill">成本还原</span>
+                        <span class="scenario-pill">费用分摊</span>
+                        <span class="scenario-pill">存货未实现</span>
+                        <span class="scenario-pill">特殊业务</span>
                       </div>
                     </div>
                   </div>
@@ -1747,25 +1723,22 @@
 
                 <section class="scenario-layer is-base">
                   <h3 class="scenario-layer-title">能力底座层</h3>
-                  <div class="scenario-step-row">
-                    <span class="scenario-step-badge">03</span>
-                    <div class="scenario-cluster-grid">
-                      <div class="scenario-cluster">
-                        <div class="scenario-cluster-title">AI Agent 平台</div>
-                        <div class="scenario-pill-row">
-                          <span class="scenario-pill">Agent 应用</span>
-                          <span class="scenario-pill">Agent 搭建</span>
-                          <span class="scenario-pill">智能问数</span>
-                        </div>
+                  <div class="scenario-cluster-grid">
+                    <div class="scenario-cluster">
+                      <div class="scenario-cluster-title">AI Agent 平台</div>
+                      <div class="scenario-pill-row">
+                        <span class="scenario-pill">Agent 应用</span>
+                        <span class="scenario-pill">Agent 搭建</span>
+                        <span class="scenario-pill">智能问数</span>
                       </div>
-                      <div class="scenario-cluster">
-                        <div class="scenario-cluster-title">业务规则模型</div>
-                        <div class="scenario-pill-row">
-                          <span class="scenario-pill">计算规则</span>
-                          <span class="scenario-pill">业务模型</span>
-                          <span class="scenario-pill">预警中心</span>
-                          <span class="scenario-pill">指标归因</span>
-                        </div>
+                    </div>
+                    <div class="scenario-cluster">
+                      <div class="scenario-cluster-title">业务规则模型</div>
+                      <div class="scenario-pill-row">
+                        <span class="scenario-pill">计算规则</span>
+                        <span class="scenario-pill">业务模型</span>
+                        <span class="scenario-pill">预警中心</span>
+                        <span class="scenario-pill">指标归因</span>
                       </div>
                     </div>
                   </div>
@@ -1773,24 +1746,18 @@
 
                 <section class="scenario-layer is-governance">
                   <h3 class="scenario-layer-title">数据集成与治理层</h3>
-                  <div class="scenario-step-row">
-                    <span class="scenario-step-badge">04</span>
-                    <div class="scenario-pill-row">
-                      <span class="scenario-pill">主数据治理</span>
-                      <span class="scenario-pill">指标口径管理</span>
-                      <span class="scenario-pill">数据质量校验</span>
-                      <span class="scenario-pill">权限与安全</span>
-                      <span class="scenario-pill">数据血缘追踪</span>
-                    </div>
+                  <div class="scenario-pill-row">
+                    <span class="scenario-pill">主数据治理</span>
+                    <span class="scenario-pill">指标口径管理</span>
+                    <span class="scenario-pill">数据质量校验</span>
+                    <span class="scenario-pill">权限与安全</span>
+                    <span class="scenario-pill">数据血缘追踪</span>
                   </div>
                 </section>
 
                 <section class="scenario-layer is-source">
                   <h3 class="scenario-layer-title">数据来源层</h3>
-                  <div class="scenario-step-row">
-                    <span class="scenario-step-badge">05</span>
-                    <p class="scenario-source-text">ERP · 财务 · 税务 · 资金 · HR · CRM · MES · 供应链 · 外部数据</p>
-                  </div>
+                  <p class="scenario-source-text">ERP · 财务 · 税务 · 资金 · HR · CRM · MES · 供应链 · 外部数据</p>
                 </section>
               </div>
 
